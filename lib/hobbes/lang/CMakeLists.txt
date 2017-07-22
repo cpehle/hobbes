@@ -45,3 +45,4 @@ target_include_directories(hobbeslang
   )
 
 install(TARGETS hobbeslang DESTINATION "lib")
+

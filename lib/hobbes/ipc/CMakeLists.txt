@@ -11,5 +11,4 @@ target_include_directories(
   PUBLIC
   ${HOBBES_MAIN_INCLUDE_DIR}/hobbes/ipc/
   )
-
 install(TARGETS hobbesipc DESTINATION "lib")

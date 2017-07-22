@@ -659,6 +659,7 @@ void initStdFuncDefs(cc& ctx) {
   srand(::time(0));
   ctx.bind("random", &random);
   ctx.bind("lrand",  &lrand);
+
   ctx.bind("ceil",   &lceil);
   ctx.bind("floor",  &lfloor);
   ctx.bind("truncd", &truncd);

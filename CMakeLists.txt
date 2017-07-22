@@ -65,12 +65,10 @@ endif()
 
 enable_testing()
 add_subdirectory("test")
+
 add_subdirectory("third_party")
 add_subdirectory("include")
 add_subdirectory("lib")
 add_subdirectory("bin")
 add_subdirectory("examples")
-
-
-
 

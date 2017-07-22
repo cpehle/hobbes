@@ -5,10 +5,13 @@
 #include <iostream>
 #include <stdexcept>
 
+int applyDiscreteWeighting(int x, int y) { return x * y; }
 
 int main(int argc, char *argv[]) {
   llvm::cl::ParseCommandLineOptions(argc, argv, "embedding");
+  // hobbes context  
   hobbes::cc c;
+  c.bind("applyDiscreteWeighting", &applyDiscreteWeighting);
 
   char * read_line;
   while ((read_line = linenoise("> ")) != NULL) {

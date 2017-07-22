@@ -4,6 +4,7 @@ add_library(hobbeseval
   cmodule.C
   ctype.C
   func.C
+  search.C
   funcdefs.C
   jitcc.C
   )
