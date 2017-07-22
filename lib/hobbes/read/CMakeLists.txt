@@ -16,3 +16,6 @@ target_include_directories(hobbesread
   PUBLIC
   ${HOBBES_MAIN_INCLUDE_DIR}/hobbes/read
   )
+
+install(TARGETS hobbesread DESTINATION "lib")
+

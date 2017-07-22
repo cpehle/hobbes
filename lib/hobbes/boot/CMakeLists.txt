@@ -12,3 +12,4 @@ target_include_directories(hobbesboot
   ${HOBBES_MAIN_INCLUDE_DIR}/hobbes/boot/gen
   )
 
+install(TARGETS hobbesboot DESTINATION "lib")

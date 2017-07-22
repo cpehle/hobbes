@@ -44,3 +44,4 @@ target_include_directories(hobbeslang
   ${HOBBES_MAIN_INCLUDE_DIR}/hobbes/lang/
   )
 
+install(TARGETS hobbeslang DESTINATION "lib")

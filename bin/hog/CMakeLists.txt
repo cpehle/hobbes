@@ -13,3 +13,5 @@ target_link_libraries(hog
   ${hobbes_libs}
   ncurses
   ${sys_libs})
+
+install(TARGETS hog DESTINATION "bin")

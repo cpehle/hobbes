@@ -11,3 +11,4 @@ target_include_directories(hobbesparse
   ${HOBBES_MAIN_INCLUDE_DIR}/hobbes/parse/
   )
 
+install(TARGETS hobbesparse DESTINATION "lib")

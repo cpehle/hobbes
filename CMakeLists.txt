@@ -43,7 +43,7 @@ add_subdirectory("include")
 add_subdirectory("lib")
 add_subdirectory("bin")
 add_subdirectory("examples")
+add_subdirectory("third_party")
 
-#install(TARGETS ${hobbes_libs} DESTINATION "lib")
-#install(TARGETS hi hog DESTINATION "bin")
-#install(DIRECTORY "include/hobbes" DESTINATION "include")
+
+

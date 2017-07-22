@@ -21,3 +21,5 @@ target_include_directories(hobbeseval
   PUBLIC
   ${HOBBES_MAIN_INCLUDE_DIR}/hobbes/eval/
   )
+
+install(TARGETS hobbeseval DESTINATION "lib")

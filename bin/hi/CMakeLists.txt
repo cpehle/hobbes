@@ -11,3 +11,5 @@ target_link_libraries(hi
   ncurses
   readline
   ${sys_libs})
+
+install(TARGETS hi DESTINATION "bin")

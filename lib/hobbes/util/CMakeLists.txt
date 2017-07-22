@@ -9,3 +9,4 @@ target_include_directories(hobbesutil
   ${HOBBES_MAIN_INCLUDE_DIR}/hobbes/util/
   )
   
+install(TARGETS hobbesutil DESTINATION "lib")

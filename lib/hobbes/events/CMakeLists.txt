@@ -7,3 +7,5 @@ target_include_directories(hobbesevents
   PUBLIC
   ${HOBBES_MAIN_INCLUDE_DIR}/hobbes/events/  
   )
+
+install(TARGETS hobbesevents DESTINATION "lib")
