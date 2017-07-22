@@ -32,7 +32,7 @@ int main() {
 
     // sometimes the customer has a change of heart, else they pay up and go
     if (rand() % 10 == 0) {
-      HSTORE(Orders, orderCanceled);
+      HSTORE(Orders, orderCanceled, true);
     } else {
       HSTORE(Orders, paymentReceived, 10.0 * ((double)(rand() % 100)) / 100.0);
     }
