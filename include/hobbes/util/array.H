@@ -5,11 +5,13 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <string>
+#include <cstring>
 #include <stdexcept>
 #include <algorithm>
 #include <functional>
 #include <sstream>
-#include <string.h>
+#include <stdint.h>
 
 namespace hobbes {
 
