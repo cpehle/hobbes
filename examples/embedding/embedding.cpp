@@ -2,14 +2,14 @@
 #include <stdexcept>
 #include <hobbes/hobbes.H>
 
+#include "linenoise/linenoise.h"
+
 int main() {
   hobbes::cc c;
 
-  while (std::cin) {
-    std::cout << "> " << std::flush;
-
-    std::string line;
-    std::getline(std::cin, line);
+  char * read_line;
+  while ((read_line = linenoise("> ")) != NULL) {
+    auto line = std::string(read_line);    
     if (line == ":q") break;
 
     try {
@@ -18,7 +18,9 @@ int main() {
       std::cout << "*** " << ex.what();
     }
 
+    linenoiseHistoryAdd(read_line);
     std::cout << std::endl;
+    linenoiseFree(read_line);
     hobbes::resetMemoryPool();
   }
 
