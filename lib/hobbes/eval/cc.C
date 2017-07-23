@@ -1,7 +1,7 @@
 
 #include <hobbes/eval/cc.H>
 #include <hobbes/eval/funcdefs.H>
-#include <hobbes/eval/ctype.H>
+#include <hobbes/eval/compile_type.H>
 #include <hobbes/eval/cexpr.H>
 #include <hobbes/boot/gen/boot.H>
 #include <hobbes/lang/closcvt.H>

@@ -1,5 +1,8 @@
 
-#include <hobbes/util/str.H>
+#include "hobbes/util/str.H"
+
+#include <cstddef>
+#include <string>
 #include <memory>
 #include <wordexp.h>
 #include <glob.h>

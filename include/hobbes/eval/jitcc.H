@@ -8,7 +8,7 @@
 
 #include <hobbes/util/llvm.H>
 #include <hobbes/eval/func.H>
-#include <hobbes/eval/ctype.H>
+#include <hobbes/eval/compile_type.H>
 
 #include <map>
 #include <string>

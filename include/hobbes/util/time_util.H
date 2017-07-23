@@ -2,9 +2,10 @@
 #ifndef HOBBES_UTIL_TIME_HPP_INCLUDED
 #define HOBBES_UTIL_TIME_HPP_INCLUDED
 
-#include <hobbes/util/str.H>
+#include "hobbes/util/str.H"
+
 #include <string>
-#include <string.h>
+#include <cstring>
 #include <sstream>
 #include <ctime>
 

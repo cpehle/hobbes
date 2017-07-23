@@ -5,11 +5,8 @@
 #ifndef HOBBES_UTIL_HASH_H_INCLUDED
 #define HOBBES_UTIL_HASH_H_INCLUDED
 
-#include <functional>
-#include <unordered_map>
+#include <string.h>
 #include <map>
-#include <vector>
-#include <tuple>
 
 namespace hobbes {
 
@@ -22,7 +19,7 @@ template <typename T>
   };
 
 template <typename T>
-  inline void hashAppend(std::size_t& seed, const T& x) {
+  inline void hashAppend(size_t& seed, const T& x) {
     genHash<T> hasher;
     seed ^= hasher(x) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
   }

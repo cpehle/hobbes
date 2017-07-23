@@ -2,6 +2,7 @@
 #ifndef HOBBES_UTIL_STR_HPP_INCLUDED
 #define HOBBES_UTIL_STR_HPP_INCLUDED
 
+#include <cstddef>
 #include <hobbes/util/array.H>
 #include <string>
 #include <sstream>

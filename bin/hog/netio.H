@@ -6,7 +6,7 @@
 #define HOG_NETIO_H_INCLUDED
 
 #include <hobbes/util/perf.H>
-#include <hobbes/util/time.H>
+#include <hobbes/util/time_util.H>
 #include <string>
 #include <vector>
 #include <stdexcept>

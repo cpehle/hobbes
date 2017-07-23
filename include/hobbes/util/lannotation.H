@@ -5,12 +5,8 @@
 #ifndef HOBBES_UTIL_LANNOTATION_HPP_INCLUDED
 #define HOBBES_UTIL_LANNOTATION_HPP_INCLUDED
 
-#include <hobbes/util/ptr.H>
-#include <hobbes/util/str.H>
-#include <string>
-#include <vector>
-#include <map>
-#include <stdexcept>
+#include "hobbes/util/ptr.H"
+#include "hobbes/util/str.H"
 
 namespace hobbes {
 

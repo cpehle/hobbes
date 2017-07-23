@@ -1,6 +1,9 @@
+#include "hobbes/util/region.H"
+#include "hobbes/util/str.H"
 
-#include <hobbes/util/region.H>
-#include <hobbes/util/str.H>
+#include <cstddef>
+#include <string>
+#include <iostream>
 #include <stdlib.h>
 #include <algorithm>
 

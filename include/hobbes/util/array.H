@@ -2,10 +2,12 @@
 #ifndef HOBBES_UTIL_ARRAY_HPP_INCLUDED
 #define HOBBES_UTIL_ARRAY_HPP_INCLUDED
 
+#include <string>
+#include <sstream>
+#include <iostream>
 #include <map>
 #include <set>
 #include <vector>
-#include <string>
 #include <cstring>
 #include <stdexcept>
 #include <algorithm>

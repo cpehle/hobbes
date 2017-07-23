@@ -9,7 +9,7 @@
 #include <hobbes/ipc/net.H>
 #include <hobbes/util/perf.H>
 #include <hobbes/util/str.H>
-#include <hobbes/util/time.H>
+#include <hobbes/util/time_util.H>
 #include <iostream>
 
 namespace hi {
