@@ -8,8 +8,8 @@
 #include "hobbes/util/ptr.H"
 #include "hobbes/util/str.H"
 
-#include <pair>
-#include <shared_ptr>
+#include <utility>
+#include <memory>
 #include <string>
 
 namespace hobbes {
