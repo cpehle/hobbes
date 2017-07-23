@@ -9,7 +9,7 @@ int main() {
 
   char * read_line;
   while ((read_line = linenoise("> ")) != NULL) {
-    auto line = std::string(read_line);    
+    auto line = std::string(read_line);
     if (line == ":q") break;
 
     try {
