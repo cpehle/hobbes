@@ -6,7 +6,9 @@
 
 #include <mutex>
 #include <unordered_map>
+#include <shared_ptr>
 #include <map>
+#include <iterator>
 
 namespace hobbes {
 

@@ -8,6 +8,10 @@
 #include "hobbes/util/ptr.H"
 #include "hobbes/util/str.H"
 
+#include <pair>
+#include <shared_ptr>
+#include <string>
+
 namespace hobbes {
 
 typedef std::pair<bool, std::string>    BuffOrFilename;

@@ -7,6 +7,8 @@
 
 #include <string.h>
 #include <map>
+#include <vector>
+#include <tuple>
 
 namespace hobbes {
 
