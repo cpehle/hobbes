@@ -48,6 +48,30 @@ typedef struct linenoiseCompletions {
   char **cvec;
 } linenoiseCompletions;
 
+typedef void(linenoiseLineCallback)(const char *);
+  
+/* The linenoiseState structure represents the state during line editing.
+ * We pass this state to functions implementing specific editing
+ * functionalities. */
+struct linenoiseState {
+    int ifd;            /* Terminal stdin file descriptor. */
+    int ofd;            /* Terminal stdout file descriptor. */
+    char *buf;          /* Edited line buffer. */
+    char seq[3];        /* Escape sequence */
+    int read_seq;       /* Position in Escape sequence */
+    size_t buflen;      /* Edited line buffer size. */
+    const char *prompt; /* Prompt to display. */
+    size_t plen;        /* Prompt length. */
+    size_t pos;         /* Current cursor position. */
+    size_t oldpos;      /* Previous refresh cursor position. */
+    size_t len;         /* Current edited line length. */
+    size_t cols;        /* Number of columns in terminal. */
+    size_t maxrows;     /* Maximum num of rows used so far (multiline mode) */
+    int history_index;  /* The history index we are currently editing. */
+    int nread; /* Number of characters read. */
+    linenoiseLineCallback* line_callback; /* Function to call when one line is entered. */
+};
+ 
 typedef void(linenoiseCompletionCallback)(const char *, linenoiseCompletions *);
 typedef char*(linenoiseHintsCallback)(const char *, int *color, int *bold);
 typedef void(linenoiseFreeHintsCallback)(void *);
@@ -56,6 +80,9 @@ void linenoiseSetHintsCallback(linenoiseHintsCallback *);
 void linenoiseSetFreeHintsCallback(linenoiseFreeHintsCallback *);
 void linenoiseAddCompletion(linenoiseCompletions *, const char *);
 
+int linenoiseInit(struct linenoiseState* state, int stdin_fd, int stdout_fd, char *buf, size_t buflen, const char *prompt, linenoiseLineCallback* line_callback);
+int linenoiseNext(struct linenoiseState* state, char c);
+  
 char *linenoise(const char *prompt);
 void linenoiseFree(void *ptr);
 int linenoiseHistoryAdd(const char *line);
