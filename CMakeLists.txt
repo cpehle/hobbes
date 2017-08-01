@@ -17,7 +17,7 @@ include_directories(${CMAKE_BINARY_DIR}/third_party/llvm/include/)
 include_directories(third_party/llvm/include)
 
 # Necessary because hobbes currently uses rtti
-add_compile_options(-D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS)
+add_compile_options(-D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS -frtti -fexceptions)
 set(LLVM_ENABLE_RTTI 1)
 set(LLVM_ENABLE_EH 1)
 
