@@ -10,7 +10,6 @@
 
 #include <sstream>
 #include <stdexcept>
-#include <string.h>
 #include <unordered_map>
 #include <atomic>
 

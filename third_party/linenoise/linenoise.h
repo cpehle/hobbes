@@ -68,8 +68,9 @@ struct linenoiseState {
     size_t cols;        /* Number of columns in terminal. */
     size_t maxrows;     /* Maximum num of rows used so far (multiline mode) */
     int history_index;  /* The history index we are currently editing. */
-    int nread; /* Number of characters read. */
     linenoiseLineCallback* line_callback; /* Function to call when one line is entered. */
+    int history_len; /* Length of the history */
+    char **history; /* History entries */
 };
  
 typedef void(linenoiseCompletionCallback)(const char *, linenoiseCompletions *);

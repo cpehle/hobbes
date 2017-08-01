@@ -1,4 +1,3 @@
-
 #include "hobbes/events/events.H"
 #include "hobbes/events/httpd.H"
 #include "hobbes/ipc/net.H"
@@ -171,4 +170,3 @@ int installHTTPD(int port, HTTPRequestHandler f, void* ud) {
 }
 
 }
-

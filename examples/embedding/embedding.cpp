@@ -1,8 +1,8 @@
+#include "hobbes/hobbes.H"
+#include "linenoise/linenoise.h"
+
 #include <iostream>
 #include <stdexcept>
-#include <hobbes/hobbes.H>
-
-#include "linenoise/linenoise.h"
 
 int main() {
   hobbes::cc c;

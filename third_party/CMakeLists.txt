@@ -1,4 +1,5 @@
 add_subdirectory(linenoise)
-
+add_subdirectory(llvm)
 add_subdirectory(libuv)
 include_directories(libuv/libuv/include)
+include_directories(llvm/include/)

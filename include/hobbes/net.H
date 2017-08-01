@@ -87,7 +87,6 @@ inline void recvData(int socket, uint8_t* d, size_t sz) {
 inline void recvString(int socket, std::string* x) {
   size_t n = 0;
   recvData(socket, (uint8_t*)&n, sizeof(n));
-
   x->resize(n);
   recvData(socket, (uint8_t*)&((*x)[0]), n);
 }

@@ -9,23 +9,23 @@
 
 namespace hobbes {
 
-// normalize constraints into a single representation as a sequence of mono types
-void typeSeqForm(const ConstraintPtr& c, MonoTypes* mts) {
-  const MonoTypes& args = c->arguments();
+// normalize constraints into a single representation as a sequence of mono
+// types
+void typeSeqForm(const ConstraintPtr &c, MonoTypes *mts) {
+  const MonoTypes &args = c->arguments();
 
   mts->push_back(MonoTypePtr(TString::make(c->name())));
   mts->insert(mts->end(), args.begin(), args.end());
 }
 
-ConstraintSet::ConstraintSet() {
-}
+ConstraintSet::ConstraintSet() {}
 
-MaybePathPoints focusOnFundep(const VarIDs& vs, const MonoTypes& mts) {
+MaybePathPoints focusOnFundep(const VarIDs &vs, const MonoTypes &mts) {
   // we have to fudge the input IDs with a +1 offset for constraint names
   MaybePathPoints result;
   result.push_back(mts[0]);
   for (int i = 1; i < mts.size(); ++i) {
-    if (in(i-1, vs)) {
+    if (in(i - 1, vs)) {
       result.push_back(mts[i]);
     } else {
       result.push_back(MaybePathPoint());
@@ -34,7 +34,8 @@ MaybePathPoints focusOnFundep(const VarIDs& vs, const MonoTypes& mts) {
   return result;
 }
 
-void ConstraintSet::insert(const TEnvPtr& tenv, const ConstraintPtr& c, MonoTypeUnifier* s) {
+void ConstraintSet::insert(const TEnvPtr &tenv, const ConstraintPtr &c,
+                           MonoTypeUnifier *s) {
   // convert this constraint to a normalized form as a sequence of types
   MonoTypes cpath;
   typeSeqForm(c, &cpath);
@@ -45,7 +46,8 @@ void ConstraintSet::insert(const TEnvPtr& tenv, const ConstraintPtr& c, MonoType
   }
 
   // OK, the constraint seems not to be stored
-  // let's apply functional dependencies from this constraint across other constraints in this set
+  // let's apply functional dependencies from this constraint across other
+  // constraints in this set
   // that may produce unifications that can further eliminate this constraint
   for (auto fd : tenv->lookupUnqualifier(c)->dependencies(c)) {
     Constraints mcs;
@@ -54,7 +56,7 @@ void ConstraintSet::insert(const TEnvPtr& tenv, const ConstraintPtr& c, MonoType
     for (auto mc : mcs) {
       MonoTypes mcpath;
       typeSeqForm(mc, &mcpath);
-      mgu(cpath[fd.second+1], mcpath[fd.second+1], s);
+      mgu(cpath[fd.second + 1], mcpath[fd.second + 1], s);
     }
   }
 
@@ -69,9 +71,5 @@ void ConstraintSet::insert(const TEnvPtr& tenv, const ConstraintPtr& c, MonoType
   }
 }
 
-Constraints ConstraintSet::constraints() const {
-  return this->csts.values();
+Constraints ConstraintSet::constraints() const { return this->csts.values(); }
 }
-
-}
-

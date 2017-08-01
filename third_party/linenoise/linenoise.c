@@ -757,7 +757,6 @@ int linenoiseInit(struct linenoiseState* l, int stdin_fd, int stdout_fd, char *b
     l->history_index = 0;
     l->read_seq = -1;
     l->line_callback = line_callback;
-    l->nread = 0;
 
     /* Buffer starts empty. */
     l->buf[0] = '\0';
@@ -856,7 +855,7 @@ int linenoiseNext(struct linenoiseState* l, char c)
         switch(c) {
         case ENTER:    /* enter */
             history_len--;
-	    // free(history[history_len]);
+	    free(history[history_len]);
             if (mlmode) linenoiseEditMoveEnd(l);
             if (hintsCallback) {
                 /* Force a refresh without hints to leave the previous

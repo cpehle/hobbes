@@ -231,13 +231,13 @@ void repl(evaluator* ev) {
 }
 
 void evalLine(const char* x) {
+  linenoiseHistoryAdd(x);
   // preprocess this line from readline
   std::string line;
   if (x) {
     line = str::trim<char>(x);
 
     if (line.size() > 0) {
-      linenoiseHistoryAdd(line.c_str());
     }
   } else {
     line = ":q";

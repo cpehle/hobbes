@@ -1,5 +1,6 @@
+#include "hobbes/net.H"
+
 #include <iostream>
-#include <hobbes/net.H>
 
 // our RPC signature
 DEFINE_NET_CLIENT(

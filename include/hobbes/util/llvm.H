@@ -4,13 +4,13 @@
 
 #include <hobbes/util/array.H>
 
-#include <llvm/Config/llvm-config.h>
+#include "llvm/Config/llvm-config.h"
 
 #if LLVM_VERSION_MAJOR != 3 && LLVM_VERSION_MAJOR != 4
 #error "I don't know how to use this version of LLVM"
 #endif
 
-#include <llvm/IR/DerivedTypes.h>
+#include "llvm/IR/DerivedTypes.h"
 #include <llvm/IR/IRBuilder.h>
 #include <llvm/IR/LLVMContext.h>
 #include <llvm/IR/Module.h>
