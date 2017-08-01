@@ -1,6 +1,5 @@
-
-#include <hobbes/lang/pat/print.H>
-#include <hobbes/util/str.H>
+#include "hobbes/lang/pat/print.H"
+#include "hobbes/util/str.H"
 
 namespace hobbes {
 

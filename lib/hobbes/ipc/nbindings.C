@@ -1,9 +1,9 @@
+#include "hobbes/hobbes.H"
+#include "hobbes/lang/preds/class.H"
+#include "hobbes/lang/tyunqualify.H"
+#include "hobbes/ipc/nbindings.H"
+#include "hobbes/ipc/net.H"
 
-#include <hobbes/hobbes.H>
-#include <hobbes/lang/preds/class.H>
-#include <hobbes/lang/tyunqualify.H>
-#include <hobbes/ipc/nbindings.H>
-#include <hobbes/ipc/net.H>
 #include <map>
 
 namespace hobbes {

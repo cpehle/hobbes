@@ -5,10 +5,10 @@
 #ifndef HOBBES_LANG_PAT_PATTERN_HPP_INCLUDED
 #define HOBBES_LANG_PAT_PATTERN_HPP_INCLUDED
 
-#include <hobbes/lang/expr.H>
-#include <hobbes/lang/pat/regex.H>
-#include <hobbes/util/hash.H>
-#include <hobbes/util/lannotation.H>
+#include "hobbes/lang/expr.H"
+#include "hobbes/lang/pat/regex.H"
+#include "hobbes/util/hash.H"
+#include "hobbes/util/lannotation.H"
 
 namespace hobbes {
 

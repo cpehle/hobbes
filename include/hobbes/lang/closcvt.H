@@ -2,8 +2,8 @@
 #ifndef HOBBES_LANG_CLOSCVT_HPP_INCLUDED
 #define HOBBES_LANG_CLOSCVT_HPP_INCLUDED
 
-#include <hobbes/lang/type.H>
-#include <hobbes/lang/expr.H>
+#include "hobbes/lang/type.H"
+#include "hobbes/lang/expr.H"
 
 namespace hobbes {
 

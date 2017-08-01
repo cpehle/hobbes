@@ -1,5 +1,4 @@
-
-#include <hobbes/lang/typemap.H>
+#include "hobbes/lang/typemap.H"
 
 namespace hobbes {
 

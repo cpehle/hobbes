@@ -1,6 +1,5 @@
-
-#include <hobbes/parse/grammar.H>
-#include <hobbes/parse/parser.H>
+#include "hobbes/parse/grammar.H"
+#include "hobbes/parse/parser.H"
 
 namespace hobbes {
 

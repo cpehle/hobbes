@@ -1,7 +1,6 @@
-
-#include <hobbes/ipc/procman.H>
-#include <hobbes/lang/preds/class.H>
-#include <hobbes/util/str.H>
+#include "hobbes/ipc/procman.H"
+#include "hobbes/lang/preds/class.H"
+#include "hobbes/util/str.H"
 
 namespace hobbes {
 

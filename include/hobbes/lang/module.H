@@ -2,10 +2,10 @@
 #ifndef HOBBES_LANG_MODULE_HPP_INCLUDED
 #define HOBBES_LANG_MODULE_HPP_INCLUDED
 
-#include <hobbes/lang/type.H>
-#include <hobbes/lang/expr.H>
-#include <hobbes/util/ptr.H>
-#include <hobbes/util/lannotation.H>
+#include "hobbes/lang/type.H"
+#include "hobbes/lang/expr.H"
+#include "hobbes/util/ptr.H"
+#include "hobbes/util/lannotation.H"
 #include <memory>
 #include <iostream>
 #include <string>

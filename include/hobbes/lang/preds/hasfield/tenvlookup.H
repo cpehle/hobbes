@@ -2,7 +2,7 @@
 #ifndef HOBBES_LANG_TYPEPREDS_HASFIELD_TENVLOOKUP_HPP_INCLUDED
 #define HOBBES_LANG_TYPEPREDS_HASFIELD_TENVLOOKUP_HPP_INCLUDED
 
-#include <hobbes/lang/preds/hasfield.H>
+#include "hobbes/lang/preds/hasfield.H"
 
 namespace hobbes {
 

@@ -2,7 +2,7 @@
 #ifndef HOBBES_LANG_TYPEPREDS_APPENDSTO_RECORD_HPP_INCLUDED
 #define HOBBES_LANG_TYPEPREDS_APPENDSTO_RECORD_HPP_INCLUDED
 
-#include <hobbes/lang/preds/appendsto.H>
+#include "hobbes/lang/preds/appendsto.H"
 
 namespace hobbes {
 

@@ -2,10 +2,10 @@
 #ifndef HOBBES_EVAL_FUNC_HPP_INCLUDED
 #define HOBBES_EVAL_FUNC_HPP_INCLUDED
 
-#include <hobbes/lang/type.H>
-#include <hobbes/lang/tylift.H>
-#include <hobbes/lang/expr.H>
-#include <hobbes/util/llvm.H>
+#include "hobbes/lang/type.H"
+#include "hobbes/lang/tylift.H"
+#include "hobbes/lang/expr.H"
+#include "hobbes/util/llvm.H"
 
 namespace hobbes {
 

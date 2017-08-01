@@ -2,9 +2,9 @@
 #ifndef HOBBES_LANG_TYPEPREDS_CLASS_HPP_INCLUDED
 #define HOBBES_LANG_TYPEPREDS_CLASS_HPP_INCLUDED
 
-#include <hobbes/lang/tyunqualify.H>
-#include <hobbes/lang/expr.H>
-#include <hobbes/lang/typemap.H>
+#include "hobbes/lang/tyunqualify.H"
+#include "hobbes/lang/expr.H"
+#include "hobbes/lang/typemap.H"
 #include <memory>
 
 namespace hobbes {

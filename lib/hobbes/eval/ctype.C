@@ -1,7 +1,8 @@
 
-#include <hobbes/eval/compile_type.H>
-#include <hobbes/util/llvm.H>
-#include <hobbes/eval/func.H>
+#include "hobbes/eval/compile_type.H"
+#include "hobbes/util/llvm.H"
+#include "hobbes/eval/func.H"
+
 #include <stdexcept>
 
 namespace hobbes {

@@ -1,11 +1,11 @@
 
-#include <hobbes/parse/parser.H>
-#include <hobbes/parse/lalr.H>
-#include <hobbes/eval/cc.H>
-#include <hobbes/lang/pat/pattern.H>
+#include "hobbes/parse/parser.H"
+#include "hobbes/parse/lalr.H"
+#include "hobbes/eval/cc.H"
+#include "hobbes/lang/pat/pattern.H"
 
 // useful for debugging generated expressions
-#include <hobbes/lang/pat/print.H>
+#include "hobbes/lang/pat/print.H"
 
 namespace hobbes {
 

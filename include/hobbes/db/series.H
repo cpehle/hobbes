@@ -5,11 +5,11 @@
 #ifndef HOBBES_STORED_SERIES_H_INCLUDED
 #define HOBBES_STORED_SERIES_H_INCLUDED
 
-#include <hobbes/hobbes.H>
-#include <hobbes/db/file.H>
-#include <hobbes/lang/tylift.H>
-#include <hobbes/util/time_util.H>
-#include <hobbes/util/perf.H>
+#include "hobbes/hobbes.H"
+#include "hobbes/db/file.H"
+#include "hobbes/lang/tylift.H"
+#include "hobbes/util/time_util.H"
+#include "hobbes/util/perf.H"
 
 namespace hobbes {
 

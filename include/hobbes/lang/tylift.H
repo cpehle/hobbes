@@ -2,12 +2,12 @@
 #ifndef HOBBES_LANG_TYPELIFT_HPP_INCLUDED
 #define HOBBES_LANG_TYPELIFT_HPP_INCLUDED
 
-#include <hobbes/lang/type.H>
-#include <hobbes/util/array.H>
-#include <hobbes/util/ptr.H>
-#include <hobbes/util/str.H>
-#include <hobbes/util/variant.H>
-#include <hobbes/util/preprocessor.H>
+#include "hobbes/lang/type.H"
+#include "hobbes/util/array.H"
+#include "hobbes/util/ptr.H"
+#include "hobbes/util/str.H"
+#include "hobbes/util/variant.H"
+#include "hobbes/util/preprocessor.H"
 #include <string>
 #include <vector>
 #include <set>

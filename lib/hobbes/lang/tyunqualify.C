@@ -1,6 +1,6 @@
+#include "hobbes/lang/tyunqualify.H"
+#include "hobbes/lang/typepreds.H"
 
-#include <hobbes/lang/tyunqualify.H>
-#include <hobbes/lang/typepreds.H>
 #include <stdexcept>
 
 namespace hobbes {

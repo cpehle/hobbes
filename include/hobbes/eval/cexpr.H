@@ -1,9 +1,9 @@
 #ifndef HOBBES_EVAL_CEXPR_HPP_INCLUDED
 #define HOBBES_EVAL_CEXPR_HPP_INCLUDED
 
-#include <hobbes/eval/jitcc.H>
-#include <hobbes/util/llvm.H>
-#include <hobbes/lang/expr.H>
+#include "hobbes/eval/jitcc.H"
+#include "hobbes/util/llvm.H"
+#include "hobbes/lang/expr.H"
 
 namespace hobbes {
 

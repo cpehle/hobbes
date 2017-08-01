@@ -1,14 +1,14 @@
+#include "hobbes/lang/expr.H"
+#include "hobbes/lang/type.H"
+#include "hobbes/lang/typeinf.H"
+#include "hobbes/lang/pat/pattern.H"
+#include "hobbes/lang/pat/dfa.H"
+#include "hobbes/lang/pat/print.H"
+#include "hobbes/util/array.H"
+#include "hobbes/util/perf.H"
+#include "hobbes/util/str.H"
+#include "hobbes/eval/cc.H"
 
-#include <hobbes/lang/expr.H>
-#include <hobbes/lang/type.H>
-#include <hobbes/lang/typeinf.H>
-#include <hobbes/lang/pat/pattern.H>
-#include <hobbes/lang/pat/dfa.H>
-#include <hobbes/lang/pat/print.H>
-#include <hobbes/util/array.H>
-#include <hobbes/util/perf.H>
-#include <hobbes/util/str.H>
-#include <hobbes/eval/cc.H>
 #include <fstream>
 
 namespace hobbes {

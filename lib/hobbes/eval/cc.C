@@ -1,23 +1,22 @@
 
-#include <hobbes/eval/cc.H>
-#include <hobbes/eval/funcdefs.H>
-#include <hobbes/eval/compile_type.H>
-#include <hobbes/eval/cexpr.H>
-#include <hobbes/boot/gen/boot.H>
-#include <hobbes/lang/closcvt.H>
-#include <hobbes/lang/typepreds.H>
-#include <hobbes/lang/macroexpand.H>
-#include <hobbes/util/llvm.H>
-#include <hobbes/util/array.H>
-#include <hobbes/util/codec.H>
-
-#include <hobbes/util/perf.H>
+#include "hobbes/eval/cc.H"
+#include "hobbes/eval/funcdefs.H"
+#include "hobbes/eval/compile_type.H"
+#include "hobbes/eval/cexpr.H"
+#include "hobbes/boot/gen/boot.H"
+#include "hobbes/lang/closcvt.H"
+#include "hobbes/lang/typepreds.H"
+#include "hobbes/lang/macroexpand.H"
+#include "hobbes/util/llvm.H"
+#include "hobbes/util/array.H"
+#include "hobbes/util/codec.H"
+#include "hobbes/util/perf.H"
 
 // structured file support
-#include <hobbes/db/bindings.H>
+#include "hobbes/db/bindings.H"
 
 // network IPC
-#include <hobbes/ipc/nbindings.H>
+#include "hobbes/ipc/nbindings.H"
 
 // translate LLVM's 'abort' calls into exceptions
 #include <csetjmp>

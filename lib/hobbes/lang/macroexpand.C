@@ -1,6 +1,5 @@
-
-#include <hobbes/lang/macroexpand.H>
-#include <hobbes/lang/tylift.H>
+#include "hobbes/lang/macroexpand.H"
+#include "hobbes/lang/tylift.H"
 
 namespace hobbes {
 

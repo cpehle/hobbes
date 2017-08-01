@@ -2,19 +2,19 @@
 #ifndef HOBBES_EVAL_CC_HPP_INCLUDED
 #define HOBBES_EVAL_CC_HPP_INCLUDED
 
-#include <hobbes/lang/expr.H>
-#include <hobbes/lang/type.H>
-#include <hobbes/lang/tylift.H>
-#include <hobbes/lang/typeinf.H>
-#include <hobbes/lang/tyunqualify.H>
-#include <hobbes/lang/preds/subtype/obj.H>
-#include <hobbes/lang/typepreds.H>
-#include <hobbes/read/parser.H>
-#include <hobbes/eval/jitcc.H>
+#include "hobbes/lang/expr.H"
+#include "hobbes/lang/type.H"
+#include "hobbes/lang/tylift.H"
+#include "hobbes/lang/typeinf.H"
+#include "hobbes/lang/tyunqualify.H"
+#include "hobbes/lang/preds/subtype/obj.H"
+#include "hobbes/lang/typepreds.H"
+#include "hobbes/read/parser.H"
+#include "hobbes/eval/jitcc.H"
 
-#include <hobbes/util/func.H>
-#include <hobbes/util/llvm.H>
-#include <hobbes/util/str.H>
+#include "hobbes/util/func.H"
+#include "hobbes/util/llvm.H"
+#include "hobbes/util/str.H"
 
 #include <string>
 #include <map>

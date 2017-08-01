@@ -1,13 +1,12 @@
+#include "hobbes/lang/pat/dfa.H"
+#include "hobbes/lang/pat/regex.H"
+#include "hobbes/lang/pat/print.H"
+#include "hobbes/util/perf.H"
+#include "hobbes/eval/cc.H"
+#include "hobbes/eval/cexpr.H"
 
-#include <hobbes/lang/pat/dfa.H>
-#include <hobbes/lang/pat/regex.H>
-#include <hobbes/lang/pat/print.H>
-#include <hobbes/util/perf.H>
 #include <sstream>
 #include <fstream>
-
-#include <hobbes/eval/cc.H>
-#include <hobbes/eval/cexpr.H>
 
 namespace hobbes {
 

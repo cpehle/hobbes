@@ -1,11 +1,11 @@
 
-#include <hobbes/lang/constraints.H>
-#include <hobbes/lang/typeinf.H>
-#include <hobbes/util/array.H>
-#include <hobbes/util/perf.H>
+#include "hobbes/lang/constraints.H"
+#include "hobbes/lang/typeinf.H"
+#include "hobbes/util/array.H"
+#include "hobbes/util/perf.H"
 
-#include <hobbes/lang/preds/class.H>
-#include <hobbes/lang/preds/not.H>
+#include "hobbes/lang/preds/class.H"
+#include "hobbes/lang/preds/not.H"
 
 namespace hobbes {
 

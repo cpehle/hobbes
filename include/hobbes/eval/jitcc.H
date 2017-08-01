@@ -2,13 +2,13 @@
 #ifndef HOBBES_EVAL_JITCC_HPP_INCLUDED
 #define HOBBES_EVAL_JITCC_HPP_INCLUDED
 
-#include <hobbes/lang/expr.H>
-#include <hobbes/lang/type.H>
-#include <hobbes/util/region.H>
+#include "hobbes/lang/expr.H"
+#include "hobbes/lang/type.H"
+#include "hobbes/util/region.H"
 
-#include <hobbes/util/llvm.H>
-#include <hobbes/eval/func.H>
-#include <hobbes/eval/compile_type.H>
+#include "hobbes/util/llvm.H"
+#include "hobbes/eval/func.H"
+#include "hobbes/eval/compile_type.H"
 
 #include <map>
 #include <string>

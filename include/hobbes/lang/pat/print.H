@@ -5,8 +5,8 @@
 #ifndef HOBBES_LANG_PAT_PRINT_HPP_INCLUDED
 #define HOBBES_LANG_PAT_PRINT_HPP_INCLUDED
 
-#include <hobbes/lang/pat/pattern.H>
-#include <hobbes/lang/expr.H>
+#include "hobbes/lang/pat/pattern.H"
+#include "hobbes/lang/expr.H"
 #include <iostream>
 
 namespace hobbes {

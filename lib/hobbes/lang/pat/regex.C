@@ -1,9 +1,8 @@
-
-#include <hobbes/eval/cc.H>
-#include <hobbes/lang/pat/regex.H>
-#include <hobbes/util/array.H>
-#include <hobbes/util/str.H>
-#include <hobbes/util/rmap.H>
+#include "hobbes/eval/cc.H"
+#include "hobbes/lang/pat/regex.H"
+#include "hobbes/util/array.H"
+#include "hobbes/util/str.H"
+#include "hobbes/util/rmap.H"
 
 namespace hobbes {
 

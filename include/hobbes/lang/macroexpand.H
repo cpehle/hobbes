@@ -1,8 +1,8 @@
 #ifndef HOBBES_LANG_MACROEXPAND_HPP_INCLUDED
 #define HOBBES_LANG_MACROEXPAND_HPP_INCLUDED
 
-#include <hobbes/lang/expr.H>
-#include <hobbes/lang/type.H>
+#include "hobbes/lang/expr.H"
+#include "hobbes/lang/type.H"
 
 namespace hobbes {
 

@@ -1,7 +1,6 @@
-
-#include <hobbes/lang/typepreds.H>
-#include <hobbes/lang/expr.H>
-#include <hobbes/lang/typeinf.H>
+#include "hobbes/lang/typepreds.H"
+#include "hobbes/lang/expr.H"
+#include "hobbes/lang/typeinf.H"
 
 namespace hobbes {
 

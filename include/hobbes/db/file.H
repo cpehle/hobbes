@@ -5,8 +5,8 @@
 #ifndef HOBBES_DB_FILE_HPP_INCLUDED
 #define HOBBES_DB_FILE_HPP_INCLUDED
 
-#include <hobbes/lang/type.H>
-#include <hobbes/lang/tylift.H>
+#include "hobbes/lang/type.H"
+#include "hobbes/lang/tylift.H"
 #include <string>
 
 namespace hobbes {

@@ -2,11 +2,11 @@
 #ifndef HOBBES_LANG_TYPE_HPP_INCLUDED
 #define HOBBES_LANG_TYPE_HPP_INCLUDED
 
-#include <hobbes/util/hash.H>
-#include <hobbes/util/ptr.H>
-#include <hobbes/util/array.H>
-#include <hobbes/util/str.H>
-#include <hobbes/util/lannotation.H>
+#include "hobbes/util/hash.H"
+#include "hobbes/util/ptr.H"
+#include "hobbes/util/array.H"
+#include "hobbes/util/str.H"
+#include "hobbes/util/lannotation.H"
 #include <string>
 #include <vector>
 #include <set>

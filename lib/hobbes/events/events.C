@@ -1,14 +1,15 @@
 
-#include <hobbes/hobbes.H>
-#include <hobbes/events/events.H>
-#include <hobbes/util/perf.H>
-#include <hobbes/util/os.H>
+#include "hobbes/hobbes.H"
+#include "hobbes/events/events.H"
+#include "hobbes/util/perf.H"
+#include "hobbes/util/os.H"
 
 #include <chrono>
 #include <queue>
 #include <utility>
 
-#ifdef BUILD_LINUX
+#ifdef BUILD_LIBUV
+#elif defined(BUILD_LINUX)
 #include <sys/epoll.h>
 #elif defined(BUILD_OSX)
 #include <sys/event.h>
@@ -28,7 +29,12 @@ void registerEventHandler(int fd, eventhandler fn, void* ud, bool f) {
   registerEventHandler(fd, [fn,ud](int c){fn(c,ud);}, f);
 }
 
-#ifdef BUILD_LINUX
+#ifdef BUILD_LIBUV
+
+
+  
+  
+#elif defined(BUILD_LINUX)
 __thread bool           epInitialized = false;
 __thread int            epFD          = 0;
 __thread EventClosures* epClosures    = 0;

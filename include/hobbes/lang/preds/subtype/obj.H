@@ -2,9 +2,9 @@
 #ifndef HOBBES_LANG_TYPEPREDS_OBJ_HPP_INCLUDED
 #define HOBBES_LANG_TYPEPREDS_OBJ_HPP_INCLUDED
 
-#include <hobbes/lang/preds/subtype.H>
-#include <hobbes/lang/tyunqualify.H>
-#include <hobbes/util/str.H>
+#include "hobbes/lang/preds/subtype.H"
+#include "hobbes/lang/tyunqualify.H"
+#include "hobbes/util/str.H"
 #include <memory>
 #include <map>
 #include <string>

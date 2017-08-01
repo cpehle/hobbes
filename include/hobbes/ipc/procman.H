@@ -2,8 +2,8 @@
 #ifndef HOBBES_LANG_TYPEPREDS_PROCESS_PROCMAN_HPP_INCLUDED
 #define HOBBES_LANG_TYPEPREDS_PROCESS_PROCMAN_HPP_INCLUDED
 
-#include <hobbes/lang/preds/hasfield.H>
-#include <hobbes/ipc/prepl.H>
+#include "hobbes/lang/preds/hasfield.H"
+#include "hobbes/ipc/prepl.H"
 
 namespace hobbes {
 

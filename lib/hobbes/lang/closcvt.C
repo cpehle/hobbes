@@ -1,7 +1,7 @@
 
-#include <hobbes/lang/type.H>
-#include <hobbes/lang/expr.H>
-#include <hobbes/util/array.H>
+#include "hobbes/lang/type.H"
+#include "hobbes/lang/expr.H"
+#include "hobbes/util/array.H"
 
 namespace hobbes {
 

@@ -1,6 +1,6 @@
+#include "hobbes/lang/module.H"
+#include "hobbes/util/array.H"
 
-#include <hobbes/lang/module.H>
-#include <hobbes/util/array.H>
 #include <sstream>
 
 namespace hobbes {

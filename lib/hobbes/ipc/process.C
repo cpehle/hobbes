@@ -1,6 +1,6 @@
-#include <hobbes/ipc/process.H>
-#include <hobbes/lang/typeinf.H>
-#include <hobbes/lang/preds/class.H>
+#include "hobbes/ipc/process.H"
+#include "hobbes/lang/typeinf.H"
+#include "hobbes/lang/preds/class.H"
 
 namespace hobbes {
 

@@ -5,7 +5,8 @@
 #ifndef HOBBES_EVENTS_NET_HPP_INCLUDED
 #define HOBBES_EVENTS_NET_HPP_INCLUDED
 
-#include <hobbes/lang/type.H>
+#include "hobbes/lang/type.H"
+
 #include <string>
 #include <map>
 #include <queue>

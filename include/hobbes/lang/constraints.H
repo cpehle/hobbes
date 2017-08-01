@@ -5,8 +5,8 @@
 #ifndef HOBBES_LANG_CONSTRAINTS_HPP_INCLUDED
 #define HOBBES_LANG_CONSTRAINTS_HPP_INCLUDED
 
-#include <hobbes/lang/type.H>
-#include <hobbes/lang/typemap.H>
+#include "hobbes/lang/type.H"
+#include "hobbes/lang/typemap.H"
 #include <set>
 
 namespace hobbes {

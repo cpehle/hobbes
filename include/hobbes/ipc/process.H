@@ -2,8 +2,9 @@
 #ifndef HOBBES_LANG_TYPEPREDS_PROCESS_PROCESS_HPP_INCLUDED
 #define HOBBES_LANG_TYPEPREDS_PROCESS_PROCESS_HPP_INCLUDED
 
-#include <hobbes/lang/tyunqualify.H>
-#include <hobbes/ipc/procman.H>
+#include "hobbes/lang/tyunqualify.H"
+#include "hobbes/ipc/procman.H"
+
 #include <string>
 
 namespace hobbes {

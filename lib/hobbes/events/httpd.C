@@ -1,8 +1,8 @@
 
-#include <hobbes/events/events.H>
-#include <hobbes/events/httpd.H>
-#include <hobbes/ipc/net.H>
-#include <hobbes/util/str.H>
+#include "hobbes/events/events.H"
+#include "hobbes/events/httpd.H"
+#include "hobbes/ipc/net.H"
+#include "hobbes/util/str.H"
 
 #include <sstream>
 

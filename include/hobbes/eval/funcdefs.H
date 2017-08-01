@@ -2,7 +2,7 @@
 #ifndef HOBBES_EVAL_FUNCDEFS_HPP_INCLUDED
 #define HOBBES_EVAL_FUNCDEFS_HPP_INCLUDED
 
-#include <hobbes/eval/cc.H>
+#include "hobbes/eval/cc.H"
 
 namespace hobbes {
 

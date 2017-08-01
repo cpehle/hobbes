@@ -1,11 +1,11 @@
 
-#include <hobbes/eval/jitcc.H>
-#include <hobbes/eval/cexpr.H>
-#include <hobbes/eval/compile_type.H>
-#include <hobbes/lang/expr.H>
-#include <hobbes/lang/type.H>
-#include <hobbes/util/llvm.H>
-#include <hobbes/util/perf.H>
+#include "hobbes/eval/jitcc.H"
+#include "hobbes/eval/cexpr.H"
+#include "hobbes/eval/compile_type.H"
+#include "hobbes/lang/expr.H"
+#include "hobbes/lang/type.H"
+#include "hobbes/util/llvm.H"
+#include "hobbes/util/perf.H"
 
 namespace hobbes {
 

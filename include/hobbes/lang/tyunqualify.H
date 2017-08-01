@@ -2,9 +2,9 @@
 #ifndef HOBBES_LANG_TYUNQUALIFY_HPP_INCLUDED
 #define HOBBES_LANG_TYUNQUALIFY_HPP_INCLUDED
 
-#include <hobbes/lang/type.H>
-#include <hobbes/lang/expr.H>
-#include <hobbes/util/lannotation.H>
+#include "hobbes/lang/type.H"
+#include "hobbes/lang/expr.H"
+#include "hobbes/util/lannotation.H"
 #include <memory>
 
 namespace hobbes {

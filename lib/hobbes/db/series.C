@@ -1,5 +1,5 @@
 
-#include <hobbes/db/series.H>
+#include "hobbes/db/series.H"
 
 namespace hobbes {
 

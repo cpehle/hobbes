@@ -1,5 +1,5 @@
+#include "hobbes/parse/lalr.H"
 
-#include <hobbes/parse/lalr.H>
 #include <stdexcept>
 
 namespace hobbes {

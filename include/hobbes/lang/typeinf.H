@@ -2,9 +2,9 @@
 #ifndef HOBBES_LANG_TYPEINF_HPP_INCLUDED
 #define HOBBES_LANG_TYPEINF_HPP_INCLUDED
 
-#include <hobbes/lang/type.H>
-#include <hobbes/lang/expr.H>
-#include <hobbes/util/unionfind.H>
+#include "hobbes/lang/type.H"
+#include "hobbes/lang/expr.H"
+#include "hobbes/util/unionfind.H"
 #include <map>
 #include <set>
 

@@ -2,14 +2,14 @@
 #ifndef HOBBES_MAIN_HPP_INCLUDED
 #define HOBBES_MAIN_HPP_INCLUDED
 
-#include <hobbes/eval/cc.H>
-#include <hobbes/eval/cmodule.H>
-#include <hobbes/lang/tylift.H>
-#include <hobbes/read/parser.H>
-#include <hobbes/events/events.H>
-#include <hobbes/ipc/prepl.H>
-#include <hobbes/util/region.H>
-#include <hobbes/util/variant.H>
+#include "hobbes/eval/cc.H"
+#include "hobbes/eval/cmodule.H"
+#include "hobbes/lang/tylift.H"
+#include "hobbes/read/parser.H"
+#include "hobbes/events/events.H"
+#include "hobbes/ipc/prepl.H"
+#include "hobbes/util/region.H"
+#include "hobbes/util/variant.H"
 
 namespace hobbes {
 

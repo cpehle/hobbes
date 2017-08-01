@@ -1,10 +1,11 @@
 
-#include <hobbes/hobbes.H>
-#include <hobbes/db/file.H>
-#include <hobbes/db/signals.H>
-#include <hobbes/eval/cc.H>
-#include <hobbes/util/str.H>
-#include <hobbes/util/ptr.H>
+#include "hobbes/hobbes.H"
+#include "hobbes/db/file.H"
+#include "hobbes/db/signals.H"
+#include "hobbes/eval/cc.H"
+#include "hobbes/util/str.H"
+#include "hobbes/util/ptr.H"
+
 #include <stdexcept>
 #include <sstream>
 

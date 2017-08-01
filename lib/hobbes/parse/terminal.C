@@ -1,5 +1,4 @@
-
-#include <hobbes/parse/terminal.H>
+#include "hobbes/parse/terminal.H"
 
 namespace hobbes {
 

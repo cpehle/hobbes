@@ -5,8 +5,8 @@
 #ifndef HOBBES_LANG_PAT_REGEX_HPP_INCLUDED
 #define HOBBES_LANG_PAT_REGEX_HPP_INCLUDED
 
-#include <hobbes/util/lannotation.H>
-#include <hobbes/util/str.H>
+#include "hobbes/util/lannotation.H"
+#include "hobbes/util/str.H"
 #include <map>
 #include <vector>
 #include <string>

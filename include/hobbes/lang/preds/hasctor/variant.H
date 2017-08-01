@@ -2,7 +2,7 @@
 #ifndef HOBBES_LANG_TYPEPREDS_HASCTOR_VARIANT_HPP_INCLUDED
 #define HOBBES_LANG_TYPEPREDS_HASCTOR_VARIANT_HPP_INCLUDED
 
-#include <hobbes/lang/preds/hasctor.H>
+#include "hobbes/lang/preds/hasctor.H"
 
 namespace hobbes {
 

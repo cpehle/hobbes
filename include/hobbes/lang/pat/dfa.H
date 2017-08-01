@@ -5,9 +5,9 @@
 #ifndef HOBBES_LANG_PAT_DFA_HPP_INCLUDED
 #define HOBBES_LANG_PAT_DFA_HPP_INCLUDED
 
-#include <hobbes/lang/pat/pattern.H>
-#include <hobbes/util/str.H>
-#include <hobbes/util/lannotation.H>
+#include "hobbes/lang/pat/pattern.H"
+#include "hobbes/util/str.H"
+#include "hobbes/util/lannotation.H"
 #include <unordered_map>
 #include <set>
 

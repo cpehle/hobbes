@@ -1,12 +1,13 @@
 
-#include <hobbes/eval/cc.H>
-#include <hobbes/eval/cmodule.H>
-#include <hobbes/lang/module.H>
-#include <hobbes/lang/type.H>
-#include <hobbes/lang/typeinf.H>
-#include <hobbes/lang/preds/class.H>
-#include <hobbes/util/str.H>
-#include <hobbes/util/array.H>
+#include "hobbes/eval/cc.H"
+#include "hobbes/eval/cmodule.H"
+#include "hobbes/lang/module.H"
+#include "hobbes/lang/type.H"
+#include "hobbes/lang/typeinf.H"
+#include "hobbes/lang/preds/class.H"
+#include "hobbes/util/str.H"
+#include "hobbes/util/array.H"
+
 #include <stdexcept>
 #include <dlfcn.h>
 #include <glob.h>
