@@ -7,6 +7,7 @@
 
 #include "hobbes/lang/tylift.H"
 #include "hobbes/lang/type.H"
+
 #include <string>
 
 namespace hobbes {

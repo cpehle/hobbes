@@ -2,6 +2,7 @@
 #ifndef HOBBES_LANG_TYPE_HPP_INCLUDED
 #define HOBBES_LANG_TYPE_HPP_INCLUDED
 
+
 #include "hobbes/util/array.H"
 #include "hobbes/util/hash.H"
 #include "hobbes/util/lannotation.H"
