@@ -7,7 +7,6 @@
 
 #include "hobbes/lang/tylift.H"
 #include "hobbes/lang/type.H"
-
 #include <string>
 
 namespace hobbes {
@@ -36,6 +35,44 @@ template <typename T, bool InStruct> struct lift<fileref<T>, InStruct> {
     return MonoTypePtr(TApp::make(MonoTypePtr(Prim::make("fileref")),
                                   list(lift<T, false>::type(tenv))));
   }
+};
+
+
+// a dbseq is a linked list sequence just like 'seq' except that its links are
+// file offsets rather than memory offsets
+template <typename T> struct dbseq {
+  typedef fileref<dbseq<T> *> link_t;
+  typedef std::pair<T, link_t> cons_t;
+  typedef variant<unit, cons_t> rep_t;
+
+  rep_t data;
+
+  dbseq() : data(unit()) {}
+  dbseq(const T &x, link_t xs) : data(cons_t(x, xs)) {}
+
+  bool empty() const { return get<unit>(this->data) != 0; }
+  const cons_t *head() const { return get<cons_t>(this->data); }
+};
+
+template <typename T, bool InStruct> struct lift<dbseq<T> *, InStruct> {
+  static MonoTypePtr type(typedb &tenv) {
+    // ^x.()+T*x@n
+    MonoTypePtr tlink = MonoTypePtr(
+        TApp::make(MonoTypePtr(Prim::make("fileref")), list(tvar("x"))));
+    MonoTypePtr tcons = tuple(list(lift<T, true>::type(tenv), tlink));
+
+    return MonoTypePtr(
+        Recursive::make("x", MonoTypePtr(Variant::make(
+                                 list(Variant::Member(".f0", primty("unit"), 0),
+                                      Variant::Member(".f1", tcons, 1))))));
+  }
+};
+
+// determine representation type (this is necessary to differentiate types
+// represented by value or reference)
+template <typename T> struct frefty {
+  typedef T type;
+  typedef T *ptr;
 };
 
 // a dbseq is a linked list sequence just like 'seq' except that its links are
@@ -75,6 +112,7 @@ template <typename T> struct frefty {
   typedef T *ptr;
 };
 
+>>>>>>> Add llvm as third_party dependency
 template <typename T> struct frefty<array<T>> {
   typedef array<T> *type;
   typedef array<T> *ptr;
