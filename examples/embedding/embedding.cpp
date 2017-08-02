@@ -1,10 +1,13 @@
 #include "hobbes/hobbes.H"
 #include "linenoise/linenoise.h"
+#include "llvm/Support/CommandLine.h"
 
 #include <iostream>
 #include <stdexcept>
 
-int main() {
+
+int main(int argc, char *argv[]) {
+  llvm::cl::ParseCommandLineOptions(argc, argv, "embedding");
   hobbes::cc c;
 
   char * read_line;
