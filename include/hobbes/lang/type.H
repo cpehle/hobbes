@@ -84,7 +84,7 @@ inline std::ostream &operator<<(std::ostream &out, const MonoTypePtr &t) {
 class TEnv;
 typedef std::shared_ptr<TEnv> TEnvPtr;
 
-class Unqualifier;
+struct Unqualifier;
 typedef std::shared_ptr<Unqualifier> UnqualifierPtr;
 
 class UnqualifierSet;

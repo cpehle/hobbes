@@ -317,14 +317,14 @@ template <typename T>
 // basic bit-packed 2D bool array (maybe there's already something that does this job?)
 class bit_table {
 public:
-  inline bit_table() : rowc(0), colc(0), data(0) {
+  inline bit_table() : colc(0), rowc(0),  data(0) {
   }
-  inline bit_table(size_t rowc, size_t colc, bool s) : rowc(rowc), colc(colc) {
+  inline bit_table(size_t rowc, size_t colc, bool s) : colc(colc), rowc(rowc) {
     size_t msz = 1+((rowc*colc)/8);
     this->data = new uint8_t[msz];
     memset(this->data, s ? 0xFF : 0, msz);
   }
-  inline bit_table(const bit_table& rhs) : rowc(rhs.rowc), colc(rhs.colc) {
+  inline bit_table(const bit_table& rhs) : colc(rhs.colc), rowc(rhs.rowc) {      
     size_t msz = 1+((this->rowc*this->colc)/8);
     this->data = new uint8_t[msz];
     memcpy(this->data, rhs.data, msz);
@@ -363,8 +363,9 @@ public:
   inline size_t rows() const { return this->rowc; }
   inline size_t cols() const { return this->colc; }
 private:
-  uint8_t* data;
-  size_t   rowc, colc;
+    size_t   colc, rowc;
+    uint8_t* data;
+
 };
 inline std::ostream& operator<<(std::ostream& out, const bit_table& bt) {
   for (size_t r = 0; r != bt.rows(); ++r) {

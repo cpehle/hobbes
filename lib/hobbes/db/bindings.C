@@ -730,7 +730,7 @@ public:
 };
 
 bool DBFieldLookup::refine(const TEnvPtr& tenv, const HasField& hf, MonoTypeUnifier* u, Definitions* ds) {
-  auto dir   = hf.direction;
+  //auto dir   = hf.direction;
   auto rty   = hf.recordType;
   auto fname = hf.fieldName;
   auto fty   = hf.fieldType;
@@ -755,7 +755,7 @@ bool DBFieldLookup::refine(const TEnvPtr& tenv, const HasField& hf, MonoTypeUnif
 }
 
 bool DBFieldLookup::satisfied(const TEnvPtr& tenv, const HasField& hf, Definitions* ds) const {
-  auto dir   = hf.direction;
+  //auto dir   = hf.direction;
   auto rty   = hf.recordType;
   auto fname = hf.fieldName;
   auto fty   = hf.fieldType;

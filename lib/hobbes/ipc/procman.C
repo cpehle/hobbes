@@ -27,7 +27,7 @@ static MonoTypePtr resultType(const MonoTypePtr& ftype) {
 }
 
 bool ProcManager::refine(const TEnvPtr& tenv, const HasField& hf, MonoTypeUnifier* u, Definitions* ds) {
-  auto dir   = hf.direction;
+  //auto dir   = hf.direction;
   auto rty   = hf.recordType;
   auto fname = hf.fieldName;
   auto hasty = hf.fieldType;
@@ -53,7 +53,7 @@ bool ProcManager::satisfied(const TEnvPtr& tenv, const HasField& hf, Definitions
     if (const TLong* pid = pidTy(rty)) {
       if (const Func* fty = is<Func>(hasty)) {
         // this ensures that we _can_ get an invocation ID for the requested function/type
-        int invid = invocationID(lp(pid->value()), fn->value(), hasty);
+        /* int invid = */ invocationID(lp(pid->value()), fn->value(), hasty);
 
         // then we're satisfied IFF we can pack the argument and unpack the result
         return isClassSatisfied(tenv, "BlockCodec", list(fty->argument()), ds) &&

@@ -1,0 +1,1534 @@
+{
+  "variant": {
+    "label": "Debug",
+    "keywordSettings": {
+      "buildType": "debug"
+    },
+    "description": "Emit debug information without performing optimizations"
+  },
+  "activeEnvironments": [],
+  "codeModel": {
+    "configurations": [
+      {
+        "name": "Debug",
+        "projects": [
+          {
+            "buildDirectory": "/Users/cpehle/Development/hobbes/build",
+            "name": "hobbes",
+            "sourceDirectory": "/Users/cpehle/Development/hobbes",
+            "targets": [
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/examples/networking/net"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/examples/networking",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/examples/networking"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/examples/networking"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/boot/gen"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/events"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "net.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "net",
+                "linkLanguageFlags": "-g",
+                "linkLibraries": "../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/events/libhobbesevents.a ../../lib/hobbes/ipc/libhobbesipc.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/util/libhobbesutil.a ../../lib/hobbes/boot/libhobbesboot.a -lpthread -ldl ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/boot/libhobbesboot.a ../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/ipc/libhobbesipc.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmParser.a /usr/local/lib/llvm-3.7/lib/libLLVMX86CodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Desc.a /usr/local/lib/llvm-3.7/lib/libLLVMMCDisassembler.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Info.a /usr/local/lib/llvm-3.7/lib/libLLVMAsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMSelectionDAG.a /usr/local/lib/llvm-3.7/lib/libLLVMCodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMInstrumentation.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Utils.a /usr/local/lib/llvm-3.7/lib/libLLVMipo.a /usr/local/lib/llvm-3.7/lib/libLLVMScalarOpts.a /usr/local/lib/llvm-3.7/lib/libLLVMInstCombine.a /usr/local/lib/llvm-3.7/lib/libLLVMProfileData.a /usr/local/lib/llvm-3.7/lib/libLLVMVectorize.a /usr/local/lib/llvm-3.7/lib/libLLVMTransformUtils.a /usr/local/lib/llvm-3.7/lib/libLLVMipa.a /usr/local/lib/llvm-3.7/lib/libLLVMMCJIT.a /usr/local/lib/llvm-3.7/lib/libLLVMExecutionEngine.a /usr/local/lib/llvm-3.7/lib/libLLVMTarget.a /usr/local/lib/llvm-3.7/lib/libLLVMAnalysis.a /usr/local/lib/llvm-3.7/lib/libLLVMRuntimeDyld.a /usr/local/lib/llvm-3.7/lib/libLLVMObject.a /usr/local/lib/llvm-3.7/lib/libLLVMMCParser.a /usr/local/lib/llvm-3.7/lib/libLLVMMC.a /usr/local/lib/llvm-3.7/lib/libLLVMBitReader.a /usr/local/lib/llvm-3.7/lib/libLLVMCore.a /usr/local/lib/llvm-3.7/lib/libLLVMSupport.a -lz -lpthread -lffi -ledit -lcurses -lm ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/util/libhobbesutil.a",
+                "linkerLanguage": "CXX",
+                "name": "net",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/examples/networking",
+                "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/examples/embedding/embedding"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/examples/embedding",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/examples/embedding"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/examples/embedding"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/boot/gen"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/events"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/linenoise/.."
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "embedding.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "embedding",
+                "linkLanguageFlags": "-g",
+                "linkLibraries": "../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/events/libhobbesevents.a ../../lib/hobbes/ipc/libhobbesipc.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/util/libhobbesutil.a ../../lib/hobbes/boot/libhobbesboot.a ../../third_party/linenoise/liblinenoise.a /usr/local/lib/llvm-3.7/lib/libLLVMSupport.a ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/boot/libhobbesboot.a ../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/ipc/libhobbesipc.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmParser.a /usr/local/lib/llvm-3.7/lib/libLLVMX86CodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Desc.a /usr/local/lib/llvm-3.7/lib/libLLVMMCDisassembler.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Info.a /usr/local/lib/llvm-3.7/lib/libLLVMAsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMSelectionDAG.a /usr/local/lib/llvm-3.7/lib/libLLVMCodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMInstrumentation.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Utils.a /usr/local/lib/llvm-3.7/lib/libLLVMipo.a /usr/local/lib/llvm-3.7/lib/libLLVMScalarOpts.a /usr/local/lib/llvm-3.7/lib/libLLVMInstCombine.a /usr/local/lib/llvm-3.7/lib/libLLVMProfileData.a /usr/local/lib/llvm-3.7/lib/libLLVMVectorize.a /usr/local/lib/llvm-3.7/lib/libLLVMTransformUtils.a /usr/local/lib/llvm-3.7/lib/libLLVMipa.a /usr/local/lib/llvm-3.7/lib/libLLVMMCJIT.a /usr/local/lib/llvm-3.7/lib/libLLVMExecutionEngine.a /usr/local/lib/llvm-3.7/lib/libLLVMTarget.a /usr/local/lib/llvm-3.7/lib/libLLVMAnalysis.a /usr/local/lib/llvm-3.7/lib/libLLVMRuntimeDyld.a /usr/local/lib/llvm-3.7/lib/libLLVMObject.a /usr/local/lib/llvm-3.7/lib/libLLVMMCParser.a /usr/local/lib/llvm-3.7/lib/libLLVMMC.a /usr/local/lib/llvm-3.7/lib/libLLVMBitReader.a /usr/local/lib/llvm-3.7/lib/libLLVMCore.a /usr/local/lib/llvm-3.7/lib/libLLVMSupport.a -lz -lpthread -lffi -ledit -lcurses -lm ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/util/libhobbesutil.a",
+                "linkerLanguage": "CXX",
+                "name": "embedding",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/examples/embedding",
+                "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/examples/storage/unreliable_storage"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/examples/storage",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/examples/storage"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/examples/storage"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/boot/gen"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/events"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "unreliable_storage.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "unreliable_storage",
+                "linkLanguageFlags": "-g",
+                "linkLibraries": "../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/events/libhobbesevents.a ../../lib/hobbes/ipc/libhobbesipc.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/util/libhobbesutil.a ../../lib/hobbes/boot/libhobbesboot.a -lpthread -ldl ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/boot/libhobbesboot.a ../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/ipc/libhobbesipc.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmParser.a /usr/local/lib/llvm-3.7/lib/libLLVMX86CodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Desc.a /usr/local/lib/llvm-3.7/lib/libLLVMMCDisassembler.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Info.a /usr/local/lib/llvm-3.7/lib/libLLVMAsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMSelectionDAG.a /usr/local/lib/llvm-3.7/lib/libLLVMCodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMInstrumentation.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Utils.a /usr/local/lib/llvm-3.7/lib/libLLVMipo.a /usr/local/lib/llvm-3.7/lib/libLLVMScalarOpts.a /usr/local/lib/llvm-3.7/lib/libLLVMInstCombine.a /usr/local/lib/llvm-3.7/lib/libLLVMProfileData.a /usr/local/lib/llvm-3.7/lib/libLLVMVectorize.a /usr/local/lib/llvm-3.7/lib/libLLVMTransformUtils.a /usr/local/lib/llvm-3.7/lib/libLLVMipa.a /usr/local/lib/llvm-3.7/lib/libLLVMMCJIT.a /usr/local/lib/llvm-3.7/lib/libLLVMExecutionEngine.a /usr/local/lib/llvm-3.7/lib/libLLVMTarget.a /usr/local/lib/llvm-3.7/lib/libLLVMAnalysis.a /usr/local/lib/llvm-3.7/lib/libLLVMRuntimeDyld.a /usr/local/lib/llvm-3.7/lib/libLLVMObject.a /usr/local/lib/llvm-3.7/lib/libLLVMMCParser.a /usr/local/lib/llvm-3.7/lib/libLLVMMC.a /usr/local/lib/llvm-3.7/lib/libLLVMBitReader.a /usr/local/lib/llvm-3.7/lib/libLLVMCore.a /usr/local/lib/llvm-3.7/lib/libLLVMSupport.a -lz -lpthread -lffi -ledit -lcurses -lm ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/util/libhobbesutil.a",
+                "linkerLanguage": "CXX",
+                "name": "unreliable_storage",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/examples/storage",
+                "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/examples/storage/reliable_storage"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/examples/storage",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/examples/storage"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/examples/storage"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/boot/gen"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/events"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "reliable_storage.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "reliable_storage",
+                "linkLanguageFlags": "-g",
+                "linkLibraries": "../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/events/libhobbesevents.a ../../lib/hobbes/ipc/libhobbesipc.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/util/libhobbesutil.a ../../lib/hobbes/boot/libhobbesboot.a -lpthread -ldl ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/boot/libhobbesboot.a ../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/ipc/libhobbesipc.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmParser.a /usr/local/lib/llvm-3.7/lib/libLLVMX86CodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Desc.a /usr/local/lib/llvm-3.7/lib/libLLVMMCDisassembler.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Info.a /usr/local/lib/llvm-3.7/lib/libLLVMAsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMSelectionDAG.a /usr/local/lib/llvm-3.7/lib/libLLVMCodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMInstrumentation.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Utils.a /usr/local/lib/llvm-3.7/lib/libLLVMipo.a /usr/local/lib/llvm-3.7/lib/libLLVMScalarOpts.a /usr/local/lib/llvm-3.7/lib/libLLVMInstCombine.a /usr/local/lib/llvm-3.7/lib/libLLVMProfileData.a /usr/local/lib/llvm-3.7/lib/libLLVMVectorize.a /usr/local/lib/llvm-3.7/lib/libLLVMTransformUtils.a /usr/local/lib/llvm-3.7/lib/libLLVMipa.a /usr/local/lib/llvm-3.7/lib/libLLVMMCJIT.a /usr/local/lib/llvm-3.7/lib/libLLVMExecutionEngine.a /usr/local/lib/llvm-3.7/lib/libLLVMTarget.a /usr/local/lib/llvm-3.7/lib/libLLVMAnalysis.a /usr/local/lib/llvm-3.7/lib/libLLVMRuntimeDyld.a /usr/local/lib/llvm-3.7/lib/libLLVMObject.a /usr/local/lib/llvm-3.7/lib/libLLVMMCParser.a /usr/local/lib/llvm-3.7/lib/libLLVMMC.a /usr/local/lib/llvm-3.7/lib/libLLVMBitReader.a /usr/local/lib/llvm-3.7/lib/libLLVMCore.a /usr/local/lib/llvm-3.7/lib/libLLVMSupport.a -lz -lpthread -lffi -ledit -lcurses -lm ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/util/libhobbesutil.a",
+                "linkerLanguage": "CXX",
+                "name": "reliable_storage",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/examples/storage",
+                "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/examples/binding/binding"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/examples/binding",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/examples/binding"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/examples/binding"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/boot/gen"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/events"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "binding.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "binding",
+                "linkLanguageFlags": "-g",
+                "linkLibraries": "../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/events/libhobbesevents.a ../../lib/hobbes/ipc/libhobbesipc.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/util/libhobbesutil.a ../../lib/hobbes/boot/libhobbesboot.a ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/boot/libhobbesboot.a ../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/ipc/libhobbesipc.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmParser.a /usr/local/lib/llvm-3.7/lib/libLLVMX86CodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Desc.a /usr/local/lib/llvm-3.7/lib/libLLVMMCDisassembler.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Info.a /usr/local/lib/llvm-3.7/lib/libLLVMAsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMSelectionDAG.a /usr/local/lib/llvm-3.7/lib/libLLVMCodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMInstrumentation.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Utils.a /usr/local/lib/llvm-3.7/lib/libLLVMipo.a /usr/local/lib/llvm-3.7/lib/libLLVMScalarOpts.a /usr/local/lib/llvm-3.7/lib/libLLVMInstCombine.a /usr/local/lib/llvm-3.7/lib/libLLVMProfileData.a /usr/local/lib/llvm-3.7/lib/libLLVMVectorize.a /usr/local/lib/llvm-3.7/lib/libLLVMTransformUtils.a /usr/local/lib/llvm-3.7/lib/libLLVMipa.a /usr/local/lib/llvm-3.7/lib/libLLVMMCJIT.a /usr/local/lib/llvm-3.7/lib/libLLVMExecutionEngine.a /usr/local/lib/llvm-3.7/lib/libLLVMTarget.a /usr/local/lib/llvm-3.7/lib/libLLVMAnalysis.a /usr/local/lib/llvm-3.7/lib/libLLVMRuntimeDyld.a /usr/local/lib/llvm-3.7/lib/libLLVMObject.a /usr/local/lib/llvm-3.7/lib/libLLVMMCParser.a /usr/local/lib/llvm-3.7/lib/libLLVMMC.a /usr/local/lib/llvm-3.7/lib/libLLVMBitReader.a /usr/local/lib/llvm-3.7/lib/libLLVMCore.a /usr/local/lib/llvm-3.7/lib/libLLVMSupport.a -lz -lpthread -lffi -ledit -lcurses -lm ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/util/libhobbesutil.a",
+                "linkerLanguage": "CXX",
+                "name": "binding",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/examples/binding",
+                "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/bin/hog/hog"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/bin/hog",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/bin/hog"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/bin/hog"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/boot/gen"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/events"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "batchrecv.C",
+                      "batchsend.C",
+                      "local.C",
+                      "main.C",
+                      "session.C",
+                      "boot/gen/boot.C"
+                    ]
+                  }
+                ],
+                "fullName": "hog",
+                "linkLanguageFlags": "-g",
+                "linkLibraries": "../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/events/libhobbesevents.a ../../lib/hobbes/ipc/libhobbesipc.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/util/libhobbesutil.a ../../lib/hobbes/boot/libhobbesboot.a -lncurses -lpthread -ldl ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/boot/libhobbesboot.a ../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/ipc/libhobbesipc.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmParser.a /usr/local/lib/llvm-3.7/lib/libLLVMX86CodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Desc.a /usr/local/lib/llvm-3.7/lib/libLLVMMCDisassembler.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Info.a /usr/local/lib/llvm-3.7/lib/libLLVMAsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMSelectionDAG.a /usr/local/lib/llvm-3.7/lib/libLLVMCodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMInstrumentation.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Utils.a /usr/local/lib/llvm-3.7/lib/libLLVMipo.a /usr/local/lib/llvm-3.7/lib/libLLVMScalarOpts.a /usr/local/lib/llvm-3.7/lib/libLLVMInstCombine.a /usr/local/lib/llvm-3.7/lib/libLLVMProfileData.a /usr/local/lib/llvm-3.7/lib/libLLVMVectorize.a /usr/local/lib/llvm-3.7/lib/libLLVMTransformUtils.a /usr/local/lib/llvm-3.7/lib/libLLVMipa.a /usr/local/lib/llvm-3.7/lib/libLLVMMCJIT.a /usr/local/lib/llvm-3.7/lib/libLLVMExecutionEngine.a /usr/local/lib/llvm-3.7/lib/libLLVMTarget.a /usr/local/lib/llvm-3.7/lib/libLLVMAnalysis.a /usr/local/lib/llvm-3.7/lib/libLLVMRuntimeDyld.a /usr/local/lib/llvm-3.7/lib/libLLVMObject.a /usr/local/lib/llvm-3.7/lib/libLLVMMCParser.a /usr/local/lib/llvm-3.7/lib/libLLVMMC.a /usr/local/lib/llvm-3.7/lib/libLLVMBitReader.a /usr/local/lib/llvm-3.7/lib/libLLVMCore.a /usr/local/lib/llvm-3.7/lib/libLLVMSupport.a -lz -lffi -ledit -lcurses -lm ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/util/libhobbesutil.a -lpthread",
+                "linkerLanguage": "CXX",
+                "name": "hog",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/bin/hog",
+                "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/bin/hi/hi"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/bin/hi",
+                "fileGroups": [
+                  {
+                    "isGenerated": false,
+                    "sources": [
+                      "www.H"
+                    ]
+                  },
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/bin/hi"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/bin/hi"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/boot/gen"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/events"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/linenoise/.."
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "evaluator.C",
+                      "funcdefs.C",
+                      "main.C",
+                      "www.C"
+                    ]
+                  }
+                ],
+                "fullName": "hi",
+                "linkLanguageFlags": "-g",
+                "linkLibraries": "../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/events/libhobbesevents.a ../../lib/hobbes/ipc/libhobbesipc.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/util/libhobbesutil.a ../../lib/hobbes/boot/libhobbesboot.a -lncurses ../../third_party/linenoise/liblinenoise.a -lpthread -ldl ../../lib/hobbes/eval/libhobbeseval.a ../../lib/hobbes/boot/libhobbesboot.a ../../lib/hobbes/db/libhobbesdb.a ../../lib/hobbes/ipc/libhobbesipc.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmParser.a /usr/local/lib/llvm-3.7/lib/libLLVMX86CodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Desc.a /usr/local/lib/llvm-3.7/lib/libLLVMMCDisassembler.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Info.a /usr/local/lib/llvm-3.7/lib/libLLVMAsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMSelectionDAG.a /usr/local/lib/llvm-3.7/lib/libLLVMCodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMInstrumentation.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Utils.a /usr/local/lib/llvm-3.7/lib/libLLVMipo.a /usr/local/lib/llvm-3.7/lib/libLLVMScalarOpts.a /usr/local/lib/llvm-3.7/lib/libLLVMInstCombine.a /usr/local/lib/llvm-3.7/lib/libLLVMProfileData.a /usr/local/lib/llvm-3.7/lib/libLLVMVectorize.a /usr/local/lib/llvm-3.7/lib/libLLVMTransformUtils.a /usr/local/lib/llvm-3.7/lib/libLLVMipa.a /usr/local/lib/llvm-3.7/lib/libLLVMMCJIT.a /usr/local/lib/llvm-3.7/lib/libLLVMExecutionEngine.a /usr/local/lib/llvm-3.7/lib/libLLVMTarget.a /usr/local/lib/llvm-3.7/lib/libLLVMAnalysis.a /usr/local/lib/llvm-3.7/lib/libLLVMRuntimeDyld.a /usr/local/lib/llvm-3.7/lib/libLLVMObject.a /usr/local/lib/llvm-3.7/lib/libLLVMMCParser.a /usr/local/lib/llvm-3.7/lib/libLLVMMC.a /usr/local/lib/llvm-3.7/lib/libLLVMBitReader.a /usr/local/lib/llvm-3.7/lib/libLLVMCore.a /usr/local/lib/llvm-3.7/lib/libLLVMSupport.a -lz -lffi -ledit -lcurses -lm ../../lib/hobbes/read/libhobbesread.a ../../lib/hobbes/lang/libhobbeslang.a ../../lib/hobbes/parse/libhobbesparse.a ../../lib/hobbes/util/libhobbesutil.a -lpthread",
+                "linkerLanguage": "CXX",
+                "name": "hi",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/bin/hi",
+                "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/lib/hobbes/Lex/libhobbeslex.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/lib/hobbes/Lex",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/lib/hobbes/Lex"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/lib/hobbes/Lex"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/Lex"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "Lexer.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "libhobbeslex.a",
+                "linkerLanguage": "CXX",
+                "name": "hobbeslex",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/lib/hobbes/Lex",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/lib/hobbes/util/libhobbesutil.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/lib/hobbes/util",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/lib/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/lib/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "lannotation.C",
+                      "region.C",
+                      "str.C"
+                    ]
+                  }
+                ],
+                "fullName": "libhobbesutil.a",
+                "linkerLanguage": "CXX",
+                "name": "hobbesutil",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/lib/hobbes/util",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/lib/hobbes/read/libhobbesread.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/lib/hobbes/read",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/lib/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/lib/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "parser.C",
+                      "pgen/hexpr.lex.C",
+                      "pgen/hexpr.parse.C"
+                    ]
+                  }
+                ],
+                "fullName": "libhobbesread.a",
+                "linkerLanguage": "CXX",
+                "name": "hobbesread",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/lib/hobbes/read",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/lib/hobbes/parse/libhobbesparse.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/lib/hobbes/parse",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/lib/hobbes/parse"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/lib/hobbes/parse"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "data.C",
+                      "grammar.C",
+                      "lalr.C",
+                      "parser.C",
+                      "terminal.C"
+                    ]
+                  }
+                ],
+                "fullName": "libhobbesparse.a",
+                "linkerLanguage": "CXX",
+                "name": "hobbesparse",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/lib/hobbes/parse",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/lib/hobbes/lang/libhobbeslang.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/lib/hobbes/lang",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/lib/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/lib/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "closcvt.C",
+                      "constraints.C",
+                      "expr.C",
+                      "macroexpand.C",
+                      "module.C",
+                      "type.C",
+                      "typeinf.C",
+                      "typemap.C",
+                      "typepreds.C",
+                      "tyunqualify.C",
+                      "pat/dfa.C",
+                      "pat/pattern.C",
+                      "pat/print.C",
+                      "pat/regex.C",
+                      "preds/appendsto/record.C",
+                      "preds/appendsto.C",
+                      "preds/class.C",
+                      "preds/consrecord.C",
+                      "preds/consvariant.C",
+                      "preds/data.C",
+                      "preds/deconstruct.C",
+                      "preds/equal.C",
+                      "preds/hasctor/variant.C",
+                      "preds/hasctor.C",
+                      "preds/hasfield/lookup.C",
+                      "preds/hasfield/record.C",
+                      "preds/hasfield/slookup.C",
+                      "preds/hasfield/tenvlookup.C",
+                      "preds/hasfield.C",
+                      "preds/loadref.C",
+                      "preds/not.C",
+                      "preds/packsto.C",
+                      "preds/recty.C",
+                      "preds/sizeof.C",
+                      "preds/str.C",
+                      "preds/subtype/obj.C",
+                      "preds/subtype.C",
+                      "preds/typeof.C"
+                    ]
+                  }
+                ],
+                "fullName": "libhobbeslang.a",
+                "linkerLanguage": "CXX",
+                "name": "hobbeslang",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/lib/hobbes/lang",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/lib/hobbes/ipc/libhobbesipc.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/lib/hobbes/ipc",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/lib/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/lib/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/ipc"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "nbindings.C",
+                      "net.C",
+                      "prepl.C",
+                      "process.C",
+                      "procman.C"
+                    ]
+                  }
+                ],
+                "fullName": "libhobbesipc.a",
+                "linkerLanguage": "CXX",
+                "name": "hobbesipc",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/lib/hobbes/ipc",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/lib/hobbes/events/libhobbesevents.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/lib/hobbes/events",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/lib/hobbes/events"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/lib/hobbes/events"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/events"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "events.C",
+                      "httpd.C"
+                    ]
+                  }
+                ],
+                "fullName": "libhobbesevents.a",
+                "linkerLanguage": "CXX",
+                "name": "hobbesevents",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/lib/hobbes/events",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/lib/hobbes/eval/libhobbeseval.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/lib/hobbes/eval",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/lib/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/lib/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/boot/gen"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "cc.C",
+                      "cexpr.C",
+                      "cmodule.C",
+                      "ctype.C",
+                      "func.C",
+                      "funcdefs.C",
+                      "jitcc.C"
+                    ]
+                  }
+                ],
+                "fullName": "libhobbeseval.a",
+                "linkerLanguage": "CXX",
+                "name": "hobbeseval",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/lib/hobbes/eval",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/lib/hobbes/boot/libhobbesboot.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/lib/hobbes/boot",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/lib/hobbes/boot"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/lib/hobbes/boot"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/boot/gen"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "gen/boot.C"
+                    ]
+                  }
+                ],
+                "fullName": "libhobbesboot.a",
+                "linkerLanguage": "CXX",
+                "name": "hobbesboot",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/lib/hobbes/boot",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/lib/hobbes/db/libhobbesdb.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/lib/hobbes/db",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/lib/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/lib/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/db"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "bindings.C",
+                      "file.C",
+                      "series.C",
+                      "signals.C"
+                    ]
+                  }
+                ],
+                "fullName": "libhobbesdb.a",
+                "linkerLanguage": "CXX",
+                "name": "hobbesdb",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/lib/hobbes/db",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/third_party/libuv/libuv.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/third_party/libuv",
+                "fileGroups": [
+                  {
+                    "compileFlags": " -g --std=gnu89 -pedantic -Wall -Wextra -Wno-unused-parameter -g   -Wno-gnu-folding-constant",
+                    "defines": [
+                      "_DARWIN_UNLIMITED_SELECT=1",
+                      "_DARWIN_USE_64_BIT_INODE=1",
+                      "_FILE_OFFSET_BITS=64",
+                      "_LARGEFILE_SOURCE",
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/third_party/libuv"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/src"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/src/unix"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "C",
+                    "sources": [
+                      "libuv/src/unix/stream.c"
+                    ]
+                  },
+                  {
+                    "compileFlags": " -g --std=gnu89 -pedantic -Wall -Wextra -Wno-unused-parameter -g  ",
+                    "defines": [
+                      "_DARWIN_UNLIMITED_SELECT=1",
+                      "_DARWIN_USE_64_BIT_INODE=1",
+                      "_FILE_OFFSET_BITS=64",
+                      "_LARGEFILE_SOURCE",
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/third_party/libuv"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/src"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/src/unix"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "C",
+                    "sources": [
+                      "libuv/src/fs-poll.c",
+                      "libuv/src/inet.c",
+                      "libuv/src/threadpool.c",
+                      "libuv/src/uv-common.c",
+                      "libuv/src/version.c",
+                      "libuv/src/unix/async.c",
+                      "libuv/src/unix/core.c",
+                      "libuv/src/unix/dl.c",
+                      "libuv/src/unix/fs.c",
+                      "libuv/src/unix/getaddrinfo.c",
+                      "libuv/src/unix/getnameinfo.c",
+                      "libuv/src/unix/loop.c",
+                      "libuv/src/unix/loop-watcher.c",
+                      "libuv/src/unix/pipe.c",
+                      "libuv/src/unix/poll.c",
+                      "libuv/src/unix/process.c",
+                      "libuv/src/unix/signal.c",
+                      "libuv/src/unix/tcp.c",
+                      "libuv/src/unix/thread.c",
+                      "libuv/src/unix/timer.c",
+                      "libuv/src/unix/tty.c",
+                      "libuv/src/unix/udp.c",
+                      "libuv/src/unix/proctitle.c",
+                      "libuv/src/unix/kqueue.c",
+                      "libuv/src/unix/darwin.c",
+                      "libuv/src/unix/fsevents.c",
+                      "libuv/src/unix/pthread-barrier.c",
+                      "libuv/src/unix/darwin-proctitle.c"
+                    ]
+                  },
+                  {
+                    "isGenerated": false,
+                    "sources": [
+                      "libuv/include/uv.h",
+                      "libuv/include/tree.h",
+                      "libuv/include/uv-errno.h",
+                      "libuv/include/uv-threadpool.h",
+                      "libuv/include/uv-version.h",
+                      "libuv/src/heap-inl.h",
+                      "libuv/src/queue.h",
+                      "libuv/src/uv-common.h",
+                      "libuv/include/uv-unix.h",
+                      "libuv/include/uv-linux.h",
+                      "libuv/include/uv-sunos.h",
+                      "libuv/include/uv-darwin.h",
+                      "libuv/include/uv-bsd.h",
+                      "libuv/include/uv-aix.h",
+                      "libuv/src/unix/atomic-ops.h",
+                      "libuv/src/unix/internal.h",
+                      "libuv/src/unix/spinlock.h"
+                    ]
+                  }
+                ],
+                "fullName": "libuv.a",
+                "linkerLanguage": "C",
+                "name": "uv",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/third_party/libuv",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/third_party/linenoise/liblinenoise.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/third_party/linenoise",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g  ",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/third_party/linenoise"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/linenoise"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/linenoise/.."
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "C",
+                    "sources": [
+                      "linenoise.c"
+                    ]
+                  }
+                ],
+                "fullName": "liblinenoise.a",
+                "linkerLanguage": "C",
+                "name": "linenoise",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/third_party/linenoise",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/test/hobbes-test"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/test",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-g   -std=gnu++11",
+                    "defines": [
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/test"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/test"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/db"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/eval"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/lang"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/ipc"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/util"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/boot/gen"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/read"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/parse"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include/hobbes/events"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "Arrays.C",
+                      "Compiler.C",
+                      "Definitions.C",
+                      "Existentials.C",
+                      "Main.C",
+                      "Matching.C",
+                      "Net.C",
+                      "Objects.C",
+                      "Prelude.C",
+                      "Recursives.C",
+                      "Storage.C",
+                      "Structs.C",
+                      "TypeInf.C",
+                      "Variants.C"
+                    ]
+                  }
+                ],
+                "fullName": "hobbes-test",
+                "linkLanguageFlags": "-g",
+                "linkLibraries": "../lib/hobbes/db/libhobbesdb.a ../lib/hobbes/eval/libhobbeseval.a ../lib/hobbes/events/libhobbesevents.a ../lib/hobbes/ipc/libhobbesipc.a ../lib/hobbes/lang/libhobbeslang.a ../lib/hobbes/parse/libhobbesparse.a ../lib/hobbes/read/libhobbesread.a ../lib/hobbes/util/libhobbesutil.a ../lib/hobbes/boot/libhobbesboot.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmParser.a /usr/local/lib/llvm-3.7/lib/libLLVMX86CodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMipo.a /usr/local/lib/llvm-3.7/lib/libLLVMMCJIT.a -lncurses -lpthread -ldl ../lib/hobbes/eval/libhobbeseval.a ../lib/hobbes/boot/libhobbesboot.a ../lib/hobbes/db/libhobbesdb.a ../lib/hobbes/ipc/libhobbesipc.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmParser.a /usr/local/lib/llvm-3.7/lib/libLLVMX86CodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Desc.a /usr/local/lib/llvm-3.7/lib/libLLVMMCDisassembler.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Info.a /usr/local/lib/llvm-3.7/lib/libLLVMAsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMSelectionDAG.a /usr/local/lib/llvm-3.7/lib/libLLVMCodeGen.a /usr/local/lib/llvm-3.7/lib/libLLVMInstrumentation.a /usr/local/lib/llvm-3.7/lib/libLLVMX86AsmPrinter.a /usr/local/lib/llvm-3.7/lib/libLLVMX86Utils.a /usr/local/lib/llvm-3.7/lib/libLLVMipo.a /usr/local/lib/llvm-3.7/lib/libLLVMScalarOpts.a /usr/local/lib/llvm-3.7/lib/libLLVMInstCombine.a /usr/local/lib/llvm-3.7/lib/libLLVMProfileData.a /usr/local/lib/llvm-3.7/lib/libLLVMVectorize.a /usr/local/lib/llvm-3.7/lib/libLLVMTransformUtils.a /usr/local/lib/llvm-3.7/lib/libLLVMipa.a /usr/local/lib/llvm-3.7/lib/libLLVMMCJIT.a /usr/local/lib/llvm-3.7/lib/libLLVMExecutionEngine.a /usr/local/lib/llvm-3.7/lib/libLLVMTarget.a /usr/local/lib/llvm-3.7/lib/libLLVMAnalysis.a /usr/local/lib/llvm-3.7/lib/libLLVMRuntimeDyld.a /usr/local/lib/llvm-3.7/lib/libLLVMObject.a /usr/local/lib/llvm-3.7/lib/libLLVMMCParser.a /usr/local/lib/llvm-3.7/lib/libLLVMMC.a /usr/local/lib/llvm-3.7/lib/libLLVMBitReader.a /usr/local/lib/llvm-3.7/lib/libLLVMCore.a /usr/local/lib/llvm-3.7/lib/libLLVMSupport.a -lz -lffi -ledit -lcurses -lm ../lib/hobbes/read/libhobbesread.a ../lib/hobbes/lang/libhobbeslang.a ../lib/hobbes/parse/libhobbesparse.a ../lib/hobbes/util/libhobbesutil.a -lpthread",
+                "linkerLanguage": "CXX",
+                "name": "hobbes-test",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/test",
+                "type": "EXECUTABLE"
+              }
+            ]
+          },
+          {
+            "buildDirectory": "/Users/cpehle/Development/hobbes/build/third_party/libuv",
+            "name": "libuv",
+            "sourceDirectory": "/Users/cpehle/Development/hobbes/third_party/libuv",
+            "targets": [
+              {
+                "artifacts": [
+                  "/Users/cpehle/Development/hobbes/build/third_party/libuv/libuv.a"
+                ],
+                "buildDirectory": "/Users/cpehle/Development/hobbes/build/third_party/libuv",
+                "fileGroups": [
+                  {
+                    "compileFlags": " -g --std=gnu89 -pedantic -Wall -Wextra -Wno-unused-parameter -g   -Wno-gnu-folding-constant",
+                    "defines": [
+                      "_DARWIN_UNLIMITED_SELECT=1",
+                      "_DARWIN_USE_64_BIT_INODE=1",
+                      "_FILE_OFFSET_BITS=64",
+                      "_LARGEFILE_SOURCE",
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/third_party/libuv"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/src"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/src/unix"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "C",
+                    "sources": [
+                      "libuv/src/unix/stream.c"
+                    ]
+                  },
+                  {
+                    "compileFlags": " -g --std=gnu89 -pedantic -Wall -Wextra -Wno-unused-parameter -g  ",
+                    "defines": [
+                      "_DARWIN_UNLIMITED_SELECT=1",
+                      "_DARWIN_USE_64_BIT_INODE=1",
+                      "_FILE_OFFSET_BITS=64",
+                      "_LARGEFILE_SOURCE",
+                      "__STDC_CONSTANT_MACROS",
+                      "__STDC_LIMIT_MACROS"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/third_party/libuv"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/build/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/include"
+                      },
+                      {
+                        "path": "/usr/local/lib/llvm-3.7/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/include"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/src"
+                      },
+                      {
+                        "path": "/Users/cpehle/Development/hobbes/third_party/libuv/libuv/src/unix"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "C",
+                    "sources": [
+                      "libuv/src/fs-poll.c",
+                      "libuv/src/inet.c",
+                      "libuv/src/threadpool.c",
+                      "libuv/src/uv-common.c",
+                      "libuv/src/version.c",
+                      "libuv/src/unix/async.c",
+                      "libuv/src/unix/core.c",
+                      "libuv/src/unix/dl.c",
+                      "libuv/src/unix/fs.c",
+                      "libuv/src/unix/getaddrinfo.c",
+                      "libuv/src/unix/getnameinfo.c",
+                      "libuv/src/unix/loop.c",
+                      "libuv/src/unix/loop-watcher.c",
+                      "libuv/src/unix/pipe.c",
+                      "libuv/src/unix/poll.c",
+                      "libuv/src/unix/process.c",
+                      "libuv/src/unix/signal.c",
+                      "libuv/src/unix/tcp.c",
+                      "libuv/src/unix/thread.c",
+                      "libuv/src/unix/timer.c",
+                      "libuv/src/unix/tty.c",
+                      "libuv/src/unix/udp.c",
+                      "libuv/src/unix/proctitle.c",
+                      "libuv/src/unix/kqueue.c",
+                      "libuv/src/unix/darwin.c",
+                      "libuv/src/unix/fsevents.c",
+                      "libuv/src/unix/pthread-barrier.c",
+                      "libuv/src/unix/darwin-proctitle.c"
+                    ]
+                  },
+                  {
+                    "isGenerated": false,
+                    "sources": [
+                      "libuv/include/uv.h",
+                      "libuv/include/tree.h",
+                      "libuv/include/uv-errno.h",
+                      "libuv/include/uv-threadpool.h",
+                      "libuv/include/uv-version.h",
+                      "libuv/src/heap-inl.h",
+                      "libuv/src/queue.h",
+                      "libuv/src/uv-common.h",
+                      "libuv/include/uv-unix.h",
+                      "libuv/include/uv-linux.h",
+                      "libuv/include/uv-sunos.h",
+                      "libuv/include/uv-darwin.h",
+                      "libuv/include/uv-bsd.h",
+                      "libuv/include/uv-aix.h",
+                      "libuv/src/unix/atomic-ops.h",
+                      "libuv/src/unix/internal.h",
+                      "libuv/src/unix/spinlock.h"
+                    ]
+                  }
+                ],
+                "fullName": "libuv.a",
+                "linkerLanguage": "C",
+                "name": "uv",
+                "sourceDirectory": "/Users/cpehle/Development/hobbes/third_party/libuv",
+                "type": "STATIC_LIBRARY"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "cookie": "0.5036990528645535",
+    "inReplyTo": "codemodel",
+    "type": "reply"
+  }
+}
