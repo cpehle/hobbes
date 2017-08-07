@@ -1,0 +1,32 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "hobbes",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.hobbes",
+				"match": "\\b(true|false|if|then|else|and|or|case|of|match|matches|with|do|return|bool|byte|char|short|int|long|float|double|time|datetime|timespan|module|import|where|exists|data|type|class|instance|pack|unpack)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.hobbes",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.hobbes",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.hobbes"
+}

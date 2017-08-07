@@ -1,0 +1,26 @@
+{
+    "name": "hobbes",
+    "displayName": "hobbes",
+    "description": "Hobbes language support",
+    "version": "0.0.1",
+    "publisher": "cpehle",
+    "engines": {
+        "vscode": "^1.14.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "hobbes",
+            "aliases": ["hobbes", "hobbes"],
+            "extensions": [".hob"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "hobbes",
+            "scopeName": "source.hobbes",
+            "path": "./syntaxes/hobbes.tmLanguage.json"
+        }]
+    }
+}
