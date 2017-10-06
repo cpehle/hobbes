@@ -16,7 +16,6 @@ class Token {
   void *PtrData;
   
   //  unsigned Loc;
-
 public:
   auto getKind() -> const tok::TokenKind { return Kind; }
   auto setKind(tok::TokenKind K) -> void { Kind = K; }

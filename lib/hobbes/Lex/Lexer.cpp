@@ -9,7 +9,7 @@ auto Lexer::InitLexer(const char *BufStart, const char *BufPtr,
   BufferPtr = BufPtr;
   BufferEnd = BufEnd;
 }
-    
+
     auto isIdentifierBody(const char C) -> bool {
         return (('A' <= C) && (C <= 'X')) || (('a' <= C) && (C <= 'x')) || (('0' <= C) &&  (C <= '9'));
     }
@@ -147,7 +147,7 @@ auto Lexer::LexToken(Token &Result) -> bool {
   case '\'':
     return LexCharConstant(Result, CurPtr, tok::char_constant);
   case '"':
-    return LexStringLiteral(Result, CurPtr, tok::string_literal);    
+    return LexStringLiteral(Result, CurPtr, tok::string_literal);
   }
 }
 }

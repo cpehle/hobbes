@@ -4,6 +4,10 @@
 
 namespace hobbes {
 struct Lexer {
+  Lexer(const char *BufStart, const char *BufPtr, const char *BufEnd) {
+    InitLexer(BufStart, BufPtr, BufEnd);
+  }
+
   auto InitLexer(const char *BufStart, const char *BufPtr, const char *BufEnd)
       -> void;
   auto LexIdentifier(Token &Result, const char *CurPtr) -> bool;
@@ -19,10 +23,10 @@ struct Lexer {
                           tok::TokenKind Kind) -> void {
     unsigned TokLen = TokEnd - BufferPtr;
     Result.setLength(TokLen);
-    //    Result.setLocation(getSourceLocation(BufferPtr, TokLen));
     Result.setKind(Kind);
     BufferPtr = TokEnd;
   }
+
 private:
   const char *BufferStart;
   const char *BufferEnd;
