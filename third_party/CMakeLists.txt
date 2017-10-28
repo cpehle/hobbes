@@ -1,3 +1,4 @@
+# add_subdirectory(ATen)
 add_subdirectory(linenoise)
 
 if(BUILD_LLVM)
