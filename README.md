@@ -1,6 +1,8 @@
 # hobbes
 
 [![Build Status](https://travis-ci.org/cpehle/hobbes.svg?branch=master)](https://travis-ci.org/cpehle/hobbes)
+[![codecov](https://codecov.io/gh/cpehle/hobbes/branch/master/graph/badge.svg)](https://codecov.io/gh/cpehle/hobbes)
+
 
 a language, embedded compiler, and runtime for efficient dynamic expression evaluation, data storage and analysis
 
