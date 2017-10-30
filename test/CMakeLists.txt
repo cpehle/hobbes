@@ -13,6 +13,7 @@ add_executable(hobbes-test
   Structs.C
   TypeInf.C
   Variants.C
+  LexerTest.cpp
   )
 
 target_link_libraries(hobbes-test ${hobbes_libs} ${llvm_libs} ncurses ${sys_libs})

@@ -67,7 +67,7 @@ include_directories(BEFORE
   ${HOBBES_INCLUDE_DIR}
   )
 
-set(hobbes_libs hobbesdb hobbeseval hobbesevents hobbesipc hobbeslang hobbesparse hobbesread hobbesutil hobbesboot)
+set(hobbes_libs hobbesdb hobbeseval hobbesevents hobbesipc hobbeslang hobbesparse hobbesread hobbesutil hobbesboot hobbeslex)
 
 if(UNIX AND NOT APPLE)
    set(LINUX TRUE)

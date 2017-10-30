@@ -10,6 +10,28 @@ using namespace llvm;
 
 namespace hobbes {
 
+  template <typename tag,  typename compileFn, typename return_type, typename argument_type>
+  struct operation : public op {
+    llvm::Value* apply(jitcc* c, const MonoTypes&, const MonoTypePtr&, const Exprs& es) {
+      llvm::Value* x = c->compile(es[0]);
+      compileFn(c->builder(), x);
+    }
+    PolyTypePtr type(typedb&  tenv) const {
+      return polytype(prim<return_type(argument_type)>());
+    }
+  };
+
+  template <typename tag,  typename compileFn, typename return_type, typename arg0, typename arg1>
+  struct binary_operation : public op {
+    llvm::Value* apply(jitcc* c, const MonoTypes&, const MonoTypePtr&, const Exprs& es) {
+      llvm::Value* x = c->compile(es[0]);
+      compileFn(c->builder(), x);
+    }
+    PolyTypePtr type(typedb&  tenv) const {
+      return polytype(prim<return_type(arg0, arg1)>());
+    }
+  };
+  
 #define IOP(opn, mem, aty0, rty) \
   class opn##_op : public op { \
   public: \

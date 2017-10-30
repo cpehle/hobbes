@@ -34,7 +34,7 @@ class jitcc {
 public:
   jitcc();
   ~jitcc();
-
+  
   llvm::IRBuilder<>* builder() const;
   llvm::Module*      module();
 

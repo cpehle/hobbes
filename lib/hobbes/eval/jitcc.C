@@ -49,7 +49,7 @@ private:
   jitcc* jit;
 };
 #endif
-
+  
 jitcc::jitcc() :
   currentModule(0), irbuilder(0),
   globalData(32768 /* min global page size = 32K */),
