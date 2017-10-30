@@ -1,6 +1,8 @@
 #pragma once
 
 #include "hobbes/Lex/Token.h"
+#include <llvm/Support/MemoryBuffer.h>
+#include <iostream>
 
 namespace hobbes {
 struct Lexer {
@@ -9,26 +11,30 @@ struct Lexer {
   }
   auto InitLexer(const char *BufStart, const char *BufPtr, const char *BufEnd)
       -> void;
+  auto InitLexer(const llvm::MemoryBuffer buffer) -> void;
   auto LexIdentifier(Token &Result, const char *CurPtr) -> bool;
   auto LexNumericConstant(Token &Result, const char *CurPtr) -> bool;
-  auto LexStringLiteral(Token &Result, const char *CurPtr, tok::TokenKind Kind)
-      -> bool;
+  auto SkipSingleLineComment(const char *CurPtr) -> bool;
+  auto SkipMultiLineComment(const char *CurPtr) -> bool;
+  auto LexStringLiteral(Token &Result, const char *CurPtr) -> bool;
   auto LexCharConstant(Token &Result, const char *CurPtr, tok::TokenKind Kind)
       -> bool;
   auto LexEndOfFile(Token &Result, const char *CurPtr) -> bool;
+
+  /// Return the next token in the file. If the Lexer is at the end of the
+  /// file it will return tok::eof.
   auto LexToken(Token &Result) -> bool;
 
   auto FormTokenWithChars(Token &Result, const char *TokEnd,
-                          tok::TokenKind Kind) -> void {
+                          tok::TokenKind Kind) -> void {    
     unsigned TokLen = TokEnd - BufferPtr;
     Result.setLength(TokLen);
     Result.setKind(Kind);
     BufferPtr = TokEnd;
   }
-
 private:
-  const char *BufferStart;
-  const char *BufferEnd;
-  const char *BufferPtr;
+  const char *BufferStart; // start of the buffer  
+  const char *BufferEnd; // end of the buffer
+  const char *BufferPtr; // current position in the buffer
 };
 }
