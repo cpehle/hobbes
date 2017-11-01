@@ -2,6 +2,7 @@
 
 #include "hobbes/Lex/Token.h"
 #include <llvm/Support/MemoryBuffer.h>
+#include <llvm/ADT/StringRef.h>
 #include <iostream>
 
 namespace hobbes {
@@ -11,7 +12,6 @@ struct Lexer {
   }
   auto InitLexer(const char *BufStart, const char *BufPtr, const char *BufEnd)
       -> void;
-  auto InitLexer(const llvm::MemoryBuffer buffer) -> void;
   auto LexIdentifier(Token &Result, const char *CurPtr) -> bool;
   auto LexNumericConstant(Token &Result, const char *CurPtr) -> bool;
   auto SkipSingleLineComment(const char *CurPtr) -> bool;
@@ -29,7 +29,8 @@ struct Lexer {
                           tok::TokenKind Kind) -> void {    
     unsigned TokLen = TokEnd - BufferPtr;
     Result.setLength(TokLen);
-    Result.setKind(Kind);
+    Result.setKind(Kind);    
+    Result.setLiteralData(llvm::StringRef(BufferPtr, TokLen));
     BufferPtr = TokEnd;
   }
 private:

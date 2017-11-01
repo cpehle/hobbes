@@ -9,13 +9,6 @@
 #include <string>
 
 namespace hobbes {
-
-auto Lexer::InitLexer(const llvm::MemoryBuffer buffer) -> void {
-  BufferStart = buffer.getBufferStart();
-  BufferPtr = buffer.getBufferStart();
-  BufferEnd = buffer.getBufferEnd();
-}
-
 auto Lexer::InitLexer(const char *BufStart, const char *BufPtr,
                       const char *BufEnd) -> void {
   BufferStart = BufStart;
@@ -92,15 +85,18 @@ auto Lexer::LexNumericConstant(Token &Result, const char *CurPtr) -> bool {
 }
 
 auto Lexer::LexStringLiteral(Token &Result, const char *CurPtr) -> bool {
+  // consume the '"' character
+  CurPtr++;  
   while (*CurPtr != '"') {
     ++CurPtr;
     if (*CurPtr == 0) {
-      // unexpected end of file during string
+      LexEndOfFile(Result, CurPtr);
+      return true;
     }
   }
   FormTokenWithChars(Result, CurPtr - 1, tok::string_literal);
-  BufferPtr = CurPtr + 1;
-  return true;
+  BufferPtr = CurPtr+1;
+  return false;
 }
 
 auto Lexer::LexCharConstant(Token &Result, const char *CurPtr,
@@ -143,11 +139,9 @@ auto Lexer::LexToken(Token &Result) -> bool {
   // return here if a comment was encountered
   while (1) {
     const char *CurPtr = BufferPtr;
-    bool FoundWhiteSpace = false;
     // skip whitespace
     if ((*CurPtr == ' ') || (*CurPtr == '\t')) {
       ++CurPtr;
-      FoundWhiteSpace = true;
       while ((*CurPtr == ' ') || (*CurPtr == '\t')) {
         ++CurPtr;
       }
