@@ -1,4 +1,3 @@
-
 #include <hobbes/hobbes.H>
 #include <hobbes/ipc/net.H>
 #include <hobbes/util/array.H>
@@ -15,9 +14,8 @@
 #include "evaluator.H"
 
 #include <stdio.h>
-// #include <readline/readline.h>
-// #include <readline/history.h>
-#include "linenoise/linenoise.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
 namespace str = hobbes::str;
 
@@ -194,51 +192,45 @@ char* completionStep(const char* pfx, int state) {
 char** completions(const char* pfx, int start, int end) {
   if (start == 0) {
     completionMatches = eval->completionsFor(pfx);
-    return 0;
-    //    return rl_completion_matches((char*)pfx, &completionStep);
+    return rl_completion_matches((char*)pfx, &completionStep);
   } else {
 #ifdef BUILD_LINUX
-    //rl_bind_key('\t', rl_abort);
+    rl_bind_key('\t', rl_abort);
 #endif
     return 0;
   }
 }
 
 // run a read-eval-print loop
-void evalLine(const char*);
+void evalLine(char*);
 
 void repl(evaluator* ev) {
   eval = ev;
-  
-  struct linenoiseState l;
-  char buf[4096];
 
-  linenoiseHistorySetMaxLen(1000);
-  linenoiseInit(&l, STDIN_FILENO, STDOUT_FILENO, buf, 4096, "> ", &evalLine);
+  // set up stdin to be read incrementally
+  std::ostringstream prompt;
+  prompt << resetfmt() << setbold() << setfgc(colors.promptfg) << "> " << setfgc(colors.stdtextfg) << std::flush;
+  rl_callback_handler_install(prompt.str().c_str(), &evalLine);
 
   // set up readline autocompletion
-  // rl_attempted_completion_function = completions;
+  rl_attempted_completion_function = completions;
 
   // dispatch stdin events to our line handler (through readline)
-  hobbes::registerEventHandler(STDIN_FILENO, [](int,void* ud){
-      auto lp = (struct linenoiseState*)ud;
-      char c;
-      if (read(lp->ifd,&c,1) == -1) return;
-      linenoiseNext(lp, c);
-    }, &l);
+  hobbes::registerEventHandler(STDIN_FILENO, [](int,void*){rl_callback_read_char();}, 0);
 
   // poll for events and dispatch them
   hobbes::runEventLoop();
 }
 
-void evalLine(const char* x) {
-  linenoiseHistoryAdd(x);
+void evalLine(char* x) {
   // preprocess this line from readline
   std::string line;
   if (x) {
     line = str::trim<char>(x);
+    free(x);
 
     if (line.size() > 0) {
+      add_history(line.c_str());
     }
   } else {
     line = ":q";
@@ -602,7 +594,7 @@ int main(int argc, char** argv) {
     // start an evaluator and process ~/.hirc if it exists
     // (this should apply whatever settings the user prefers)
     evaluator eval(args);
-    initHI(&eval, args.useDefColors);
+    initHI(&eval, true /*args.useDefColors*/);
 
     // show the repl header
     if (!args.silent) {
@@ -650,4 +642,3 @@ int main(int argc, char** argv) {
     return -1;
   }
 }
-

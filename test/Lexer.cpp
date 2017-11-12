@@ -30,7 +30,6 @@ std::vector<LexTestCase> test_cases = {
     LexTestCase("> >=", {hobbes::tok::greater, hobbes::tok::greaterequal}),
     LexTestCase(":= :: :", {hobbes::tok::colonequal, hobbes::tok::coloncolon,
                             hobbes::tok::colon}),
-    LexTestCase(". ..", {hobbes::tok::period, hobbes::tok::upto}),
     LexTestCase("- ->", {hobbes::tok::minus, hobbes::tok::arrow}),
     LexTestCase("! !=", {hobbes::tok::tnot, hobbes::tok::notequal}),
     LexTestCase("^ ? $ @ ~ % * \\ ` '",
@@ -69,6 +68,16 @@ TEST(Lexer, Ident) {
       lexer.LexToken(tok);
       EXPECT_EQ(static_cast<short>(tok.getKind()), static_cast<short>(out));
     }
+  }
+}
+
+TEST(Lexer, Period) {
+  auto t = LexTestCase(". .. .a", {hobbes::tok::period, hobbes::tok::upto, hobbes::tok::period, hobbes::tok::identifier});
+  auto lexer = hobbes::Lexer(&t.input[0], &t.input[0], &t.input.end()[0]);
+  hobbes::Token tok;
+  for (auto out : t.output) {
+    lexer.LexToken(tok);
+    EXPECT_EQ(static_cast<short>(tok.getKind()), static_cast<short>(out));
   }
 }
 

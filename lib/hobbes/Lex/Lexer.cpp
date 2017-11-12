@@ -86,7 +86,7 @@ auto Lexer::LexNumericConstant(Token &Result, const char *CurPtr) -> bool {
 
 auto Lexer::LexStringLiteral(Token &Result, const char *CurPtr) -> bool {
   // consume the '"' character
-  CurPtr++;  
+  CurPtr++;
   while (*CurPtr != '"') {
     ++CurPtr;
     if (*CurPtr == 0) {
@@ -95,7 +95,7 @@ auto Lexer::LexStringLiteral(Token &Result, const char *CurPtr) -> bool {
     }
   }
   FormTokenWithChars(Result, CurPtr - 1, tok::string_literal);
-  BufferPtr = CurPtr+1;
+  BufferPtr = CurPtr + 1;
   return false;
 }
 
@@ -133,6 +133,7 @@ auto Lexer::SkipSingleLineComment(const char *CurPtr) -> bool {
   return true;
 }
 
+/// Advance by one character and return the previous character
 char advanceChar(const char *Ptr) { return *Ptr++; }
 
 auto Lexer::LexToken(Token &Result) -> bool {
@@ -311,7 +312,7 @@ auto Lexer::LexToken(Token &Result) -> bool {
     }
     case '.': {
       CurPtr++;
-      unsigned char C = *CurPtr++;
+      unsigned char C = *CurPtr;
       if (C == '.') {
         Kind = tok::upto;
       } else {

@@ -31,7 +31,15 @@ void registerEventHandler(int fd, eventhandler fn, void* ud, bool f) {
 
 #ifdef BUILD_LIBUV
 
+__thread bool uvInitialized = false;
+__thread int uvFD = 0;
+__thread EventClosures* uvClosures = 0;
 
+void addTimer(timerfunc f, int millisecInterval) {
+  uv_timer_t timer;
+  
+  int uv_timer_init(uv_default_loop(), &timer);
+}
   
   
 #elif defined(BUILD_LINUX)

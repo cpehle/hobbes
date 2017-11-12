@@ -8,8 +8,7 @@ add_executable(hi
 
 target_link_libraries(hi
   ${hobbes_libs}
-  ncurses
-  linenoise
+  ncurses  
   ${sys_libs})
 
 install(TARGETS hi DESTINATION "bin")

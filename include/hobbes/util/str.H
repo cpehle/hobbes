@@ -120,7 +120,7 @@ template <typename Char>
     unsigned int begin = 0;
     unsigned int end   = 0;
 
-    for (int i = 0; i < s.size(); ++i) {
+    for (size_t i = 0; i < s.size(); ++i) {
       int c = (int)s[i];
       if (!std::isspace(c) && c != 0) {
         begin = i;

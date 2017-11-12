@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
 project(hobbes)
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 14)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug)
@@ -45,7 +45,7 @@ include_directories(third_party/llvm/include)
 add_compile_options(-D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS)
 set(LLVM_ENABLE_RTTI 1)
 set(LLVM_ENABLE_EH 1)
-else()
+else()  
 find_package(LLVM REQUIRED CONFIG)
 include_directories(${LLVM_INCLUDE_DIRS})
 add_definitions(${LLVM_DEFINITIONS})
@@ -58,9 +58,8 @@ if (${LLVM_PACKAGE_VERSION} VERSION_LESS "3.6")
 else()
   set(jit_lib mcjit)
 endif()
-llvm_map_components_to_libnames(llvm_libs x86asmparser x86codegen x86 ipo ${jit_lib})
+llvm_map_components_to_libnames(llvm_libs x86asmparser x86codegen x86 ipo ${jit_lib} )
 endif()
-
 
 include_directories(BEFORE
   ${HOBBES_MAIN_INCLUDE_DIR}

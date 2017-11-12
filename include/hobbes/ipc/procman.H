@@ -1,4 +1,3 @@
-
 #ifndef HOBBES_LANG_TYPEPREDS_PROCESS_PROCMAN_HPP_INCLUDED
 #define HOBBES_LANG_TYPEPREDS_PROCESS_PROCMAN_HPP_INCLUDED
 
@@ -19,7 +18,7 @@ public:
   ExprPtr unqualify(const TEnvPtr&, const ConstraintPtr&, const ExprPtr&, Definitions*) const;
   std::string name() const;
 private:
-  friend class ProcManUnqualify;
+  friend struct ProcManUnqualify;
 
   typedef std::map<std::string, proc> SpawnedProcs;
   SpawnedProcs procs;

@@ -1,12 +1,20 @@
 #pragma once
 
 #include "hobbes/Lex/Token.h"
-#include <llvm/Support/MemoryBuffer.h>
-#include <llvm/ADT/StringRef.h>
+
 #include <iostream>
+#include <llvm/ADT/StringRef.h>
+#include <llvm/Support/MemoryBuffer.h>
+
+#include "clang/Basic/FileManager.h"
+#include "clang/Basic/SourceLocation.h"
+#include "clang/Basic/SourceManager.h"
 
 namespace hobbes {
-struct Lexer {
+
+class Lexer {
+  clang::SourceLocation FileLoc;
+public:
   Lexer(const char *BufStart, const char *BufPtr, const char *BufEnd) {
     InitLexer(BufStart, BufPtr, BufEnd);
   }
@@ -26,16 +34,20 @@ struct Lexer {
   auto LexToken(Token &Result) -> bool;
 
   auto FormTokenWithChars(Token &Result, const char *TokEnd,
-                          tok::TokenKind Kind) -> void {    
+                          tok::TokenKind Kind) -> void {
     unsigned TokLen = TokEnd - BufferPtr;
     Result.setLength(TokLen);
-    Result.setKind(Kind);    
+    Result.setKind(Kind);
     Result.setLiteralData(llvm::StringRef(BufferPtr, TokLen));
     BufferPtr = TokEnd;
   }
+  
+  llvm::StringRef getBuffer() const {
+    return llvm::StringRef(BufferStart, BufferEnd - BufferStart);
+  }
 private:
-  const char *BufferStart; // start of the buffer  
-  const char *BufferEnd; // end of the buffer
-  const char *BufferPtr; // current position in the buffer
+  const char *BufferStart; // start of the buffer
+  const char *BufferEnd;   // end of the buffer
+  const char *BufferPtr;   // current position in the buffer
 };
 }
