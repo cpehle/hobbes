@@ -1,5 +1,5 @@
 add_library(linenoise
-  linenoise.c
+  linenoise.cpp
   )
 
 

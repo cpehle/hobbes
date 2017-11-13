@@ -256,16 +256,19 @@ void evalLine(const char* x) {
 
     if (line == ":a") {
       eval->printLLVMModule();
+      std::cout << resetfmt();
       return;
     }
 
     if (line == ":t") {
       eval->printTypeEnv();
+      std::cout << resetfmt();
       return;
     }
 
     if (line == ":h") {
       showShellHelp();
+      std::cout << resetfmt();
       return;
     }
 

@@ -1,6 +1,6 @@
 #include "hobbes/hobbes.H"
 
-#include "linenoise-ng/linenoise.h"
+#include "linenoise/linenoise.h"
 #include "llvm/ADT/SmallString.h"
 #include "llvm/ADT/StringRef.h"
 #include "llvm/LineEditor/LineEditor.h"

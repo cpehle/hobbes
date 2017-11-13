@@ -10,10 +10,10 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
-
-message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
-message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
-
+# documentation generation
+find_package(Doxygen
+             REQUIRED dot
+             OPTIONAL_COMPONENTS mscgen dia)
 
 set(HOBBES_MAIN_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(HOBBES_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})

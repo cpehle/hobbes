@@ -8,6 +8,7 @@ namespace hit {
 
 void bindHiDefs(hobbes::cc&);
 void bindTensorDefs(hobbes::cc&);
+void bindGLFWDefs(hobbes::cc&);  
 
 }
 

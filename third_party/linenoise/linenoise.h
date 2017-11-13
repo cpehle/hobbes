@@ -39,10 +39,6 @@
 #ifndef __LINENOISE_H
 #define __LINENOISE_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 typedef struct linenoiseCompletions {
   size_t len;
   char **cvec;
@@ -67,10 +63,9 @@ struct linenoiseState {
     size_t len;         /* Current edited line length. */
     size_t cols;        /* Number of columns in terminal. */
     size_t maxrows;     /* Maximum num of rows used so far (multiline mode) */
+    int place;
     int history_index;  /* The history index we are currently editing. */
     linenoiseLineCallback* line_callback; /* Function to call when one line is entered. */
-    int history_len; /* Length of the history */
-    char **history; /* History entries */
 };
  
 typedef void(linenoiseCompletionCallback)(const char *, linenoiseCompletions *);
@@ -94,8 +89,6 @@ void linenoiseClearScreen(void);
 void linenoiseSetMultiLine(int ml);
 void linenoisePrintKeyCodes(void);
 
-#ifdef __cplusplus
-}
-#endif
+
 
 #endif /* __LINENOISE_H */

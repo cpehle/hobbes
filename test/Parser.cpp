@@ -70,6 +70,7 @@ TEST(Parser, If) {
   }
 }
 
+/*
 TEST(Parser, Let) {
   for (auto test : let_tests) {
     auto lexer = hobbes::Lexer(&test[0], &test[0], &test.end()[0]);
@@ -78,6 +79,7 @@ TEST(Parser, Let) {
     auto Exp = parser.ParseLetExpr();
   }
 }
+*/
 
 /*
 TEST(Parser, Match) {
@@ -90,6 +92,7 @@ TEST(Parser, Match) {
 }
 */
 
+/*
 TEST(Parser, BinaryExpr) {
   for (auto test : binary_expr_tests) {
     auto lexer = hobbes::Lexer(&test[0], &test[0], &test.end()[0]);
@@ -112,3 +115,4 @@ TEST(Parser, Class) {
 }
 
 TEST(Parser, Expr) {}
+*/

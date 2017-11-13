@@ -142,9 +142,11 @@ SearchEntries cc::search(const std::string &e, const std::string &t) {
   return search(readExpr(e), readMonoType(t));
 }
 
+
 ModulePtr cc::readModuleFile(const std::string &x) {
   return this->readModuleFileF(this, x);
 }
+
 void cc::setReadModuleFileFn(readModuleFileFn f) { this->readModuleFileF = f; }
 
 ModulePtr cc::readModule(const std::string &x) {
@@ -159,9 +161,10 @@ void cc::setReadExprDefnFn(readExprDefnFn f) { this->readExprDefnF = f; }
 
 ExprPtr cc::readExpr(const std::string &x) { return this->readExprF(this, x); }
 void cc::setReadExprFn(readExprFn f) { this->readExprF = f; }
-MonoTypePtr cc::readMonoType(const std::string &x) {
-  ExprPtr e = readExpr("()::" + x);
-  if (const Assump *a = is<Assump>(e)) {
+
+MonoTypePtr cc::readMonoType(const std::string& x) {
+  ExprPtr e = readExpr("()::"+x);
+  if (const Assump* a = is<Assump>(e)) {
     return a->ty()->monoType();
   } else {
     throw std::runtime_error("Couldn't parse as type: " + x);

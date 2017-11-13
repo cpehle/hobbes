@@ -2,7 +2,6 @@
 #ifndef HOBBES_EVAL_CC_HPP_INCLUDED
 #define HOBBES_EVAL_CC_HPP_INCLUDED
 
-
 #include "hobbes/lang/expr.H"
 #include "hobbes/lang/type.H"
 #include "hobbes/lang/tylift.H"

@@ -115,6 +115,9 @@
 #include <sys/types.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+#include <vector>
+#include <string>
+
 #include "linenoise.h"
 
 #define LINENOISE_DEFAULT_HISTORY_MAX_LEN 100
@@ -131,6 +134,9 @@ static int atexit_registered = 0; /* Register atexit just 1 time. */
 static int history_max_len = LINENOISE_DEFAULT_HISTORY_MAX_LEN;
 static int history_len = 0;
 static char **history = NULL;
+
+
+static std::vector<std::string> cpp_history;
 
 enum KEY_ACTION{
 	KEY_NULL = 0,	    /* NULL */
@@ -412,10 +418,10 @@ void linenoiseAddCompletion(linenoiseCompletions *lc, const char *str) {
     size_t len = strlen(str);
     char *copy, **cvec;
 
-    copy = malloc(len+1);
+    copy = static_cast<char*>(malloc(len+1));
     if (copy == NULL) return;
     memcpy(copy,str,len+1);
-    cvec = realloc(lc->cvec,sizeof(char*)*(lc->len+1));
+    cvec = static_cast<char**>(realloc(lc->cvec,sizeof(char*)*(lc->len+1)));
     if (cvec == NULL) {
         free(copy);
         return;
@@ -441,11 +447,11 @@ static void abInit(struct abuf *ab) {
 }
 
 static void abAppend(struct abuf *ab, const char *s, int len) {
-    char *new = realloc(ab->b,ab->len+len);
+    char *newb = static_cast<char *>(realloc(ab->b,ab->len+len));
 
-    if (new == NULL) return;
-    memcpy(new+ab->len,s,len);
-    ab->b = new;
+    if (newb == NULL) return;
+    memcpy(newb+ab->len,s,len);
+    ab->b = newb;
     ab->len += len;
 }
 
@@ -679,26 +685,7 @@ void linenoiseEditMoveEnd(struct linenoiseState *l) {
  * entry as specified by 'dir'. */
 #define LINENOISE_HISTORY_NEXT 0
 #define LINENOISE_HISTORY_PREV 1
-void linenoiseEditHistoryNext(struct linenoiseState *l, int dir) {
-    if (history_len > 1) {
-        /* Update the current history entry before to
-         * overwrite it with the next one. */
-        free(history[history_len - 1 - l->history_index]);
-        history[history_len - 1 - l->history_index] = strdup(l->buf);
-        /* Show the new entry */
-        l->history_index += (dir == LINENOISE_HISTORY_PREV) ? 1 : -1;
-        if (l->history_index < 0) {
-            l->history_index = 0;
-            return;
-        } else if (l->history_index >= history_len) {
-            l->history_index = history_len-1;
-            return;
-        }
-        strncpy(l->buf,history[history_len - 1 - l->history_index],l->buflen);
-        l->buf[l->buflen-1] = '\0';
-        l->len = l->pos = strlen(l->buf);
-        refreshLine(l);
-    }
+void linenoiseEditHistoryNext(struct linenoiseState *l, int dir) { 
 }
 
 /* Delete the character at the right of the cursor without altering the cursor
@@ -804,9 +791,13 @@ int linenoiseNext(struct linenoiseState* l, char c)
 	      } else {
 		switch(l->seq[1]) {
 		case 'A': /* Up */
+		  l->place += 1;
+		  printf("place: %d", l->place);
 		  linenoiseEditHistoryNext(l, LINENOISE_HISTORY_PREV);
 		  break;
 		case 'B': /* Down */
+		  l->place -= 1;
+		  printf("place: %d", l->place);
 		  linenoiseEditHistoryNext(l, LINENOISE_HISTORY_NEXT);
 		  break;
 		case 'C': /* Right */
@@ -1202,7 +1193,7 @@ static char *linenoiseNoTTY(void) {
             if (maxlen == 0) maxlen = 16;
             maxlen *= 2;
             char *oldval = line;
-            line = realloc(line,maxlen);
+            line = static_cast<char*>(realloc(line,maxlen));
             if (line == NULL) {
                 if (oldval) free(oldval);
                 return NULL;
@@ -1298,7 +1289,7 @@ int linenoiseHistoryAdd(const char *line) {
 
     /* Initialization on first call. */
     if (history == NULL) {
-        history = malloc(sizeof(char*)*history_max_len);
+        history = static_cast<char**>(malloc(sizeof(char*)*history_max_len));
         if (history == NULL) return 0;
         memset(history,0,(sizeof(char*)*history_max_len));
     }
@@ -1317,6 +1308,10 @@ int linenoiseHistoryAdd(const char *line) {
     }
     history[history_len] = linecopy;
     history_len++;
+
+
+    cpp_history.push_back(std::string(line));
+    
     return 1;
 }
 
@@ -1325,14 +1320,14 @@ int linenoiseHistoryAdd(const char *line) {
  * just the latest 'len' elements if the new history length value is smaller
  * than the amount of items already inside the history. */
 int linenoiseHistorySetMaxLen(int len) {
-    char **new;
+    char **newb;
 
     if (len < 1) return 0;
     if (history) {
         int tocopy = history_len;
 
-        new = malloc(sizeof(char*)*len);
-        if (new == NULL) return 0;
+        newb = static_cast<char**>(malloc(sizeof(char*)*len));
+        if (newb == NULL) return 0;
 
         /* If we can't copy everything, free the elements we'll not use. */
         if (len < tocopy) {
@@ -1341,10 +1336,10 @@ int linenoiseHistorySetMaxLen(int len) {
             for (j = 0; j < tocopy-len; j++) free(history[j]);
             tocopy = len;
         }
-        memset(new,0,sizeof(char*)*len);
-        memcpy(new,history+(history_len-tocopy), sizeof(char*)*tocopy);
+        memset(newb,0,sizeof(char*)*len);
+        memcpy(newb,history+(history_len-tocopy), sizeof(char*)*tocopy);
         free(history);
-        history = new;
+        history = newb;
     }
     history_max_len = len;
     if (history_len > history_max_len)

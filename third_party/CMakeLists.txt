@@ -5,7 +5,6 @@ add_subdirectory(glfw)
 include_directories(glfw/include)
 
 add_subdirectory(linenoise)
-add_subdirectory(linenoise-ng)
 
 if(BUILD_LLVM)
 add_subdirectory(llvm)
