@@ -40,7 +40,7 @@ PatternPtr pickNestedPat(Patterns *pats, const LexicalAnnotation &la) {
   }
 }
 
-Parser::Parser(class Lexer &Lex) : Lexer(Lex) {
+Parser::Parser(class Lexer &Lex) : Lex(Lex) {
   // Initialize the operator table with the built in
   // operator precedences
   operators.insert({"and", {10, Assoc::left}});
@@ -67,7 +67,7 @@ Parser::Parser(class Lexer &Lex) : Lexer(Lex) {
 }
 
 void Parser::ConsumeToken() {
-  Lexer.LexToken(Tok);
+  Lex.LexToken(Tok);
   std::cout << tok::getTokenName(Tok.getKind()) << std::endl;
 }
 void Parser::ExpectTokenKind(tok::TokenKind Kind) {

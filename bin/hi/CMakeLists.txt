@@ -8,7 +8,8 @@ add_executable(hi
 
 target_link_libraries(hi
   ${hobbes_libs}
-  ncurses  
+  ncurses
+  readline
   ${sys_libs})
 
 install(TARGETS hi DESTINATION "bin")

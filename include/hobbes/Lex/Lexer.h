@@ -6,14 +6,10 @@
 #include <llvm/ADT/StringRef.h>
 #include <llvm/Support/MemoryBuffer.h>
 
-#include "clang/Basic/FileManager.h"
-#include "clang/Basic/SourceLocation.h"
-#include "clang/Basic/SourceManager.h"
-
 namespace hobbes {
 
 class Lexer {
-  clang::SourceLocation FileLoc;
+
 public:
   Lexer(const char *BufStart, const char *BufPtr, const char *BufEnd) {
     InitLexer(BufStart, BufPtr, BufEnd);

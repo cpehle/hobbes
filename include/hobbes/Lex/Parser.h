@@ -8,19 +8,14 @@
 
 #include <llvm/Support/MemoryBuffer.h>
 #include <llvm/ADT/Twine.h>
+#include <llvm/ADT/StringMap.h>
 #include <llvm/Support/SourceMgr.h>
-
-#include "clang/Basic/SourceManager.h"
-#include <clang/Basic/Diagnostic.h>
 
 #include <memory>
 
 namespace hobbes {
 
 class Parser {
-  //Parser(const Parser&) = delete;
-  //void operator=(const Parser&) = delete;
-
   enum class Assoc {
       right,
       left,   
@@ -30,9 +25,7 @@ class Parser {
   
 public:
   Parser(Lexer& lexer);  
-  Lexer Lexer;
-  //clang::SourceManager &SourceMgr;
-  //clang::DiagnosticsEngine &Diags;
+  Lexer Lex;
   
   /// Current Token we are looking at
   Token Tok;

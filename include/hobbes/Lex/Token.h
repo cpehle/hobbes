@@ -1,6 +1,7 @@
 #pragma once
 
 #include <llvm/ADT/StringRef.h>
+#include <string>
 
 namespace hobbes {
 namespace tok {
@@ -9,7 +10,6 @@ enum TokenKind : short {
 #include "hobbes/Lex/TokenKinds.def"
   NUM_TOKENS,
 };
-
 std::string getTokenName(TokenKind t);
 }
 

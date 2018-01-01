@@ -17,5 +17,5 @@ add_executable(hobbes-test
   Parser.cpp
   )
 
-target_link_libraries(hobbes-test ${hobbes_libs} ${llvm_libs} "/usr/local/lib/llvm-3.7/lib/libclangBasic.a" "/usr/local/lib/llvm-3.7/lib/libclangFrontend.a" "/usr/local/lib/llvm-3.7/lib/libclangEdit.a" "/usr/local/lib/llvm-3.7/lib/libclangLex.a" ncurses ${sys_libs}) 
+target_link_libraries(hobbes-test ${hobbes_libs} ${llvm_libs} ncurses ${sys_libs}) 
 add_test(hobbes-test hobbes-test)
