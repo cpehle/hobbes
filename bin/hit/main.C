@@ -2,14 +2,14 @@
 #include <hobbes/hobbes.H>
 #include <hobbes/ipc/net.H>
 #include <hobbes/util/array.H>
-#include <hobbes/util/str.H>
 #include <hobbes/util/os.H>
+#include <hobbes/util/str.H>
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
-#include <stdlib.h>
 
 #include "cio.H"
 #include "evaluator.H"
@@ -23,41 +23,84 @@ namespace str = hobbes::str;
 
 namespace hit {
 
+namespace tty {
+std::string reset(std::string text) { return "\033[0m" + text + "\033[0m"; }
+std::string bold(std::string text) { return "\033[1m" + text + "\033[22m"; }
+std::string dim(std::string text) { return "\033[2m" + text + "\033[22m"; }
+std::string italic(std::string text) { return "\033[3m" + text + "\033[23m"; }
+std::string underline(std::string text) {
+  return "\033[4m" + text + "\033[24m";
+}
+std::string inverse(std::string text) { return "\033[7m" + text + "\033[27m"; }
+std::string hidden(std::string text) { return "\033[8m" + text + "\033[28m"; }
+std::string strikethrough(std::string text) {
+  return "\033[9m" + text + "\033[29m";
+}
+std::string black(std::string text) { return "\033[30m" + text + "\033[39m"; }
+std::string red(std::string text) { return "\033[31m" + text + "\033[39m"; }
+std::string green(std::string text) { return "\033[32m" + text + "\033[39m"; }
+std::string yellow(std::string text) { return "\033[33m" + text + "\033[39m"; }
+std::string blue(std::string text) { return "\033[34m" + text + "\033[39m"; }
+std::string magenta(std::string text) { return "\033[35m" + text + "\033[39m"; }
+std::string cyan(std::string text) { return "\033[36m" + text + "\033[39m"; }
+std::string white(std::string text) { return "\033[37m" + text + "\033[39m"; }
+std::string gray(std::string text) { return "\033[90m" + text + "\033[39m"; }
+std::string grey(std::string text) { return "\033[90m" + text + "\033[39m"; }
+std::string black_bg(std::string text) {
+  return "\033[40m" + text + "\033[49m";
+}
+std::string red_bg(std::string text) { return "\033[41m" + text + "\033[49m"; }
+std::string green_bg(std::string text) {
+  return "\033[42m" + text + "\033[49m";
+}
+std::string yellow_bg(std::string text) {
+  return "\033[43m" + text + "\033[49m";
+}
+std::string blue_bg(std::string text) { return "\033[44m" + text + "\033[49m"; }
+std::string magenta_bg(std::string text) {
+  return "\033[45m" + text + "\033[49m";
+}
+std::string cyan_bg(std::string text) { return "\033[46m" + text + "\033[49m"; }
+std::string white_bg(std::string text) {
+  return "\033[47m" + text + "\033[49m";
+}
+
+std::string begin_white_bg() { return "\033[47m"; }
+std::string end_bg() { return "\033[49m"; }
+
+}
+
 // control color options (these can be tweaked by ~/.hirc)
 ConsoleColors colors;
 
 void setDefaultColorScheme() {
-  colors.promptfg    = 4;
-  colors.stdtextfg   = 15;
-  colors.hlfg        = 45;
-  colors.divfg       = 46;
-  colors.errorfg     = 1;
-  colors.evalfg      = 254;
-  colors.unsweetfg   = 123;
-  colors.typefg      = 123;
-  colors.llvmfg      = 249;
+  colors.promptfg = 4;
+  colors.stdtextfg = 15;
+  colors.hlfg = 45;
+  colors.divfg = 46;
+  colors.errorfg = 1;
+  colors.evalfg = 254;
+  colors.unsweetfg = 123;
+  colors.typefg = 123;
+  colors.llvmfg = 249;
 
-  colors.instfg         = 4;
-  colors.argdelimfg     = 11;
-  colors.registerfg     = 198;
-  colors.xnumfg         = 226;
-  colors.xvalfg         = 15;
-  colors.linenumfg      = 1;
+  colors.instfg = 4;
+  colors.argdelimfg = 11;
+  colors.registerfg = 198;
+  colors.xnumfg = 226;
+  colors.xvalfg = 15;
+  colors.linenumfg = 1;
   colors.linenumdelimfg = 2;
-  colors.evenlinebg     = 235;
-  colors.oddlinebg      = 238;
+  colors.evenlinebg = 235;
+  colors.oddlinebg = 238;
 }
 
 bool consoleCmdsEnabled = true;
-bool extConsoleCmdsEnabled() {
-  return consoleCmdsEnabled;
-}
+bool extConsoleCmdsEnabled() { return consoleCmdsEnabled; }
 
-void enableConsoleCmds(bool f) {
-  consoleCmdsEnabled = f;
-}
+void enableConsoleCmds(bool f) { consoleCmdsEnabled = f; }
 
-void printAnnotatedText(const hobbes::LexicalAnnotation& la) {
+void printAnnotatedText(const hobbes::LexicalAnnotation &la) {
   static const size_t diffLine = 4;
   static const size_t termWidth = 80;
 
@@ -66,7 +109,7 @@ void printAnnotatedText(const hobbes::LexicalAnnotation& la) {
 
   str::seq linenos;
   for (size_t l = l0; l < l1; ++l) {
-    linenos.push_back(str::from(l+1));
+    linenos.push_back(str::from(l + 1));
   }
   linenos = str::rightAlign(linenos);
 
@@ -76,75 +119,80 @@ void printAnnotatedText(const hobbes::LexicalAnnotation& la) {
   for (size_t r = 0; r < lines.size(); ++r) {
     std::cout << resetfmt() << setfgc(colors.xnumfg) << linenos[r] << " ";
 
-    size_t lineno = r+l0+1;
-    std::string lineText = lines[r] + std::string(mlinelen - lines[r].size(), ' ');
+    size_t lineno = r + l0 + 1;
+    std::string lineText =
+        lines[r] + std::string(mlinelen - lines[r].size(), ' ');
 
     if (lineno == la.p0.first && lineno == la.p1.first) {
-      std::cout << setfgc(colors.stdtextfg)
-                << setbgc(colors.oddlinebg) << lineText.substr(0, la.p0.second-1)
-                << setbgc(colors.errorfg) << lineText.substr(la.p0.second-1, la.p1.second-la.p0.second+1)
+      std::cout << setfgc(colors.stdtextfg) << setbgc(colors.oddlinebg)
+                << lineText.substr(0, la.p0.second - 1)
+                << setbgc(colors.errorfg)
+                << lineText.substr(la.p0.second - 1,
+                                   la.p1.second - la.p0.second + 1)
                 << setbgc(colors.oddlinebg) << lineText.substr(la.p1.second);
     } else if (lineno == la.p0.first) {
-      std::cout << setfgc(colors.stdtextfg) << setbgc(colors.oddlinebg) << lineText.substr(0, la.p0.second-1) << setbgc(colors.errorfg) << lineText.substr(la.p0.second-1);
+      std::cout << setfgc(colors.stdtextfg) << setbgc(colors.oddlinebg)
+                << lineText.substr(0, la.p0.second - 1)
+                << setbgc(colors.errorfg) << lineText.substr(la.p0.second - 1);
     } else if (lineno > la.p0.first && lineno < la.p1.first) {
-      std::cout << setfgc(colors.stdtextfg) << setbgc(colors.errorfg) << lineText;
+      std::cout << setfgc(colors.stdtextfg) << setbgc(colors.errorfg)
+                << lineText;
     } else if (lineno == la.p1.first) {
-      std::cout << setfgc(colors.stdtextfg) << setbgc(colors.errorfg) << lineText.substr(0, la.p1.second) << setbgc(colors.oddlinebg) << lineText.substr(la.p1.second);
+      std::cout << setfgc(colors.stdtextfg) << setbgc(colors.errorfg)
+                << lineText.substr(0, la.p1.second) << setbgc(colors.oddlinebg)
+                << lineText.substr(la.p1.second);
     } else {
-      std::cout << setfgc(colors.stdtextfg) << setbgc(colors.oddlinebg) << lineText;
+      std::cout << setfgc(colors.stdtextfg) << setbgc(colors.oddlinebg)
+                << lineText;
     }
     std::cout << "\n";
   }
   std::cout << resetfmt() << std::endl;
 }
 
-void printAnnotatedError(const hobbes::annotated_error& ae) {
-  for (const auto& m : ae.messages()) {
-    std::cout << setbold() << setfgc(colors.errorfg) << m.second.lineDesc() << ": " << m.first << "\n";
+void printAnnotatedError(const hobbes::annotated_error &ae) {
+  for (const auto &m : ae.messages()) {
+    std::cout << setbold() << setfgc(colors.errorfg) << m.second.lineDesc()
+              << ": " << m.first << "\n";
     printAnnotatedText(m.second);
   }
 }
 
 // show the disassembled code for a block of generated machine code
-void printASM(void*,size_t);
+void printASM(void *, size_t);
 
 // show help on supported prompt commands
 typedef std::pair<std::string, std::string> CmdDesc;
-typedef std::vector<CmdDesc>                CmdDescs;
+typedef std::vector<CmdDesc> CmdDescs;
 
-void showShellHelp(const CmdDescs& cds) {
+void showShellHelp(const CmdDescs &cds) {
   std::string header = "Supported hi commands";
 
-  str::seq cmd  = hobbes::first(cds);
+  str::seq cmd = hobbes::first(cds);
   str::seq desc = hobbes::second(cds);
 
-  size_t cmdsz  = str::maxSize(0, cmd);
+  size_t cmdsz = str::maxSize(0, cmd);
   size_t descsz = str::maxSize(0, desc);
 
   size_t llen = cmdsz + 4 + descsz;
   std::cout << resetfmt() << setbold() << setfgc(colors.promptfg)
-            << std::string(2 + llen + 2, '=')
-            << std::endl;
+            << std::string(2 + llen + 2, '=') << std::endl;
 
-  double hw  = ((double)(llen - header.size())) / 2.0;
+  double hw = ((double)(llen - header.size())) / 2.0;
   size_t lhw = (size_t)floor(hw);
   size_t rhw = (size_t)ceil(hw);
 
-  std::cout << "| "
-              << std::string(lhw, ' ')
-              << setfgc(colors.stdtextfg) << header << std::string(rhw, ' ')
-              << setfgc(colors.promptfg)
-            << " |"
-            << std::endl
+  std::cout << "| " << std::string(lhw, ' ') << setfgc(colors.stdtextfg)
+            << header << std::string(rhw, ' ') << setfgc(colors.promptfg)
+            << " |" << std::endl
             << "| " << std::string(llen, ' ') << " |" << std::endl;
 
   for (size_t i = 0; i < cmd.size(); ++i) {
-    std::cout << "| "
-              << setfgc(colors.stdtextfg) << cmd[i] << std::string(cmdsz - cmd[i].size(), ' ')
-              << setfgc(colors.divfg) << " => "
-              << setfgc(colors.hlfg) << desc[i] << std::string(descsz - desc[i].size(), ' ')
-              << setfgc(colors.promptfg) << " |"
-              << std::endl;
+    std::cout << "| " << setfgc(colors.stdtextfg) << cmd[i]
+              << std::string(cmdsz - cmd[i].size(), ' ') << setfgc(colors.divfg)
+              << " => " << setfgc(colors.hlfg) << desc[i]
+              << std::string(descsz - desc[i].size(), ' ')
+              << setfgc(colors.promptfg) << " |" << std::endl;
   }
 
   std::cout << std::string(2 + llen + 2, '=') << std::endl;
@@ -152,38 +200,46 @@ void showShellHelp(const CmdDescs& cds) {
 
 void showShellHelp() {
   CmdDescs cds;
-  cds.push_back(CmdDesc(":h",     "Show this help"));
-  cds.push_back(CmdDesc(":q",     "Quit the hi shell"));
-  cds.push_back(CmdDesc(":s E T", "Search for paths from the expression E to the type T"));
-  cds.push_back(CmdDesc(":a",     "Print the active LLVM module"));
-  cds.push_back(CmdDesc(":t",     "Print all global variable::type bindings"));
-  cds.push_back(CmdDesc(":d S",   "Print the docs for a symbol"));
-  cds.push_back(CmdDesc(":t E",   "Show the type of the expression E"));
-  cds.push_back(CmdDesc(":p E",   "Show the type of E with hidden type classes left intact"));
-  cds.push_back(CmdDesc(":l F",   "Load the hobbes script or image file F"));
-  cds.push_back(CmdDesc(":u E",   "Show the 'unsweeten' transform of E"));
-  cds.push_back(CmdDesc(":x E",   "Show the x86 assembly code produced by compiling E"));
-  cds.push_back(CmdDesc(":e E",   "Find the average run-time of E (in CPU cycles)"));
-  cds.push_back(CmdDesc(":z E",   "Evaluate E and show a breakdown of compilation/evaluation time"));
-  cds.push_back(CmdDesc(":c N",   "Describe the type class named N"));
-  cds.push_back(CmdDesc(":i N",   "Show instances and instance generators for the type class N"));
+  cds.push_back(CmdDesc(":h", "Show this help"));
+  cds.push_back(CmdDesc(":q", "Quit the hi shell"));
+  cds.push_back(CmdDesc(
+      ":s E T", "Search for paths from the expression E to the type T"));
+  cds.push_back(CmdDesc(":a", "Print the active LLVM module"));
+  cds.push_back(CmdDesc(":t", "Print all global variable::type bindings"));
+  cds.push_back(CmdDesc(":d S", "Print the docs for a symbol"));
+  cds.push_back(CmdDesc(":t E", "Show the type of the expression E"));
+  cds.push_back(CmdDesc(
+      ":p E", "Show the type of E with hidden type classes left intact"));
+  cds.push_back(CmdDesc(":l F", "Load the hobbes script or image file F"));
+  cds.push_back(CmdDesc(":u E", "Show the 'unsweeten' transform of E"));
+  cds.push_back(
+      CmdDesc(":x E", "Show the x86 assembly code produced by compiling E"));
+  cds.push_back(
+      CmdDesc(":e E", "Find the average run-time of E (in CPU cycles)"));
+  cds.push_back(CmdDesc(
+      ":z E",
+      "Evaluate E and show a breakdown of compilation/evaluation time"));
+  cds.push_back(CmdDesc(":c N", "Describe the type class named N"));
+  cds.push_back(CmdDesc(
+      ":i N", "Show instances and instance generators for the type class N"));
   showShellHelp(cds);
 }
 
 // indicate that we want input
 std::string prompttext() {
   std::ostringstream ss;
-  ss << resetfmt() << setbold() << setfgc(colors.promptfg) << "> " << setfgc(colors.stdtextfg) << std::flush;
+  ss << resetfmt() << setbold() << setfgc(colors.promptfg) << "> "
+     << setfgc(colors.stdtextfg) << std::flush;
   return ss.str();
 }
 
 // the one evaluator for this process
-evaluator* eval = 0;
+evaluator *eval = 0;
 
 // provide possibilities for autocompletion
 str::seq completionMatches;
 
-char* completionStep(const char* pfx, int state) {
+char *completionStep(const char *pfx, int state) {
   if (state < completionMatches.size()) {
     return strdup(completionMatches[state].c_str());
   } else {
@@ -191,25 +247,25 @@ char* completionStep(const char* pfx, int state) {
   }
 }
 
-char** completions(const char* pfx, int start, int end) {
+char **completions(const char *pfx, int start, int end) {
   if (start == 0) {
     completionMatches = eval->completionsFor(pfx);
     return 0;
     //    return rl_completion_matches((char*)pfx, &completionStep);
   } else {
 #ifdef BUILD_LINUX
-    //rl_bind_key('\t', rl_abort);
+// rl_bind_key('\t', rl_abort);
 #endif
     return 0;
   }
 }
 
 // run a read-eval-print loop
-void evalLine(const char*);
+void evalLine(const char *);
 
-void repl(evaluator* ev) {
+void repl(evaluator *ev) {
   eval = ev;
-  
+
   struct linenoiseState l;
   char buf[4096];
 
@@ -220,18 +276,21 @@ void repl(evaluator* ev) {
   // rl_attempted_completion_function = completions;
 
   // dispatch stdin events to our line handler (through readline)
-  hobbes::registerEventHandler(STDIN_FILENO, [](int,void* ud){
-      auto lp = (struct linenoiseState*)ud;
-      char c;
-      if (read(lp->ifd,&c,1) == -1) return;
-      linenoiseNext(lp, c);
-    }, &l);
+  hobbes::registerEventHandler(STDIN_FILENO,
+                               [](int, void *ud) {
+                                 auto lp = (struct linenoiseState *)ud;
+                                 char c;
+                                 if (read(lp->ifd, &c, 1) == -1)
+                                   return;
+                                 linenoiseNext(lp, c);
+                               },
+                               &l);
 
   // poll for events and dispatch them
   hobbes::runEventLoop();
 }
 
-void evalLine(const char* x) {
+void evalLine(const char *x) {
   linenoiseHistoryAdd(x);
   // preprocess this line from readline
   std::string line;
@@ -289,18 +348,41 @@ void evalLine(const char* x) {
     }
 
     // should we do something other than evaluate the input expression?
-    enum EvMode { Eval, ShowASM, Typeof, PuglyTypeof, Unsweeten, PerfTest, BreakdownEval, SearchDefs };
+    enum EvMode {
+      Eval,
+      ShowASM,
+      Typeof,
+      PuglyTypeof,
+      Unsweeten,
+      PerfTest,
+      BreakdownEval,
+      SearchDefs
+    };
     EvMode em = Eval;
 
     if (line.size() > 3 && line[0] == ':') {
       switch (line[1]) {
-      case 'x': em = ShowASM;       break;
-      case 't': em = Typeof;        break;
-      case 'p': em = PuglyTypeof;   break;
-      case 'u': em = Unsweeten;     break;
-      case 'e': em = PerfTest;      break;
-      case 'z': em = BreakdownEval; break;
-      case 's': em = SearchDefs;    break;
+      case 'x':
+        em = ShowASM;
+        break;
+      case 't':
+        em = Typeof;
+        break;
+      case 'p':
+        em = PuglyTypeof;
+        break;
+      case 'u':
+        em = Unsweeten;
+        break;
+      case 'e':
+        em = PerfTest;
+        break;
+      case 'z':
+        em = BreakdownEval;
+        break;
+      case 's':
+        em = SearchDefs;
+        break;
       default:
         throw std::runtime_error("Unrecognized command: " + line);
       }
@@ -342,40 +424,35 @@ void evalLine(const char* x) {
 
     eval->resetREPLCycle();
     std::cout << resetfmt();
-  } catch (hobbes::annotated_error& ae) {
+  } catch (hobbes::annotated_error &ae) {
     printAnnotatedError(ae);
-  } catch (std::exception& ex) {
+  } catch (std::exception &ex) {
     std::cout << setfgc(colors.errorfg) << setbold() << ex.what() << std::endl;
   }
 }
 
 // not the prettiest way to disassemble machine code
-std::string saveData(void*,size_t);
-void runProcess(const std::string&, std::ostream&);
+std::string saveData(void *, size_t);
+void runProcess(const std::string &, std::ostream &);
 
 unsigned int digitLen(unsigned int x) {
   static double log10 = log(10.0);
   return (unsigned int)floor(log((double)x) / log10);
 }
 
-template <typename C>
-  unsigned int sumSize(const C& cs) {
-    unsigned int s = 0;
-    for (typename C::const_iterator c = cs.begin(); c != cs.end(); ++c) {
-      s += c->size();
-    }
-    return s;
+template <typename C> unsigned int sumSize(const C &cs) {
+  unsigned int s = 0;
+  for (typename C::const_iterator c = cs.begin(); c != cs.end(); ++c) {
+    s += c->size();
   }
-
-bool isNum(const std::string& x) {
-  return x.size() > 0 && x[0] == '0';
+  return s;
 }
 
-bool isRegister(const std::string& x) {
-  return !isNum(x);
-}
+bool isNum(const std::string &x) { return x.size() > 0 && x[0] == '0'; }
 
-void printASMArg(const std::string& x) {
+bool isRegister(const std::string &x) { return !isNum(x); }
+
+void printASMArg(const std::string &x) {
   if (isRegister(x)) {
     std::cout << setfgc(colors.registerfg) << x;
   } else if (isNum(x)) {
@@ -385,7 +462,7 @@ void printASMArg(const std::string& x) {
   }
 }
 
-unsigned int fmtLen(const str::seq& args) {
+unsigned int fmtLen(const str::seq &args) {
   if (args.size() == 0) {
     return 0;
   } else if (args.size() == 1) {
@@ -395,13 +472,15 @@ unsigned int fmtLen(const str::seq& args) {
   }
 }
 
-void printASMTable(const str::seq& insts, const str::seqs& args, unsigned int maxlen) {
+void printASMTable(const str::seq &insts, const str::seqs &args,
+                   unsigned int maxlen) {
   unsigned int mc = digitLen(insts.size());
   unsigned int mn = str::maxSize(0, insts);
 
   std::cout << resetfmt();
 
-  for (unsigned int i = 0; i < std::min<size_t>(insts.size(), args.size()); ++i) {
+  for (unsigned int i = 0; i < std::min<size_t>(insts.size(), args.size());
+       ++i) {
     if ((i % 2) == 0) {
       std::cout << setbgc(colors.evenlinebg);
     } else {
@@ -409,15 +488,16 @@ void printASMTable(const str::seq& insts, const str::seqs& args, unsigned int ma
     }
 
     // show the line number
-    std::cout << setbold()
-              << std::string(mc - digitLen(i), ' ')
-              << setfgc(colors.linenumfg) << i << setfgc(colors.linenumdelimfg) << ": ";
+    std::cout << setbold() << std::string(mc - digitLen(i), ' ')
+              << setfgc(colors.linenumfg) << i << setfgc(colors.linenumdelimfg)
+              << ": ";
 
     // show the instruction
-    std::cout << setfgc(colors.instfg) << insts[i] << std::string(1 + mn - insts[i].size(), ' ');
+    std::cout << setfgc(colors.instfg) << insts[i]
+              << std::string(1 + mn - insts[i].size(), ' ');
 
     // show the arguments
-    const str::seq& argl = args[i];
+    const str::seq &argl = args[i];
     if (argl.size() > 0) {
       printASMArg(argl[0]);
       for (unsigned int k = 1; k < argl.size(); ++k) {
@@ -427,17 +507,21 @@ void printASMTable(const str::seq& insts, const str::seqs& args, unsigned int ma
     }
 
     // next
-    std::cout << std::string(maxlen - fmtLen(argl), ' ') << resetfmt() << std::endl;
+    std::cout << std::string(maxlen - fmtLen(argl), ' ') << resetfmt()
+              << std::endl;
   }
 
   std::cout << resetfmt();
 }
 
-void printASM(void* p, size_t len) {
+void printASM(void *p, size_t len) {
   std::string fn = saveData(p, len);
   std::ostringstream ss;
 #ifdef BUILD_LINUX
-  runProcess("objdump -D -b binary -m i386 -M intel-mnemonic -M x86-64 --no-show-raw-insn \"" + fn + "\"", ss);
+  runProcess("objdump -D -b binary -m i386 -M intel-mnemonic -M x86-64 "
+             "--no-show-raw-insn \"" +
+                 fn + "\"",
+             ss);
 #else
   runProcess("ndisasm -u \"" + fn + "\"", ss);
 #endif
@@ -446,7 +530,7 @@ void printASM(void* p, size_t len) {
   std::istringstream in(ss.str());
   std::string mline;
   unsigned int li = 0;
-  str::seq  insts;
+  str::seq insts;
   str::seqs args;
   unsigned int maxlen = 0;
 
@@ -461,7 +545,8 @@ void printASM(void* p, size_t len) {
       args.push_back(str::csplit(str::trim(x.second), ","));
 #else
     {
-      str::pair xinst = str::lsplit(str::trim(str::lsplit(mline.substr(10), " ").second), " ");
+      str::pair xinst = str::lsplit(
+          str::trim(str::lsplit(mline.substr(10), " ").second), " ");
       insts.push_back(str::trim(xinst.first));
       args.push_back(str::csplit(str::trim(xinst.second), ","));
 #endif
@@ -473,23 +558,24 @@ void printASM(void* p, size_t len) {
   printASMTable(insts, args, maxlen);
 }
 
-std::string saveData(void* d, size_t sz) {
+std::string saveData(void *d, size_t sz) {
   std::string rn = "./.mc.gen";
   std::ofstream f(rn.c_str(), std::ofstream::binary);
   if (!f.is_open()) {
     throw std::runtime_error("Failed to open '" + rn + "' for writing.");
   }
-  f.write((const char*)d, sz);
+  f.write((const char *)d, sz);
   f.close();
   return rn;
 }
 
-void runProcess(const std::string& cmd, std::ostream& out) {
+void runProcess(const std::string &cmd, std::ostream &out) {
   int ostdo = dup(STDOUT_FILENO);
   int pio[2]; // 0 = read, 1 = write
 
   if (pipe(pio) != 0) {
-    throw std::runtime_error("Unable to allocate pipe to capture spawned process output.");
+    throw std::runtime_error(
+        "Unable to allocate pipe to capture spawned process output.");
   }
   if (dup2(pio[1], STDOUT_FILENO) == -1) {
     throw std::runtime_error("Unable to bind local pipe to STDOUT.");
@@ -507,27 +593,33 @@ void runProcess(const std::string& cmd, std::ostream& out) {
   }
   close(pio[0]);
 }
-
 }
 
 using namespace hit;
 
 void printUsage() {
-  std::cout << "hit : an interactive interpreter for hobbes" << std::endl
-            << std::endl
-            << "usage: hi [-p port] [-w port] [-e expr] [-s] [-x] [-a name=val]* [file+]" << std::endl
-            << std::endl
-            << "    -p          : run a REPL server on <port>"                                              << std::endl
-            << "    -w          : run a web server on <port>"                                               << std::endl
-            << "    -e          : evaluate <expr>"                                                          << std::endl
-            << "    -s          : run in 'silent' mode without normal formatting"                           << std::endl
-            << "    -x          : exit after input scripts are evaluated"                                   << std::endl
-            << "    -a name=val : add a name/val pair to the set of arguments passed to subsequent scripts" << std::endl
-            << "    files       : hobbes script files to evaluate"                                          << std::endl
-            << std::endl;
+  std::cout
+      << tty::white_bg("hit : an interactive interpreter for hobbes")
+      << std::endl
+      << std::endl
+      << "usage: hi [-p port] [-w port] [-e expr] [-s] [-x] [-a name=val]* "
+         "[file+]"
+      << std::endl
+      << std::endl
+      << "    -p          : run a REPL server on <port>" << std::endl
+      << "    -w          : run a web server on <port>" << std::endl
+      << "    -e          : evaluate <expr>" << std::endl
+      << "    -s          : run in 'silent' mode without normal formatting"
+      << std::endl
+      << "    -x          : exit after input scripts are evaluated" << std::endl
+      << "    -a name=val : add a name/val pair to the set of arguments passed "
+         "to subsequent scripts"
+      << std::endl
+      << "    files       : hobbes script files to evaluate" << std::endl
+      << std::endl;
 }
 
-Args processCommandLine(int argc, char** argv) {
+Args processCommandLine(int argc, char **argv) {
   Args r;
   unsigned int m = 0;
   for (int i = 1; i < argc; ++i) {
@@ -578,7 +670,7 @@ Args processCommandLine(int argc, char** argv) {
         r.scriptNameVals[str::trimq(p.first)] = str::trimq(p.second);
         m = 0;
         break;
-        }
+      }
       }
     }
   }
@@ -586,11 +678,11 @@ Args processCommandLine(int argc, char** argv) {
   return r;
 }
 
-void initHI(evaluator* eval, bool useDefColors) {
+void initHI(evaluator *eval, bool useDefColors) {
   enableConsoleCmds(useDefColors);
   setDefaultColorScheme();
 
-  std::string   rcfile = str::env("HOME") + "/.hirc";
+  std::string rcfile = str::env("HOME") + "/.hirc";
   std::ifstream rcf(rcfile.c_str());
   if (rcf.is_open()) {
     rcf.close();
@@ -598,7 +690,8 @@ void initHI(evaluator* eval, bool useDefColors) {
   }
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
+  std::cout << tty::begin_white_bg() << std::endl;
   try {
     // read command-line arguments
     Args args = processCommandLine(argc, argv);
@@ -610,25 +703,32 @@ int main(int argc, char** argv) {
 
     // show the repl header
     if (!args.silent) {
-      std::cout << setbold()
-                << setfgc(colors.divfg)     << "hi" << setfgc(colors.hlfg) << " : "
-                << setfgc(colors.stdtextfg) << "an interactive shell for hobbes" << std::endl
-                << setfgc(colors.hlfg)      << "      type '" << setfgc(colors.stdtextfg) << ":h" << setfgc(colors.hlfg) << "' for help on commands" << std::endl
-                << resetfmt()
-                << std::endl;
+      std::cout << tty::bold(tty::black("hi"))
+                << " : "
+                << tty::cyan("an interactive shell for hobbes") << std::endl
+                << setfgc(colors.hlfg) << "      type '"
+                << setfgc(colors.stdtextfg) << ":h" << setfgc(colors.hlfg)
+                << "' for help on commands" << std::endl
+                << resetfmt() << std::endl;
 
       if (args.replPort > 0) {
-        std::cout << setfgc(colors.hlfg) << "running repl server at " << setfgc(colors.stdtextfg) << str::env("HOSTNAME") << ":" << args.replPort << resetfmt() << std::endl;
+        std::cout << setfgc(colors.hlfg) << "running repl server at "
+                  << setfgc(colors.stdtextfg) << str::env("HOSTNAME") << ":"
+                  << args.replPort << resetfmt() << std::endl;
       }
 
       if (args.httpdPort > 0) {
-        std::cout << setfgc(colors.hlfg) << "running web server at " << setfgc(colors.stdtextfg) << "http://" << str::env("HOSTNAME") << ":" << args.httpdPort << "/" << resetfmt() << std::endl;
+        std::cout << setfgc(colors.hlfg) << "running web server at "
+                  << setfgc(colors.stdtextfg) << "http://"
+                  << str::env("HOSTNAME") << ":" << args.httpdPort << "/"
+                  << resetfmt() << std::endl;
       }
     }
 
     // load any modules passed in
     if (args.mfiles.size() > 0) {
-      for (ModuleFiles::const_iterator m = args.mfiles.begin(); m != args.mfiles.end(); ++m) {
+      for (ModuleFiles::const_iterator m = args.mfiles.begin();
+           m != args.mfiles.end(); ++m) {
         eval.loadModule(str::expandPath(*m));
       }
     }
@@ -646,12 +746,11 @@ int main(int argc, char** argv) {
     }
     std::cout << resetfmt();
     return 0;
-  } catch (hobbes::annotated_error& ae) {
+  } catch (hobbes::annotated_error &ae) {
     printAnnotatedError(ae);
     return -1;
-  } catch (std::exception& ex) {
+  } catch (std::exception &ex) {
     std::cout << "Fatal error: " << ex.what() << resetfmt() << std::endl;
     return -1;
   }
 }
-

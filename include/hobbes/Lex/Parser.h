@@ -9,42 +9,55 @@
 #include <llvm/Support/MemoryBuffer.h>
 #include <llvm/ADT/Twine.h>
 #include <llvm/Support/SourceMgr.h>
+
+#include "clang/Basic/SourceManager.h"
+#include <clang/Basic/Diagnostic.h>
+
 #include <memory>
 
 namespace hobbes {
 
 class Parser {
+  //Parser(const Parser&) = delete;
+  //void operator=(const Parser&) = delete;
+
   enum class Assoc {
       right,
       left,   
   };  
   llvm::StringMap<std::pair<int, Assoc>> operators;
+  llvm::StringMap<std::pair<int, Assoc>> type_operators;
   
 public:
   Parser(Lexer& lexer);  
   Lexer Lexer;
+  //clang::SourceManager &SourceMgr;
+  //clang::DiagnosticsEngine &Diags;
+  
   /// Current Token we are looking at
   Token Tok;
   bool ParseModule();
   bool ParseModuleDefs();
   bool ParseClassDef();
   std::shared_ptr<MImport> ParseImportStatement();
-  bool ParseType();
-  bool ParseTypePredicate();
+  MonoTypePtr ParseType();
+  ConstraintPtr ParseTypePredicate();
   bool ParseQualifiedId(llvm::Twine& QualID);  
   void ConsumeToken();
+  void ExpectTokenKind(tok::TokenKind kind);
 
   std::pair<int, Assoc> GetBinopPrecedence(Token& tok);  
   ExprPtr ParseBinopRHS(ExprPtr LHS, int MinPrec);
   ExprPtr ParsePrimaryExpression();
-  ExprPtr ParseParenExpr();
   ExprPtr ParseIfExpr();
   ExprPtr ParseIdentifierExpr();
   ExprPtr ParseExpression();
   ExprPtr ParseMatchExpr();
   ExprPtr ParseLetExpr();
   ExprPtr ParseNumericConstant();
-  
+
+  std::vector<PatternPtr> ParsePatternSequence(tok::TokenKind ClosingTok);
+  std::vector<MatchRecord::Field>* ParseRecordPatternFields(tok::TokenKind ClosingTok);  
   PatternPtr ParsePattern();
   PatternPtr ParseIrrefutablePattern();
 };

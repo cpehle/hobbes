@@ -6,6 +6,8 @@ include_directories(glfw/include)
 
 add_subdirectory(linenoise)
 
+# add_subdirectory(nanogui)
+
 if(BUILD_LLVM)
 add_subdirectory(llvm)
 include_directories(llvm/include/)

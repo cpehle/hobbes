@@ -33,15 +33,18 @@ void registerEventHandler(int fd, eventhandler fn, void* ud, bool f) {
 
 __thread bool uvInitialized = false;
 __thread int uvFD = 0;
-__thread EventClosures* uvClosures = 0;
+__thread EventClosures *uvClosures = 0;
 
-void addTimer(timerfunc f, int millisecInterval) {
-  uv_timer_t timer;
-  
-  int uv_timer_init(uv_default_loop(), &timer);
-}
-  
-  
+void addTimer(timerfunc f, int millisecInterval) {}
+void registerEventHandler(int fd, const std::function<void(int)> &fn,
+                          bool vn = false /* only used on BSD */) {}
+void registerEventHandler(int fd, eventhandler f, void *ud,
+                          bool vn = false /* only used on BSD */) {}
+void unregisterEventHandler(int fd) {}
+bool stepEventLoop() {}
+void runEventLoop() {}
+void runEventLoop(int microsecondDuration) {}
+
 #elif defined(BUILD_LINUX)
 __thread bool           epInitialized = false;
 __thread int            epFD          = 0;

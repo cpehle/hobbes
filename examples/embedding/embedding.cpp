@@ -13,36 +13,6 @@
 
 int applyDiscreteWeighting(int x, int y) { return x * y; }
 
-void bindTensorFuncs(hobbes::cc &ctx) {
-  ctx.bind("FloatTensor_add", &THFloatTensor_add);
-  ctx.bind("FloatTensor_sub", &THFloatTensor_sub);
-  ctx.bind("FloatTensor_mul", &THFloatTensor_mul);
-  ctx.bind("FloatTensor_new", &THFloatTensor_new);
-  ctx.bind("FloatTensor_newWithSize1d", &THFloatTensor_newWithSize1d);
-  ctx.bind("FloatTensor_storage", &THFloatTensor_storage);
-  ctx.bind("FloatTensor_zero", &THFloatTensor_zero);
-  ctx.bind("FloatTensor_zeros", &THFloatTensor_zeros);
-  ctx.bind("FloatTensor_zerosLike", &THFloatTensor_zerosLike);
-
-  ctx.bind("FloatStorage_new", &THFloatStorage_new);
-  ctx.bind("FloatStorage_clearFlag", &THFloatStorage_clearFlag);
-  ctx.bind("FloatStorage_copy", &THFloatStorage_copy);
-  ctx.bind("FloatStorage_copyByte", &THFloatStorage_copyByte);
-  ctx.bind("FloatStorage_copyChar", &THFloatStorage_copyChar);
-  ctx.bind("FloatStorage_copyDouble", &THFloatStorage_copyDouble);
-  ctx.bind("FloatStorage_copyFloat", &THFloatStorage_copyFloat);
-
-  // THFile
-  //  ctx.bind("THFile_readFloat", &THFile_readFloat);
-  // ctx.bind("THFile_writeFloat", &THFile_writeFloat);
-
-  // ctx.bind("THMemoryFile_longSize", &THMemoryFile_longSize);
-  // ctx.bind("THMemoryFile_new", &THMemoryFile_new);
-  // ctx.bind("THMemoryFile_newWithStorage", &THMemoryFile_newWithStorage);
-  // ctx.bind("THMemoryFile_storage", &THMemoryFile_storage);
-
-  // ctx.bind("THDiskFile_new", &THDiskFile_new);
-}
 
 namespace {
 
@@ -70,8 +40,7 @@ int main(int argc, char *argv[]) {
   c.bind("dumpModule", memberfn(&hobbes::cc::dumpModule));
   c.bind("compiler", &c);
 
-  bindTensorFuncs(c);
-
+  
   char *read_line;
   while ((read_line = linenoise("> ")) != NULL) {
     auto line = std::string(read_line);

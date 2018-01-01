@@ -3,7 +3,8 @@ add_library(hobbesparser
 )
 
 add_library(hobbeslex
-    Lexer.cpp
+  Lexer.cpp
+  Token.cpp
 )
 
 target_include_directories(hobbesparser

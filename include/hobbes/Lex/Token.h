@@ -3,13 +3,14 @@
 #include <llvm/ADT/StringRef.h>
 
 namespace hobbes {
-
 namespace tok {
 enum TokenKind : short {
 #define TOK(X) X,
 #include "hobbes/Lex/TokenKinds.def"
   NUM_TOKENS,
 };
+
+std::string getTokenName(TokenKind t);
 }
 
 class Token {
@@ -28,9 +29,7 @@ public:
     PtrData = nullptr;
     UIntData = 0;
   }
-  auto setLiteralData(llvm::StringRef Data) -> void {
-    LiteralData = Data;
-  }
+  auto setLiteralData(llvm::StringRef Data) -> void { LiteralData = Data; }
   auto getLiteralData() -> llvm::StringRef { return LiteralData; }
   auto is(tok::TokenKind K) -> bool { return Kind == K; }
   auto isNot(tok::TokenKind K) -> bool { return Kind != K; }

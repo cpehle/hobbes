@@ -108,7 +108,7 @@ PtrAdjustmentPath Objs::adjustment(const std::string& derived, const std::string
           } else {
             result.push_back(PtrAdjustment::by(vmi->__base_info[i].__offset(), targetTy));
           }
-          appendPath(&result, suffix);
+          appendPath(&result, suffix);	  
           return result;
         } catch (std::exception& ex) {
           // oh, I guess it wasn't that one

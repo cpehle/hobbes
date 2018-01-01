@@ -58,6 +58,19 @@ std::vector<LexTestCase> test_cases = {
                  hobbes::tok::kw_in,       hobbes::tok::kw_pack,
                  hobbes::tok::kw_unpack,   hobbes::tok::kw_do,
                  hobbes::tok::kw_return}),
+    LexTestCase("let x = 1; y = 2; in y", {
+	hobbes::tok::kw_let,
+	  hobbes::tok::identifier,
+	  hobbes::tok::equal,
+	  hobbes::tok::numeric_constant,
+	  hobbes::tok::semi,
+	  hobbes::tok::identifier,
+	  hobbes::tok::equal,
+	  hobbes::tok::numeric_constant,
+	  hobbes::tok::semi,
+	  hobbes::tok::kw_in,
+	  hobbes::tok::identifier	  
+      }),
 };
 
 TEST(Lexer, Ident) {
@@ -66,7 +79,7 @@ TEST(Lexer, Ident) {
     hobbes::Token tok;
     for (auto out : t.output) {
       lexer.LexToken(tok);
-      EXPECT_EQ(static_cast<short>(tok.getKind()), static_cast<short>(out));
+      EXPECT_EQ(hobbes::tok::getTokenName(tok.getKind()), hobbes::tok::getTokenName(out));
     }
   }
 }
@@ -90,4 +103,9 @@ TEST(Lexer, String) {
     lexer.LexToken(tok);
     EXPECT_EQ(static_cast<short>(tok.getKind()), static_cast<short>(out));
   }
+}
+
+TEST(Lexer, TokenDesc) {
+  EXPECT_EQ(hobbes::tok::getTokenName(hobbes::tok::l_square), "l_square");
+  EXPECT_EQ(hobbes::tok::getTokenName(hobbes::tok::l_brace), "l_brace");
 }

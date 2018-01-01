@@ -557,7 +557,30 @@ void bindTensorDefs(hobbes::cc &ctx) {
   ctx.bind("THFloatStorage_setFlag", &THFloatStorage_setFlag);
   ctx.bind("THFloatStorage_size", &THFloatStorage_size);
   ctx.bind("THFloatStorage_swap", &THFloatStorage_swap);
-
+  // Convolution
+  ctx.bind("THFloatTensor_validXCorr2Dptr", &THFloatTensor_validXCorr2Dptr);
+  ctx.bind("THFloatTensor_validConv2Dptr", &THFloatTensor_validConv2Dptr);
+  ctx.bind("THFloatTensor_fullXCorr2Dptr", &THFloatTensor_fullXCorr2Dptr);
+  ctx.bind("THFloatTensor_fullConv2Dptr", &THFloatTensor_fullConv2Dptr);
+  ctx.bind("THFloatTensor_validXCorr2DRevptr", &THFloatTensor_validXCorr2DRevptr);
+  ctx.bind("THFloatTensor_conv2DRevger", &THFloatTensor_conv2DRevger);
+  ctx.bind("THFloatTensor_conv2DRevgerm", &THFloatTensor_conv2DRevgerm);
+  ctx.bind("THFloatTensor_conv2Dger", &THFloatTensor_conv2Dger);
+  ctx.bind("THFloatTensor_conv2Dmv", &THFloatTensor_conv2Dmv);
+  ctx.bind("THFloatTensor_conv2Dmm", &THFloatTensor_conv2Dmm);
+  ctx.bind("THFloatTensor_conv2Dmul", &THFloatTensor_conv2Dmul);
+  ctx.bind("THFloatTensor_conv2Dcmul", &THFloatTensor_conv2Dcmul);
+  ctx.bind("THFloatTensor_validXCorr3Dptr", &THFloatTensor_validXCorr3Dptr);
+  ctx.bind("THFloatTensor_validConv3Dptr", &THFloatTensor_validConv3Dptr);
+  ctx.bind("THFloatTensor_fullXCorr3Dptr", &THFloatTensor_fullXCorr3Dptr);
+  ctx.bind("THFloatTensor_fullConv3Dptr", &THFloatTensor_fullConv3Dptr);
+  ctx.bind("THFloatTensor_validXCorr3DRevptr", &THFloatTensor_validXCorr3DRevptr);
+  ctx.bind("THFloatTensor_conv3DRevger", &THFloatTensor_conv3DRevger);
+  ctx.bind("THFloatTensor_conv3Dger", &THFloatTensor_conv3Dger);
+  ctx.bind("THFloatTensor_conv3Dmv", &THFloatTensor_conv3Dmv);
+  ctx.bind("THFloatTensor_conv3Dmul", &THFloatTensor_conv3Dmul);
+  ctx.bind("THFloatTensor_conv3Dcmul", &THFloatTensor_conv3Dcmul);
+    
   // Double
   // Double Tensor access
   ctx.bind("THDoubleTensor_storage", &THDoubleTensor_storage);
@@ -807,7 +830,30 @@ void bindTensorDefs(hobbes::cc &ctx) {
            &THDoubleTensor_multinomialAliasSetup);
   ctx.bind("THDoubleTensor_multinomialAliasDraw",
            &THDoubleTensor_multinomialAliasDraw);
-
+  // Convolution
+  ctx.bind("THDoubleTensor_validXCorr2Dptr", &THDoubleTensor_validXCorr2Dptr);
+  ctx.bind("THDoubleTensor_validConv2Dptr", &THDoubleTensor_validConv2Dptr);
+  ctx.bind("THDoubleTensor_fullXCorr2Dptr", &THDoubleTensor_fullXCorr2Dptr);
+  ctx.bind("THDoubleTensor_fullConv2Dptr", &THDoubleTensor_fullConv2Dptr);
+  ctx.bind("THDoubleTensor_validXCorr2DRevptr", &THDoubleTensor_validXCorr2DRevptr);
+  ctx.bind("THDoubleTensor_conv2DRevger", &THDoubleTensor_conv2DRevger);
+  ctx.bind("THDoubleTensor_conv2DRevgerm", &THDoubleTensor_conv2DRevgerm);
+  ctx.bind("THDoubleTensor_conv2Dger", &THDoubleTensor_conv2Dger);
+  ctx.bind("THDoubleTensor_conv2Dmv", &THDoubleTensor_conv2Dmv);
+  ctx.bind("THDoubleTensor_conv2Dmm", &THDoubleTensor_conv2Dmm);
+  ctx.bind("THDoubleTensor_conv2Dmul", &THDoubleTensor_conv2Dmul);
+  ctx.bind("THDoubleTensor_conv2Dcmul", &THDoubleTensor_conv2Dcmul);
+  ctx.bind("THDoubleTensor_validXCorr3Dptr", &THDoubleTensor_validXCorr3Dptr);
+  ctx.bind("THDoubleTensor_validConv3Dptr", &THDoubleTensor_validConv3Dptr);
+  ctx.bind("THDoubleTensor_fullXCorr3Dptr", &THDoubleTensor_fullXCorr3Dptr);
+  ctx.bind("THDoubleTensor_fullConv3Dptr", &THDoubleTensor_fullConv3Dptr);
+  ctx.bind("THDoubleTensor_validXCorr3DRevptr", &THDoubleTensor_validXCorr3DRevptr);
+  ctx.bind("THDoubleTensor_conv3DRevger", &THDoubleTensor_conv3DRevger);
+  ctx.bind("THDoubleTensor_conv3Dger", &THDoubleTensor_conv3Dger);
+  ctx.bind("THDoubleTensor_conv3Dmv", &THDoubleTensor_conv3Dmv);
+  ctx.bind("THDoubleTensor_conv3Dmul", &THDoubleTensor_conv3Dmul);
+  ctx.bind("THDoubleTensor_conv3Dcmul", &THDoubleTensor_conv3Dcmul);
+  
   // Long
   // Long Tensor access
   ctx.bind("THLongTensor_storage", &THLongTensor_storage);
@@ -997,6 +1043,29 @@ void bindTensorDefs(hobbes::cc &ctx) {
   ctx.bind("THLongTensor_cappedRandom", &THLongTensor_cappedRandom);
   ctx.bind("THLongTensor_geometric", &THLongTensor_geometric);
   ctx.bind("THLongTensor_bernoulli", &THLongTensor_bernoulli);
+  // Convolution
+  ctx.bind("THLongTensor_validXCorr2Dptr", &THLongTensor_validXCorr2Dptr);
+  ctx.bind("THLongTensor_validConv2Dptr", &THLongTensor_validConv2Dptr);
+  ctx.bind("THLongTensor_fullXCorr2Dptr", &THLongTensor_fullXCorr2Dptr);
+  ctx.bind("THLongTensor_fullConv2Dptr", &THLongTensor_fullConv2Dptr);
+  ctx.bind("THLongTensor_validXCorr2DRevptr", &THLongTensor_validXCorr2DRevptr);
+  ctx.bind("THLongTensor_conv2DRevger", &THLongTensor_conv2DRevger);
+  ctx.bind("THLongTensor_conv2DRevgerm", &THLongTensor_conv2DRevgerm);
+  ctx.bind("THLongTensor_conv2Dger", &THLongTensor_conv2Dger);
+  ctx.bind("THLongTensor_conv2Dmv", &THLongTensor_conv2Dmv);
+  ctx.bind("THLongTensor_conv2Dmm", &THLongTensor_conv2Dmm);
+  ctx.bind("THLongTensor_conv2Dmul", &THLongTensor_conv2Dmul);
+  ctx.bind("THLongTensor_conv2Dcmul", &THLongTensor_conv2Dcmul);
+  ctx.bind("THLongTensor_validXCorr3Dptr", &THLongTensor_validXCorr3Dptr);
+  ctx.bind("THLongTensor_validConv3Dptr", &THLongTensor_validConv3Dptr);
+  ctx.bind("THLongTensor_fullXCorr3Dptr", &THLongTensor_fullXCorr3Dptr);
+  ctx.bind("THLongTensor_fullConv3Dptr", &THLongTensor_fullConv3Dptr);
+  ctx.bind("THLongTensor_validXCorr3DRevptr", &THLongTensor_validXCorr3DRevptr);
+  ctx.bind("THLongTensor_conv3DRevger", &THLongTensor_conv3DRevger);
+  ctx.bind("THLongTensor_conv3Dger", &THLongTensor_conv3Dger);
+  ctx.bind("THLongTensor_conv3Dmv", &THLongTensor_conv3Dmv);
+  ctx.bind("THLongTensor_conv3Dmul", &THLongTensor_conv3Dmul);
+  ctx.bind("THLongTensor_conv3Dcmul", &THLongTensor_conv3Dcmul);
 
   // Int
   // Int Tensor access
@@ -1187,6 +1256,29 @@ void bindTensorDefs(hobbes::cc &ctx) {
   ctx.bind("THIntTensor_cappedRandom", &THIntTensor_cappedRandom);
   ctx.bind("THIntTensor_geometric", &THIntTensor_geometric);
   ctx.bind("THIntTensor_bernoulli", &THIntTensor_bernoulli);
+  // Convolution
+  ctx.bind("THIntTensor_validXCorr2Dptr", &THIntTensor_validXCorr2Dptr);
+  ctx.bind("THIntTensor_validConv2Dptr", &THIntTensor_validConv2Dptr);
+  ctx.bind("THIntTensor_fullXCorr2Dptr", &THIntTensor_fullXCorr2Dptr);
+  ctx.bind("THIntTensor_fullConv2Dptr", &THIntTensor_fullConv2Dptr);
+  ctx.bind("THIntTensor_validXCorr2DRevptr", &THIntTensor_validXCorr2DRevptr);
+  ctx.bind("THIntTensor_conv2DRevger", &THIntTensor_conv2DRevger);
+  ctx.bind("THIntTensor_conv2DRevgerm", &THIntTensor_conv2DRevgerm);
+  ctx.bind("THIntTensor_conv2Dger", &THIntTensor_conv2Dger);
+  ctx.bind("THIntTensor_conv2Dmv", &THIntTensor_conv2Dmv);
+  ctx.bind("THIntTensor_conv2Dmm", &THIntTensor_conv2Dmm);
+  ctx.bind("THIntTensor_conv2Dmul", &THIntTensor_conv2Dmul);
+  ctx.bind("THIntTensor_conv2Dcmul", &THIntTensor_conv2Dcmul);
+  ctx.bind("THIntTensor_validXCorr3Dptr", &THIntTensor_validXCorr3Dptr);
+  ctx.bind("THIntTensor_validConv3Dptr", &THIntTensor_validConv3Dptr);
+  ctx.bind("THIntTensor_fullXCorr3Dptr", &THIntTensor_fullXCorr3Dptr);
+  ctx.bind("THIntTensor_fullConv3Dptr", &THIntTensor_fullConv3Dptr);
+  ctx.bind("THIntTensor_validXCorr3DRevptr", &THIntTensor_validXCorr3DRevptr);
+  ctx.bind("THIntTensor_conv3DRevger", &THIntTensor_conv3DRevger);
+  ctx.bind("THIntTensor_conv3Dger", &THIntTensor_conv3Dger);
+  ctx.bind("THIntTensor_conv3Dmv", &THIntTensor_conv3Dmv);
+  ctx.bind("THIntTensor_conv3Dmul", &THIntTensor_conv3Dmul);
+  ctx.bind("THIntTensor_conv3Dcmul", &THIntTensor_conv3Dcmul);
 
   // Short
   // Short Tensor access
@@ -1378,7 +1470,30 @@ void bindTensorDefs(hobbes::cc &ctx) {
   ctx.bind("THShortTensor_cappedRandom", &THShortTensor_cappedRandom);
   ctx.bind("THShortTensor_geometric", &THShortTensor_geometric);
   ctx.bind("THShortTensor_bernoulli", &THShortTensor_bernoulli);
-
+  // Convolution
+  ctx.bind("THShortTensor_validXCorr2Dptr", &THShortTensor_validXCorr2Dptr);
+  ctx.bind("THShortTensor_validConv2Dptr", &THShortTensor_validConv2Dptr);
+  ctx.bind("THShortTensor_fullXCorr2Dptr", &THShortTensor_fullXCorr2Dptr);
+  ctx.bind("THShortTensor_fullConv2Dptr", &THShortTensor_fullConv2Dptr);
+  ctx.bind("THShortTensor_validXCorr2DRevptr", &THShortTensor_validXCorr2DRevptr);
+  ctx.bind("THShortTensor_conv2DRevger", &THShortTensor_conv2DRevger);
+  ctx.bind("THShortTensor_conv2DRevgerm", &THShortTensor_conv2DRevgerm);
+  ctx.bind("THShortTensor_conv2Dger", &THShortTensor_conv2Dger);
+  ctx.bind("THShortTensor_conv2Dmv", &THShortTensor_conv2Dmv);
+  ctx.bind("THShortTensor_conv2Dmm", &THShortTensor_conv2Dmm);
+  ctx.bind("THShortTensor_conv2Dmul", &THShortTensor_conv2Dmul);
+  ctx.bind("THShortTensor_conv2Dcmul", &THShortTensor_conv2Dcmul);
+  ctx.bind("THShortTensor_validXCorr3Dptr", &THShortTensor_validXCorr3Dptr);
+  ctx.bind("THShortTensor_validConv3Dptr", &THShortTensor_validConv3Dptr);
+  ctx.bind("THShortTensor_fullXCorr3Dptr", &THShortTensor_fullXCorr3Dptr);
+  ctx.bind("THShortTensor_fullConv3Dptr", &THShortTensor_fullConv3Dptr);
+  ctx.bind("THShortTensor_validXCorr3DRevptr", &THShortTensor_validXCorr3DRevptr);
+  ctx.bind("THShortTensor_conv3DRevger", &THShortTensor_conv3DRevger);
+  ctx.bind("THShortTensor_conv3Dger", &THShortTensor_conv3Dger);
+  ctx.bind("THShortTensor_conv3Dmv", &THShortTensor_conv3Dmv);
+  ctx.bind("THShortTensor_conv3Dmul", &THShortTensor_conv3Dmul);
+  ctx.bind("THShortTensor_conv3Dcmul", &THShortTensor_conv3Dcmul);
+  
   // Byte
   // Byte Tensor access
   ctx.bind("THByteTensor_storage", &THByteTensor_storage);
@@ -1568,5 +1683,29 @@ void bindTensorDefs(hobbes::cc &ctx) {
   ctx.bind("THByteTensor_cappedRandom", &THByteTensor_cappedRandom);
   ctx.bind("THByteTensor_geometric", &THByteTensor_geometric);
   ctx.bind("THByteTensor_bernoulli", &THByteTensor_bernoulli);
+  // Convolution
+  ctx.bind("THByteTensor_validXCorr2Dptr", &THByteTensor_validXCorr2Dptr);
+  ctx.bind("THByteTensor_validConv2Dptr", &THByteTensor_validConv2Dptr);
+  ctx.bind("THByteTensor_fullXCorr2Dptr", &THByteTensor_fullXCorr2Dptr);
+  ctx.bind("THByteTensor_fullConv2Dptr", &THByteTensor_fullConv2Dptr);
+  ctx.bind("THByteTensor_validXCorr2DRevptr", &THByteTensor_validXCorr2DRevptr);
+  ctx.bind("THByteTensor_conv2DRevger", &THByteTensor_conv2DRevger);
+  ctx.bind("THByteTensor_conv2DRevgerm", &THByteTensor_conv2DRevgerm);
+  ctx.bind("THByteTensor_conv2Dger", &THByteTensor_conv2Dger);
+  ctx.bind("THByteTensor_conv2Dmv", &THByteTensor_conv2Dmv);
+  ctx.bind("THByteTensor_conv2Dmm", &THByteTensor_conv2Dmm);
+  ctx.bind("THByteTensor_conv2Dmul", &THByteTensor_conv2Dmul);
+  ctx.bind("THByteTensor_conv2Dcmul", &THByteTensor_conv2Dcmul);
+  ctx.bind("THByteTensor_validXCorr3Dptr", &THByteTensor_validXCorr3Dptr);
+  ctx.bind("THByteTensor_validConv3Dptr", &THByteTensor_validConv3Dptr);
+  ctx.bind("THByteTensor_fullXCorr3Dptr", &THByteTensor_fullXCorr3Dptr);
+  ctx.bind("THByteTensor_fullConv3Dptr", &THByteTensor_fullConv3Dptr);
+  ctx.bind("THByteTensor_validXCorr3DRevptr", &THByteTensor_validXCorr3DRevptr);
+  ctx.bind("THByteTensor_conv3DRevger", &THByteTensor_conv3DRevger);
+  ctx.bind("THByteTensor_conv3Dger", &THByteTensor_conv3Dger);
+  ctx.bind("THByteTensor_conv3Dmv", &THByteTensor_conv3Dmv);
+  ctx.bind("THByteTensor_conv3Dmul", &THByteTensor_conv3Dmul);
+  ctx.bind("THByteTensor_conv3Dcmul", &THByteTensor_conv3Dcmul);
+  
 }
 }

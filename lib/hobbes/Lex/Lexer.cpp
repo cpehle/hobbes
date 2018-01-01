@@ -77,6 +77,8 @@ auto Lexer::LexNumericConstant(Token &Result, const char *CurPtr) -> bool {
   if ((C == '-' || C == '+') && (PrevCh == 'E' || PrevCh == 'e')) {
     return LexNumericConstant(Result, CurPtr++);
   }
+  // Back Up
+  CurPtr--;
   // Update the location of token as well as BufferPtr.
   const char *TokStart = BufferPtr;
   FormTokenWithChars(Result, CurPtr, tok::numeric_constant);

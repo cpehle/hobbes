@@ -1,9 +1,11 @@
+/// See LICENSE.md for license details
 #include "hobbes/Lex/Parser.h"
 #include "hobbes/Lex/Lexer.h"
 #include "hobbes/Lex/Token.h"
 #include "hobbes/lang/expr.H"
 #include "hobbes/lang/module.H"
 #include "hobbes/lang/pat/pattern.H"
+#include "hobbes/lang/preds/consrecord.H"
 #include "hobbes/util/autorelease.H"
 
 #include <llvm/ADT/StringRef.h>
@@ -40,7 +42,7 @@ PatternPtr pickNestedPat(Patterns *pats, const LexicalAnnotation &la) {
 
 Parser::Parser(class Lexer &Lex) : Lexer(Lex) {
   // Initialize the operator table with the built in
-  // operator precedences  
+  // operator precedences
   operators.insert({"and", {10, Assoc::left}});
   operators.insert({"or", {10, Assoc::left}});
   operators.insert({"o", {10, Assoc::left}});
@@ -54,7 +56,6 @@ Parser::Parser(class Lexer &Lex) : Lexer(Lex) {
   operators.insert({"<=", {30, Assoc::left}});
   operators.insert({">", {30, Assoc::left}});
   operators.insert({">=", {30, Assoc::left}});
-  operators.insert({"in", {30, Assoc::left}});
 
   operators.insert({"+", {40, Assoc::left}});
   operators.insert({"-", {40, Assoc::left}});
@@ -65,8 +66,21 @@ Parser::Parser(class Lexer &Lex) : Lexer(Lex) {
   operators.insert({"%", {50, Assoc::left}});
 }
 
-void Parser::ConsumeToken() { Lexer.LexToken(Tok); }
+void Parser::ConsumeToken() {
+  Lexer.LexToken(Tok);
+  std::cout << tok::getTokenName(Tok.getKind()) << std::endl;
+}
+void Parser::ExpectTokenKind(tok::TokenKind Kind) {
+  if (Tok.is(Kind)) {
+    Parser::ConsumeToken();
+  } else {
+    std::cout << "expected " << tok::getTokenName(Kind) << std::endl;
+    exit(1);
+  }
+}
 
+/// qualified-id:
+///         id ['.' id]+
 bool Parser::ParseQualifiedId(llvm::Twine &QualID) {
   ConsumeToken();
   while (Tok.is(tok::identifier)) {
@@ -82,6 +96,8 @@ bool Parser::ParseQualifiedId(llvm::Twine &QualID) {
   return false;
 }
 
+/// import-statement:
+///     'import' qualified-id
 std::shared_ptr<MImport> Parser::ParseImportStatement() {
   ConsumeToken();
   llvm::Twine QualID;
@@ -91,12 +107,12 @@ std::shared_ptr<MImport> Parser::ParseImportStatement() {
       "", QualID.str(), LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
 }
 
-bool ParseNameSeq() {}
+/// type-declaration:
+///     "type" tyid "="
+bool ParseTypeDeclaration() { return false; }
 
-bool ParseTypeDeclaration() { ParseNameSeq(); }
-
-auto Parser::GetBinopPrecedence(Token& tok) -> std::pair<int, Parser::Assoc> {  
-  if (tok.getKind() <= tok::comment_single ) {
+auto Parser::GetBinopPrecedence(Token &tok) -> std::pair<int, Parser::Assoc> {
+  if (tok.getKind() <= tok::comment_single) {
     return {-1, Assoc::left};
   }
 
@@ -112,20 +128,44 @@ auto Parser::GetBinopPrecedence(Token& tok) -> std::pair<int, Parser::Assoc> {
   return {NextTokenPrec, Assoc};
 }
 
-ExprPtr Parser::ParseParenExpr() {
-  ConsumeToken();
-  auto Val = Parser::ParseExpression();
-  if (!Val) {
-    return nullptr;
-  }
-  if (Tok.isNot(tok::r_paren)) {
-    // Error;
-  }
-  ConsumeToken();
-  return Val;
+/// record-pattern-fields:
+///         record-pattern-fields "," record-pattern-field
+///         record-pattern-field
+/// record-pattern-field:
+///         id "=" pattern
+auto Parser::ParseRecordPatternFields(tok::TokenKind ClosingTok) -> std::vector<MatchRecord::Field>* {
+    auto MatchRecords = new MatchRecord::Fields();
+    while (true) {
+        if (Tok.isNot(tok::identifier)) {
+            std::cout << "expected identifier" << std::endl;
+            exit(1);
+        }
+        auto Id = Tok.getLiteralData();
+        ConsumeToken();
+        ExpectTokenKind(tok::equal);
+            
+        auto Pattern = Parser::ParsePattern();
+        if (!Pattern) {
+            std::cout << "expected pattern" << std::endl;
+            exit(1);
+        }
+        MatchRecords->push_back(MatchRecord::Field(Id, Pattern));
+        if (Tok.is(tok::r_paren)) {
+            break;
+        }
+        ExpectTokenKind(tok::comma);
+    }
+    ExpectTokenKind(ClosingTok);
+    return MatchRecords;
 }
-
-/// refutablep: "boolV"
+    
+    
+/// Pattern
+///
+///
+///  
+/// refutable-pattern:
+///             "boolV"
 ///           | "charV"
 ///           | "byteV"
 ///           | "shortV"
@@ -143,29 +183,28 @@ ExprPtr Parser::ParseParenExpr() {
 ///           | "|" id "=" pattern "|"
 ///           | "|" "intV" "=" pattern "|"
 ///           | "(" patternseq ")"
-///           | "{" recpatfields "}"
+///           | "{" record-pattern-fields "}"
 ///           | id
 PatternPtr Parser::ParsePattern() {
-
   if (Tok.is(tok::l_square)) {
-
+    ConsumeToken();
+    auto PatternSeq = Parser::ParsePatternSequence(tok::r_square);
+    ExpectTokenKind(tok::r_square);
+    return std::make_shared<MatchArray>(
+        PatternSeq, LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
   } else if (Tok.is(tok::pipe)) {
     ConsumeToken(); // consume '|'
     if (Tok.is(tok::identifier)) {
       auto Id = Tok.getLiteralData();
       ConsumeToken();
       if (Tok.is(tok::equal)) {
+        ConsumeToken(); // consume '='
         auto Pattern = Parser::ParsePattern();
-        if (Tok.isNot(tok::pipe)) {
-        }
+        ExpectTokenKind(tok::pipe);
         return std::make_shared<MatchVariant>(
             Id, Pattern, LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
       }
-
-      if (Tok.isNot(tok::pipe)) {
-        // Error
-      }
-
+      ExpectTokenKind(tok::pipe);
       return std::make_shared<MatchVariant>(
           Id, std::make_shared<MatchLiteral>(
                   std::make_shared<Unit>(
@@ -173,25 +212,79 @@ PatternPtr Parser::ParsePattern() {
                   LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0))),
           LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
     } else if (Tok.is(tok::numeric_constant)) {
-
+      auto Id = Tok.getLiteralData();
+      ConsumeToken();
+      ExpectTokenKind(tok::equal);
+      auto Pattern = ParsePattern();
+      ExpectTokenKind(tok::pipe);
+      return std::make_shared<MatchVariant>(
+          (".f" + Id).str(), Pattern,
+          LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
     } else {
+      std::cout << "expected variant pattern" << std::endl;
+      exit(1);
       // Error
     }
   } else if (Tok.is(tok::l_paren)) {
-
+    ConsumeToken();
+    auto PatternSeq = Parser::ParsePatternSequence(tok::l_paren);
+    ExpectTokenKind(tok::r_paren);
+    return pickNestedPat(&PatternSeq,
+                         LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
   } else if (Tok.is(tok::l_brace)) {
-
+    ConsumeToken();
+    auto RecordPatterns = Parser::ParseRecordPatternFields(tok::l_brace);
+    ExpectTokenKind(tok::r_brace);
+    return std::make_shared<MatchRecord>(
+        *RecordPatterns, LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
   } else if (Tok.is(tok::identifier)) {
     auto Id = Tok.getLiteralData();
     ConsumeToken();
-    // Actions.ActOnPatternVar(Tok.getLiteralData());
+    // TODO: Make overridable
     return std::make_shared<MatchAny>(
         Id, LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
+  } else if (Tok.is(tok::numeric_constant)) {
+    // TODO: Disambiguate literals
+    // return std::make_shared<MatchLiteral>(PrimitivePtr());
+    return nullptr;
   }
-
   return nullptr;
 }
 
+
+
+/// pattern-sequence
+///
+std::vector<PatternPtr>
+Parser::ParsePatternSequence(tok::TokenKind ClosingTok) {
+  // empty
+  if (Tok.is(ClosingTok)) {
+    return Patterns();
+  }
+  std::vector<PatternPtr> Patterns;
+  /// patternseqn:
+  ///         | patternseqn "," pattern
+  ///         | pattern
+  while (true) {
+    auto Pattern = Parser::ParsePattern();
+    if (!Pattern) {
+      std::cout << "expected pattern" << std::endl;
+      exit(1);
+    }
+    Patterns.push_back(Pattern);
+    if (Tok.is(ClosingTok)) {
+      break;
+    }
+    ExpectTokenKind(tok::comma);
+  }
+  ExpectTokenKind(ClosingTok);
+  return Patterns;
+}
+
+/// irrefutable-pattern:
+///         id
+///         "(" pattern-sequence ")"
+///         "{" record-pattern-fields "}"
 PatternPtr Parser::ParseIrrefutablePattern() {
   if (Tok.is(tok::identifier)) {
     auto Id = Tok.getLiteralData();
@@ -199,31 +292,15 @@ PatternPtr Parser::ParseIrrefutablePattern() {
     return std::make_shared<MatchAny>(
         Id, LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
   } else if (Tok.is(tok::l_paren)) {
-    ConsumeToken(); // consume '('
-    std::vector<PatternPtr> Patterns;
-    while (true) {
-      auto Pattern = Parser::ParsePattern();
-      if (!Pattern) {
-        // Error
-      }
-
-      Patterns.push_back(Pattern);
-
-      if (Tok.is(tok::l_paren)) {
-        break;
-      }
-
-      if (Tok.isNot(tok::colon)) {
-        // Error
-      }
-      ConsumeToken();
-    }
-    ConsumeToken(); // consume ')'
-    // return Action.ActOnIrrefutablePattern
+    ExpectTokenKind(tok::l_paren);
+    auto Patterns = ParsePatternSequence(tok::r_paren);
     return pickNestedPat(&Patterns,
                          LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
   } else if (Tok.is(tok::l_brace)) {
-    return nullptr;
+    ExpectTokenKind(tok::l_brace);
+    auto MatchRecords = Parser::ParseRecordPatternFields(tok::r_brace);
+    return std::make_shared<MatchRecord>(
+        *MatchRecords, LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
   } else {
     // Error
     return nullptr;
@@ -235,51 +312,46 @@ ExprPtr Parser::ParseIdentifierExpr() {
 
   ConsumeToken(); // eat the identifier
 
-  if (Tok.isNot(tok::l_paren)) {
-    // this is a variable
+  if (Tok.is(tok::l_paren)) {
+    // this is a call
+    ExpectTokenKind(tok::l_paren);
+    std::vector<ExprPtr> Args;
+    if (Tok.isNot(tok::r_paren)) {
+      while (true) {
+        if (auto Arg = ParseExpression()) {
+          Args.push_back(std::move(Arg));
+        } else {
+          return nullptr;
+        }
+
+        if (Tok.is(tok::r_paren)) {
+          break;
+        }
+
+        ExpectTokenKind(tok::comma);
+      }
+    }
+
+    ExpectTokenKind(tok::r_paren);
+    return std::make_shared<App>(
+        var(IdName, LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0))), Args,
+        LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
+  } else if (Tok.is(tok::l_square)) {
+    std::cout << "not implemented" << std::endl;
+    exit(1);
+  } else {
     return std::make_shared<Var>(
         IdName, LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
+    // found a variable
   }
-
-  // this is a call
-  ConsumeToken(); // eat '('
-  // llvm::SmallVector<ExprPtr, 10> Args;
-  std::vector<ExprPtr> Args;
-  if (Tok.isNot(tok::r_paren)) {
-    while (true) {
-      if (auto Arg = ParseExpression()) {
-        Args.push_back(std::move(Arg));
-      } else {
-        return nullptr;
-      }
-
-      if (Tok.is(tok::r_paren)) {
-        break;
-      }
-
-      if (Tok.isNot(tok::colon)) {
-        // Error
-        // return LogError("Expected ')' or ',' in argument list");
-      }
-      ConsumeToken(); // eat ','
-    }
-  }
-
-  // eat ')'
-  ConsumeToken();
-  return std::make_shared<App>(
-      var(IdName, LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0))), Args,
-      LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
-  // return Actions.ActOnApp();
 }
 
-/// match expression:
-///    'match' expr 'with' [ '|' pattern row ]+
-///
-/// pattern row:
-///     pattern ['where' expr] '->' expr
+/// match-expression:
+///         'match' expr 'with' [ '|' pattern-row ]+
+/// pattern-row:
+///         pattern ['where' expr] '->' expr
 ExprPtr Parser::ParseMatchExpr() {
-  ConsumeToken(); // consume 'match'
+  ExpectTokenKind(tok::kw_match);
 
   // expressions to be matched
   llvm::SmallVector<ExprPtr, 5> MatchExprs;
@@ -287,7 +359,8 @@ ExprPtr Parser::ParseMatchExpr() {
   while (true) {
     auto Match = Parser::ParseExpression();
     if (!Match) {
-      // Error
+      std::cout << "expected match expression" << std::endl;
+      exit(1);
       return nullptr;
     }
     MatchExprs.push_back(Match);
@@ -295,8 +368,7 @@ ExprPtr Parser::ParseMatchExpr() {
       break;
     }
   }
-  // consume 'where'
-  ConsumeToken();
+  ExpectTokenKind(tok::kw_where);
 
   // parse pattern rows
   llvm::SmallVector<std::shared_ptr<PatternRow>, 10> PatternRows;
@@ -307,7 +379,8 @@ ExprPtr Parser::ParseMatchExpr() {
     while (true) {
       auto Pattern = Parser::ParsePattern();
       if (!Pattern) {
-        // Error
+	std::cout << "Expected Pattern" << std::endl;
+	exit(1);
       }
       Patterns.push_back(Pattern);
       if (Tok.is(tok::arrow) || Tok.is(tok::kw_where)) {
@@ -319,16 +392,15 @@ ExprPtr Parser::ParseMatchExpr() {
 
       WhereExpr = Parser::ParseExpression();
       if (!WhereExpr) {
-        // Error
+	std::cout << "Expected where expression" << std::endl;
+	exit(1);
       }
     }
-    if (Tok.isNot(tok::arrow)) {
-      // Error
-    }
-    ConsumeToken(); // consume arrow
+    ExpectTokenKind(tok::arrow);
     auto PatternRowBody = Parser::ParseExpression();
     if (!PatternRowBody) {
-      // Error
+      	std::cout << "Expected expression" << std::endl;
+	exit(1);
     }
     PatternRows.push_back(
         std::make_shared<PatternRow>(Patterns, WhereExpr, PatternRowBody));
@@ -339,21 +411,19 @@ ExprPtr Parser::ParseMatchExpr() {
   // compileMatch(compiler, MatchExprs, normPatternRules(PatternRows, ), );
 }
 
-/// parse a let expression
-///
-///
+/// let-expression:
+///     'let' letbindings [';'] 'in' expression
 ExprPtr Parser::ParseLetExpr() {
-  ConsumeToken(); // consume let
+  ExpectTokenKind(tok::kw_let);
 
   llvm::SmallVector<LetBinding, 10> Bindings;
 
+  // parse let bindings
   while (true) {
+    // let-binding:
+    //     irrefutable_pattern = expession
     auto Pattern = Parser::ParseIrrefutablePattern();
-
-    if (Tok.isNot(tok::equal)) {
-      //      return LogError("Expected equal");
-    }
-    ConsumeToken();
+    ExpectTokenKind(tok::equal);
     auto Exp = Parser::ParseExpression();
     Bindings.push_back(std::pair<PatternPtr, ExprPtr>{Pattern, Exp});
 
@@ -361,17 +431,15 @@ ExprPtr Parser::ParseLetExpr() {
       break;
     }
 
-    if (Tok.isNot(tok::semi)) {
-    }
-    ConsumeToken();
+    ExpectTokenKind(tok::semi);
 
     if (Tok.is(tok::kw_in)) {
       break;
     }
   }
-  ConsumeToken(); // consume "in"
+  ExpectTokenKind(tok::kw_in);
 
-  auto Body = Parser::ParsePrimaryExpression();
+  auto Body = Parser::ParseExpression();
   if (!Body) {
     return nullptr;
   }
@@ -382,31 +450,24 @@ ExprPtr Parser::ParseLetExpr() {
   return nullptr;
 }
 
-/// ifexpr ::= 'if' expression 'then' expression 'else' expression
+/// if-expression:
+///         'if' expression 'then' expression 'else' expression
 ExprPtr Parser::ParseIfExpr() {
-  ConsumeToken(); // consume 'if'
+  ExpectTokenKind(tok::kw_if);
 
   auto Cond = ParseExpression();
   if (!Cond) {
     return nullptr;
   }
 
-  if (Tok.isNot(tok::kw_then)) {
-    // Error
-    // return LogError("expected then");
-  }
-  ConsumeToken(); // consume 'then'
+  ExpectTokenKind(tok::kw_then);
 
   auto Then = ParseExpression();
   if (!Then) {
     return nullptr;
   }
 
-  if (Tok.isNot(tok::kw_else)) {
-    // Error
-    // return LogError("expected else");
-  }
-  ConsumeToken(); // consume 'else'
+  ExpectTokenKind(tok::kw_else);
 
   auto Else = ParseExpression();
   if (!Else) {
@@ -421,6 +482,9 @@ ExprPtr Parser::ParseIfExpr() {
   // std::move(Else));
 }
 
+/// numeric-constant:
+///     float-literal
+///     integer-literal
 ExprPtr Parser::ParseNumericConstant() {
   long Lit;
   Tok.getLiteralData().getAsInteger(10, Lit);
@@ -429,6 +493,36 @@ ExprPtr Parser::ParseNumericConstant() {
                                LexicallyAnnotated::make(Pos(0, 0), Pos(0, 0)));
 }
 
+/// expr:
+///      identifier expr'
+///    | literal expr'
+///    | array-constructor-elimination expr'
+///    | variant-constructor-elimination expr'
+///    | case-expr expr'
+///    | record-construction-elimination expr'
+///    | recordfield-path expr'
+///    | pack-expression expr'
+///    | unpack-expression expr'
+///    | paren-expr expr'
+///    | quoted-expr expr'
+
+/// expr':
+///      "(" cargs ")" expr'
+///    | "[" l0expr "]" expr'
+///    | record-field-path expr'
+///    | empty
+
+/// primary-expression:
+///         numeric-constant
+///       | identifier-expression
+///       | if-expression
+///       | let-expression
+///       | match-expression
+///       | do-expression
+///       | case-expression
+///       | string-literal
+///       | char-literal
+///       | array-literal
 ExprPtr Parser::ParsePrimaryExpression() {
   switch (Tok.getKind()) {
   case tok::numeric_constant:
@@ -453,12 +547,15 @@ ExprPtr Parser::ParsePrimaryExpression() {
   return nullptr;
 }
 
+/// parse the right hand side of a binary operator
 ExprPtr Parser::ParseBinopRHS(ExprPtr LHS, int MinPrec) {
-  while (1) {    
+  while (1) {
     // If this was an operator token we should handle the error
     // here
-    auto [NextTokenPrec, Assoc] = GetBinopPrecedence(Tok);
-    
+    int NextTokenPrec;
+    Parser::Assoc Assoc;
+    std::tie(NextTokenPrec, Assoc) = GetBinopPrecedence(Tok);
+
     if (NextTokenPrec < MinPrec) {
       return LHS;
     }
@@ -466,14 +563,13 @@ ExprPtr Parser::ParseBinopRHS(ExprPtr LHS, int MinPrec) {
 
     auto RHS = ParsePrimaryExpression();
     int ThisPrec = NextTokenPrec;
-    
 
     bool isRightAssoc = Assoc == Assoc::right;
 
     if (ThisPrec < NextTokenPrec ||
         (ThisPrec == NextTokenPrec && isRightAssoc)) {
       RHS = ParseBinopRHS(std::move(RHS), ThisPrec + !isRightAssoc);
-      auto [NextTokenPrec, Assoc] = GetBinopPrecedence(Tok);
+      std::tie(NextTokenPrec, Assoc) = GetBinopPrecedence(Tok);
     }
 
     auto OldLHS = std::move(LHS);
@@ -485,17 +581,17 @@ ExprPtr Parser::ParseBinopRHS(ExprPtr LHS, int MinPrec) {
   }
 }
 
-/// expression
-///   ::= primary binoprhs
-///
+/// expression: primary binoprhs
 ExprPtr Parser::ParseExpression() {
   auto LHS = Parser::ParsePrimaryExpression();
   if (!LHS) {
+    std::cout << "Expected Primary Expression" << std::endl;
     return nullptr;
   }
   return Parser::ParseBinopRHS(std::move(LHS), 0);
 }
 
+/// type:
 ///    id
 ///    "<" cppid ">"
 ///    "[" "]"
@@ -514,22 +610,50 @@ ExprPtr Parser::ParseExpression() {
 ///    "^" id "." l1mtype
 ///    "stringV"
 ///    "`" l0expr "`"
-auto Parser::ParseType() -> bool {
+auto Parser::ParseType() -> MonoTypePtr {
   switch (Tok.getKind()) {
   case tok::identifier:
     break;
   case tok::less:
-    break;
-  case tok::l_square:
     Parser::ConsumeToken();
-    if (Tok.is(tok::r_square)) {
-
-    } else if (Tok.is(tok::colon)) {
+    if (Tok.is(tok::identifier)) {
 
     } else {
+      // error
     }
+    Parser::ConsumeToken();
+
+    if (Tok.is(tok::greater)) {
+
+    } else {
+      // error
+    }
+    Parser::ConsumeToken();
     break;
+  case tok::l_square: {
+    ConsumeToken();
+    llvm::SmallVector<MonoTypePtr, 10> AccTy;
+    while (1) {
+      auto Type = ParseType();
+      if (Type) {
+      }
+      ConsumeToken();
+      if (Tok.is(tok::r_square)) {
+        break;
+      }
+    }
+    ExpectTokenKind(tok::r_square);
+    break;
+  }
   case tok::l_paren:
+    ConsumeToken();
+    if (Tok.is(tok::arrow)) {
+      ConsumeToken();
+      ExpectTokenKind(tok::r_paren);
+    }
+    if (Tok.is(tok::r_paren)) {
+      ConsumeToken();
+    }
     break;
   case tok::l_brace:
     break;
@@ -549,10 +673,11 @@ auto Parser::ParseType() -> bool {
   }
 }
 
+/// type-predicate:
 ///    id [l1mtype]+
-///    "{" l1mtype "*" lm1type "}"
-///    "{" id ":" l1mtype "*" l1mtypee "}"
-///    "(" l1mtype "*" l1mtype ")"
+///    "{" l1mtype "*" lm1type "}" "=" l1mtype
+///    "{" id ":" l1mtype "*" l1mtype "}" "=" l1mtype
+///    "(" l1mtype "*" l1mtype ")" "=" l1mtype
 ///    l1mtype "==" l1mtype
 ///    l1mtype "!=" l1mtype
 ///    l1mtype "~" lm1type
@@ -570,8 +695,43 @@ auto Parser::ParseType() -> bool {
 ///    "|" id ":" l0mtype "|" "::" l1mtype
 ///    "|" l1mtype "/" l0mtype "|" "::" l1mtype
 ///    l1mtype "++" l1mtype "=" l1mtype
-auto Parser::ParseTypePredicate() -> bool {}
+auto Parser::ParseTypePredicate() -> ConstraintPtr {
+  if (Tok.is(tok::l_brace)) {
+    ExpectTokenKind(tok::l_brace);
 
+    // record field constraint
+    if (Tok.is(tok::identifier)) {
+      if (Tok.is(tok::colon)) {
+      }
+    }
+
+    auto T0 = ParseType();
+    ExpectTokenKind(tok::star);
+    auto T1 = ParseType();
+    ExpectTokenKind(tok::r_brace);
+    ExpectTokenKind(tok::equal);
+    auto T2 = ParseType();
+    return std::make_shared<Constraint>(
+        RecordDeconstructor::constraintName(),
+        list(tlong(0), tlong(0), T2, freshTypeVar(), T0, T1));
+
+  } else if (Tok.is(tok::pipe)) {
+    // Not implemented
+  } else if (Tok.is(tok::l_paren)) {
+    ExpectTokenKind(tok::l_paren);
+    auto T0 = ParseType();
+    ExpectTokenKind(tok::star);
+    auto T1 = ParseType();
+    ExpectTokenKind(tok::r_paren);
+    ExpectTokenKind(tok::equal);
+    auto T2 = ParseType();
+    return std::make_shared<Constraint>(
+        RecordDeconstructor::constraintName(),
+        list(tlong(0), tlong(1), T2, freshTypeVar(), T0, T1));
+  }
+}
+
+/// class-definition:
 ///    "class" constraints "=>" id names
 ///    "class" constraints "=>" id names "|" fundeps
 ///    "class" constraints "=>" id names "|" fundeps "where" class_members
@@ -628,9 +788,15 @@ auto Parser::ParseClassDef() -> bool {
   return false;
 }
 
+/// module-definition:
+///         import-definition
+///       | type-definition
+///       | data-definition
+///       | instance-definition
+///       | class-definition
 bool Parser::ParseModuleDefs() {
+  // Prime Lexer
   Parser::ConsumeToken();
-
   hobbes::tok::TokenKind kind = Tok.getKind();
   if (kind == tok::kw_import) {
     Parser::ParseImportStatement();
@@ -647,7 +813,6 @@ bool Parser::ParseModuleDefs() {
     while (Tok.getKind() == tok::identifier) {
       idents.push_back(Tok);
       Parser::ConsumeToken();
-      // Lexer.LexToken();
     }
     if (Tok.getKind() == tok::equal) {
       // Lexer.LexToken();
@@ -661,9 +826,7 @@ bool Parser::ParseModuleDefs() {
 
 bool Parser::ParseModule() {
   Parser::ConsumeToken();
-
   if (Tok.getKind() == tok::kw_module) {
-    std::cout << "parse module header" << std::endl;
     Parser::ConsumeToken();
     if (Tok.getKind() == tok::identifier) {
     }

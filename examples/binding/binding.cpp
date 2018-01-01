@@ -10,7 +10,7 @@ const hobbes::array<MyRecord>* loadRecords(int key) {
   static const char* names[] = { "chicken", "hot dog", "foobar", "jimmy" };
 
   auto rs = hobbes::makeArray<MyRecord>(key);
-  for (size_t i = 0; i < rs->size; ++i) {
+  for (long i = 0; i < rs->size; ++i) {
     rs->data[i].first  = i;
     rs->data[i].second = hobbes::makeString(names[i % 4]);
   }
