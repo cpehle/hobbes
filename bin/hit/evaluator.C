@@ -65,7 +65,6 @@ evaluator::evaluator(const Args& args) : silent(args.silent), wwwd(0) {
   bindArguments(this->ctx, args.scriptNameVals);
   bindHiDefs(this->ctx);
   bindTensorDefs(this->ctx);
-  bindGLFWDefs(this->ctx);
   
   // start alternate input services if necessary
   if (args.replPort > 0) {
