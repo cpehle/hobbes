@@ -1,7 +1,7 @@
 language: cpp
 env:
   global:
-    - DEPS="lcov doxygen"
+    - DEPS="lcov doxygen graphviz"
 matrix:
   include:
     - os: osx
