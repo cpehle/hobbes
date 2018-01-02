@@ -1,7 +1,7 @@
 language: cpp
 env:
   global:
-    - DEPS="lcov"
+    - DEPS="lcov doxygen"
 matrix:
   include:
     - os: osx
