@@ -14,25 +14,12 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "GLFW/glfw3.h"
 #include "TH/TH.h"
 #include "TH/THFilePrivate.h"
 
 namespace hit {
 
-struct Window {
-  GLFWwindow *window;
-};
 
-auto createWindow(uint width, uint height, hobbes::array<char> *title)
-    -> Window {
-  Window w;
-  w.window = glfwCreateWindow(width, height,
-                              hobbes::makeStdString(title).c_str(), NULL, NULL);
-  return w;
-}
-
-auto makeContextCurrent(Window w) -> void { glfwMakeContextCurrent(w.window); }
 
 // allow local evaluations to run processes, write files
 void writefile(const hobbes::array<char> *fname,
@@ -177,12 +164,6 @@ void bindHiDefs(hobbes::cc &c) {
 
   c.bind("tick", &hobbes::tick);
   c.bind("showTick", &showTick);
-}
-
-void bindGLFWDefs(hobbes::cc &ctx) {
-  ctx.bind("glfwInit", &glfwInit);
-  ctx.bind("createWindow", &createWindow);
-  ctx.bind("makeContextCurrent", &makeContextCurrent);
 }
 
 void bindTensorDefs(hobbes::cc &ctx) {
