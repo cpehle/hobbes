@@ -11,8 +11,6 @@ target_link_libraries(hit
   ncurses
   linenoise
   TH
-  glfw
-  ${GLFW_LIBRARIES}
   ${sys_libs})
 
 install(TARGETS hit DESTINATION "bin")
